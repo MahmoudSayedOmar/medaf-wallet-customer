@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Blank Template (TypeScript)",
+    "slug": "medaf-wallet",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/medaf.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffa500"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
