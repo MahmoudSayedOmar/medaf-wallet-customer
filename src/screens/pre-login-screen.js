@@ -4,8 +4,10 @@ import {
   Alert,
   TextInput,
   View,
-  StyleSheet
+  StyleSheet,
+  Image
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -17,6 +19,7 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { tryPreLogin } from "../state/authorization/action-creator";
 //import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+var logo = require("../../assets/download.jpg");
 export class PreLoginContainer extends Component {
   constructor() {
     super();
@@ -49,13 +52,16 @@ export class PreLoginContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button
-          rounded
-          style={styles.button}
-          onPress={this.onPreLogin.bind(this)}
-        >
-          <Text>Start</Text>
-        </Button>
+        <View style={styles.centerLogo}>
+          <Image source={logo} style={{ width: 150 }} />
+          <Button
+            // rounded
+            style={styles.button}
+            onPress={this.onPreLogin.bind(this)}
+          >
+            <Text style={{ color: "#202945" }}>Start</Text>
+          </Button>
+        </View>
       </View>
     );
   }
@@ -66,18 +72,25 @@ export const PreLoginScreen = connect(
 )(PreLoginContainer);
 
 const styles = StyleSheet.create({
+  centerLogo: {
+    width: wp("100%"),
+    height: hp("50%"),
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   container: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#f99c05"
+    paddingTop: "20%",
+    backgroundColor: "#FFFFFF"
   },
   input: {
     textAlign: "center",
     height: 50,
     borderWidth: 2,
-    borderColor: "black",
+    borderColor: "#202945",
     borderRadius: 20,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#D0C21D",
     margin: 10
   },
   backgroundImage: {
@@ -90,9 +103,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: wp("35%"),
     height: hp("5"),
-    backgroundColor: "#60b4c2",
-    shadowColor: "#3cc2cf",
-    marginLeft: 5,
+    backgroundColor: "#D0C21D",
+    shadowColor: "#000000",
+    color: "#202945",
+
+    borderColor: "#202945",
+    borderWidth: 2,
+    marginTop: 30,
     alignSelf: "center"
   }
 });

@@ -48,18 +48,19 @@ export class ApplicationContainer extends Component {
           <CardItem
             header
             style={{
-              backgroundColor: "#ffa500",
+              backgroundColor: "#D0C21D",
               flexDirection: "row"
             }}
           >
             <Text
               style={{
-                fontSize: 25
+                fontSize: 25,
+                color: "#202945"
               }}
             >
               {this.props.balance}
             </Text>
-            <Text style={{ fontSize: 25 }}> EGP</Text>
+            <Text style={{ fontSize: 25, color: "#202945" }}> EGP</Text>
           </CardItem>
           <CardItem>
             <Body
@@ -84,7 +85,9 @@ export class ApplicationContainer extends Component {
                 justifyContent: "center"
               }}
             >
-              <Text style={{ fontSize: 20 }}>{this.props.membershipId}</Text>
+              <Text style={{ fontSize: 20, color: "#202945" }}>
+                {this.props.membershipId}
+              </Text>
             </View>
           </CardItem>
         </Card>
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#3cc2cf"
+    backgroundColor: "#FFFFFF"
   },
   input: {
     textAlign: "center",

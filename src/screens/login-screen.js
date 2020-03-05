@@ -4,8 +4,10 @@ import {
   Alert,
   TextInput,
   View,
-  StyleSheet
+  StyleSheet,
+  Image
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -17,6 +19,7 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { tryLogin } from "../state/authorization/action-creator";
 //import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+var logo = require("../../assets/download.jpg");
 export class LoginContainer extends Component {
   constructor() {
     super();
@@ -56,16 +59,24 @@ export class LoginContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.centerLogo}>
+          <Image source={logo} style={{ width: 150 }} />
+        </View>
         <TextInput
           value={this.state.membershipId}
           onChangeText={membershipId => this.setState({ membershipId })}
           placeholder={"Enter Your Membership ID"}
+          placeholderTextColor="#ffffff"
+          keyboardType="numeric"
           style={styles.input}
         />
         <TextInput
           value={this.state.mobileNumber}
           onChangeText={mobileNumber => this.setState({ mobileNumber })}
+          keyboardType="numeric"
+          maxLength={11}
           placeholder={"Enter Your Mobile Number"}
+          placeholderTextColor="#ffffff"
           style={styles.input}
         />
         <View
@@ -83,20 +94,20 @@ export class LoginContainer extends Component {
             androidMode={"default"}
             placeHolderText="Select Your Birth Date"
             textStyle={{ color: "black" }}
-            placeHolderTextStyle={{ color: "#d3d3d3" }}
+            placeHolderTextStyle={{
+              color: "#ffffff",
+              fontSize: 15,
+              paddingTop: 14
+            }}
             onDateChange={this.setDate.bind(this)}
             disabled={false}
           />
         </View>
         {this.props.loading ? (
-          <Spinner style={{ alignSelf: "center" }} color="#60b4c2" />
+          <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
         ) : (
-          <Button
-            rounded
-            style={styles.button}
-            onPress={this.onLogin.bind(this)}
-          >
-            <Text>Login</Text>
+          <Button style={styles.button} onPress={this.onLogin.bind(this)}>
+            <Text style={{ color: "#202945" }}>Login</Text>
           </Button>
         )}
       </View>
@@ -109,18 +120,25 @@ export const LoginScreen = connect(
 )(LoginContainer);
 
 const styles = StyleSheet.create({
+  centerLogo: {
+    width: wp("100%"),
+    height: hp("22%"),
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#f99c05"
+    backgroundColor: "#FFFFFF"
   },
   input: {
     textAlign: "center",
     height: 50,
     borderWidth: 2,
     borderColor: "black",
-    borderRadius: 20,
-    backgroundColor: "#FFFFFF",
+    borderRadius: 5,
+    backgroundColor: "#D0C21D",
     margin: 10
   },
   backgroundImage: {
@@ -133,9 +151,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: wp("35%"),
     height: hp("5"),
-    backgroundColor: "#60b4c2",
-    shadowColor: "#3cc2cf",
-    marginLeft: 5,
+    backgroundColor: "#D0C21D",
+    shadowColor: "#000000",
+    color: "#202945",
+
+    borderColor: "#202945",
+    borderWidth: 2,
+    paddingBottom: 5,
+    height: 40,
+    marginTop: 30,
     alignSelf: "center"
   }
 });
