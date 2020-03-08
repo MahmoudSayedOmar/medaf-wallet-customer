@@ -2,6 +2,7 @@ import * as types from "./actions";
 import { UserLoginModel } from "../../proxy";
 import { authProxyService } from "../../services";
 import { updateUserInfo } from "../user-info/action-creator";
+
 export type ON_LOGIN_Action = { type: string, payload: any };
 export type LOGIN_SUCCESS_Action = {
   type: string,
@@ -32,7 +33,13 @@ export function tryLogin(user: UserLoginModel) {
     debugger;
     if (response.status === 200) {
       debugger;
-      dispatch(onLoginSuccess());
+      dispatch(
+        onLoginSuccess({
+          CardNo: user.membershipId,
+          Mobile: user.mobileNumber,
+          BirthDate: user.dateOfBirth
+        })
+      );
       dispatch(
         updateUserInfo({
           cardNo: user.membershipId,

@@ -15,7 +15,7 @@ export function userInfoReducer(
         ...action.payload
       };
     }
-
+    case types.UPDATE_USER_INFO_FALIAR_ACTION:
     default:
       return state;
   }

@@ -29,7 +29,8 @@ export function authorizationReducer(
       return {
         ...state,
         isLoggedIn: true,
-        loading: false
+        loading: false,
+        ...action.payload
       };
     }
 

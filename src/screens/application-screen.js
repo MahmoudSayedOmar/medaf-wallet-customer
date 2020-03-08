@@ -10,7 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-
+import { tryRefresh } from "../state";
 import {
   Container,
   Header,
@@ -18,7 +18,8 @@ import {
   Card,
   CardItem,
   Body,
-  Text
+  Text,
+  Button
 } from "native-base";
 import { connect } from "react-redux";
 import Barcode from "react-native-barcode-builder";
@@ -38,9 +39,11 @@ export class ApplicationContainer extends Component {
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ tryRefresh }, dispatch);
   }
-
+  onRefresh() {
+    this.props.tryRefresh();
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -91,6 +94,27 @@ export class ApplicationContainer extends Component {
             </View>
           </CardItem>
         </Card>
+        <Button
+          style={{
+            flexDirection: "column",
+            alignItems: "center",
+            width: wp("35%"),
+            height: hp("5"),
+            backgroundColor: "#D0C21D",
+            shadowColor: "#000000",
+            color: "#202945",
+
+            borderColor: "#202945",
+            borderWidth: 2,
+            paddingBottom: 5,
+            height: 40,
+            marginTop: 30,
+            alignSelf: "center"
+          }}
+          onPress={this.onRefresh.bind(this)}
+        >
+          <Text style={{ color: "#202945" }}>Refresh</Text>
+        </Button>
       </View>
     );
   }
