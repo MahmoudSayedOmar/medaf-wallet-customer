@@ -37,7 +37,8 @@ export function tryLogin(user: UserLoginModel) {
         onLoginSuccess({
           CardNo: user.membershipId,
           Mobile: user.mobileNumber,
-          BirthDate: user.dateOfBirth
+          BirthDate: user.dateOfBirth,
+          havePinCode: result["HavePinCode"]
         })
       );
       dispatch(

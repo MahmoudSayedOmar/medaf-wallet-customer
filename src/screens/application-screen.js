@@ -115,6 +115,29 @@ export class ApplicationContainer extends Component {
         >
           <Text style={{ color: "#202945" }}>Refresh</Text>
         </Button>
+        <Button
+          style={{
+            flexDirection: "column",
+            alignItems: "center",
+            width: wp("35%"),
+            height: hp("5"),
+            backgroundColor: "#D0C21D",
+            shadowColor: "#000000",
+            color: "#202945",
+
+            borderColor: "#202945",
+            borderWidth: 2,
+            paddingBottom: 5,
+            height: 40,
+            marginTop: 30,
+            alignSelf: "center"
+          }}
+          onPress={() => {
+            this.props.navigation.navigate("ChangePin");
+          }}
+        >
+          <Text style={{ color: "#202945" }}>Change My Pin Code</Text>
+        </Button>
       </View>
     );
   }

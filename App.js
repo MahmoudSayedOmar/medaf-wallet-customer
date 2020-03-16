@@ -5,7 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { LoginScreen } from "./src/screens/login-screen";
 import { PreLoginScreen } from "./src/screens/pre-login-screen";
 import { ApplicationScreen } from "./src/screens/application-screen";
-
+import { PinCodeScreen } from "./src/screens/set-pin-code-screen";
+import { ChangePinCodeScreen } from "./src/screens/change-pin-code";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import { reducer } from "./src/state";
@@ -35,7 +36,7 @@ export default class App extends React.Component {
 
   render() {
     const store = compose(applyMiddleware(thunk))(createStore)(reducer);
-
+    console.log(store.getState().authorization);
     if (!this.state.isReady) {
       return <AppLoading />;
     }
@@ -45,8 +46,9 @@ export default class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="PreLogin" headerMode="none">
             <Stack.Screen name="PreLogin" component={PreLoginScreen} />
-
             <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="PinConfirmation" component={PinCodeScreen} />
+            <Stack.Screen name="ChangePin" component={ChangePinCodeScreen} />
             <Stack.Screen name="Application" component={ApplicationScreen} />
           </Stack.Navigator>
         </NavigationContainer>

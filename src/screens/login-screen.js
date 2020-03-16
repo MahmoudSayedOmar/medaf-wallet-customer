@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Image
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -18,8 +17,9 @@ import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
 import { tryLogin } from "../state/authorization/action-creator";
-//import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 var logo = require("../../assets/download.jpg");
+
 export class LoginContainer extends Component {
   constructor() {
     super();
@@ -39,14 +39,18 @@ export class LoginContainer extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn) {
-      debugger;
-      this.props.navigation.navigate("Application");
+      if (nextProps.havePinCode) {
+        this.props.navigation.navigate("Application");
+      } else {
+        this.props.navigation.navigate("PinConfirmation");
+      }
     }
   }
   static mapStatetToProps(state: State) {
     return {
       isLoggedIn: state.authorization.isLoggedIn,
-      loading: state.authorization.loading
+      loading: state.authorization.loading,
+      havePinCode: state.authorization.havePinCode
     };
   }
 

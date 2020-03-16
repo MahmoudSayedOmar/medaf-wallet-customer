@@ -12,6 +12,7 @@ export interface AuthorizationState {
   brandID: String;
   groupid: String;
   amount: Number;
+  havePinCode: Boolean;
 }
 
 export const AuthorizationInitialState: AuthorizationState = {
@@ -27,5 +28,6 @@ export const AuthorizationInitialState: AuthorizationState = {
   userID: "",
   brandID: "",
   groupid: "",
-  amount: 0
+  amount: 0,
+  havePinCode: false
 };

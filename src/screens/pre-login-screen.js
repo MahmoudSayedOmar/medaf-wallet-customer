@@ -32,8 +32,9 @@ export class PreLoginContainer extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.isPreLoggedIn) {
-      debugger;
-      this.props.navigation.navigate("Login");
+      this.props.navigation.reset({
+        routes: [{ name: "Login" }]
+      });
     }
   }
   static mapStatetToProps(state: State) {
@@ -54,11 +55,7 @@ export class PreLoginContainer extends Component {
       <View style={styles.container}>
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
-          <Button
-            // rounded
-            style={styles.button}
-            onPress={this.onPreLogin.bind(this)}
-          >
+          <Button style={styles.button} onPress={this.onPreLogin.bind(this)}>
             <Text style={{ color: "#202945" }}>Start</Text>
           </Button>
         </View>
@@ -106,7 +103,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
-
     borderColor: "#202945",
     borderWidth: 2,
     marginTop: 30,

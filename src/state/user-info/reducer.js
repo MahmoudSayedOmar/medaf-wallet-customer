@@ -15,6 +15,47 @@ export function userInfoReducer(
         ...action.payload
       };
     }
+
+    case types.ON_CHANGE_PIN_CODE: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case types.CHANGE_PIN_CODE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        changePinCodeStatus: 1
+      };
+    }
+    case types.CHANGE_PIN_CODE_FAILED: {
+      return {
+        ...state,
+        loading: false,
+        changePinCodeStatus: -1
+      };
+    }
+    case types.ON_SET_PIN_CODE: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case types.SET_PIN_CODE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        setPinCodeStatus: 1
+      };
+    }
+    case types.SET_PIN_CODE_FAILED: {
+      return {
+        ...state,
+        loading: false,
+        setPinCodeStatus: -1
+      };
+    }
     case types.UPDATE_USER_INFO_FALIAR_ACTION:
     default:
       return state;

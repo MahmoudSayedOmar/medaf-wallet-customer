@@ -1,5 +1,5 @@
 import * as types from "./actions";
-import { authProxyService } from "../../services";
+import { authProxyService, pinCodeProxyService } from "../../services";
 
 export type UPDATE_USER_INFO_ACTION = { type: string, payload: Object };
 
@@ -43,4 +43,83 @@ export function updateUserInfo(data): UPDATE_USER_INFO_ACTION {
 
 export function updateUserInfoFail(): UPDATE_USER_INFO_FALIAR_ACTION {
   return { type: types.UPDATE_USER_INFO, payload: "Failed" };
+}
+//////////////////////////////////////////////////////////////////
+export type ON_SET_PIN_CODE_ACTION = { type: string };
+export type SET_PIN_CODE_SUCCESS_ACTION = { type: string, payload: Object };
+export type SET_PIN_CODE_FAILED_ACTION = { type: string, payload: Object };
+
+export function trySetPinCode(confirmationData) {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = state.authorization.token;
+    dispatch(onSetPinCode());
+    let response = await pinCodeProxyService.setFirstPinCode(
+      {
+        activationCode: confirmationData.confirmationCode,
+        pinCode: confirmationData.newPinCode,
+        cardNumber: state.authorization.membershipId
+      },
+      token
+    );
+    debugger;
+    if (response.status === 200) {
+      if (response.data.code == 1) {
+        dispatch(SetPinCodeSuccess());
+      } else {
+        dispatch(SetPinCodeFail());
+      }
+    }
+    dispatch(SetPinCodeFail());
+  };
+}
+
+export function onSetPinCode(): ON_SET_PIN_CODE_ACTION {
+  return { type: types.ON_SET_PIN_CODE };
+}
+export function SetPinCodeSuccess(data): SET_PIN_CODE_SUCCESS_ACTION {
+  return { type: types.SET_PIN_CODE_SUCCESS, payload: data };
+}
+export function SetPinCodeFail(data): SET_PIN_CODE_FAILED_ACTION {
+  return { type: types.SET_PIN_CODE_FAILED, payload: data };
+}
+
+//////////////////////////////////////////////////////////////////////////////
+export type ON_CHANGE_PIN_CODE_ACTION = { type: string };
+export type CHANGE_PIN_CODE_SUCCESS_ACTION = { type: string, payload: Object };
+export type CHANGE_PIN_CODE_FAILED_ACTION = { type: string, payload: Object };
+
+export function tryChangePinCode(confirmationData) {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = state.authorization.token;
+    dispatch(onChangePinCode());
+    let response = await pinCodeProxyService.changePinCode(
+      {
+        oldPinCode: confirmationData.oldPinCode,
+        newPinCode: confirmationData.newPinCode,
+        cardNumber: state.authorization.membershipId
+      },
+      token
+    );
+    debugger;
+    if (response.status === 200) {
+      if (response.data.code == 1) {
+        dispatch(changePinCodeSuccess());
+      } else {
+        dispatch(changePinCodeFail());
+      }
+    }
+    dispatch(changePinCodeFail());
+  };
+}
+
+export function onChangePinCode(): ON_CHANGE_PIN_CODE_ACTION {
+  return { type: types.ON_CHANGE_PIN_CODE };
+}
+export function changePinCodeSuccess(data): CHANGE_PIN_CODE_SUCCESS_ACTION {
+  return { type: types.CHANGE_PIN_CODE_SUCCESS, payload: data };
+}
+export function changePinCodeFail(data): CHANGE_PIN_CODE_FAILED_ACTION {
+  return { type: types.CHANGE_PIN_CODE_FAILED, payload: data };
 }
