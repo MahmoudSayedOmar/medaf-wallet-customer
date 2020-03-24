@@ -17,8 +17,8 @@ import { Button, Text, DatePicker, Spinner } from "native-base";
 import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
-import { tryPreLogin } from "../state/authorization/action-creator";
-//import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { tryPreLogin, contBalanceUpdate } from "../state";
+import signalr from "react-native-signalr";
 var logo = require("../../assets/download.jpg");
 export class PreLoginContainer extends Component {
   constructor() {
@@ -30,6 +30,7 @@ export class PreLoginContainer extends Component {
   onPreLogin() {
     this.props.tryPreLogin();
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.isPreLoggedIn) {
       this.props.navigation.reset({

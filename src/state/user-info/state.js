@@ -4,6 +4,8 @@ export interface UserInfoState {
   loading: Boolean;
   setPinCodeStatus: Number;
   changePinCodeStatus: Number;
+  connectionId: String;
+  connected: Boolean;
 }
 
 export const UserInfoInitialState: UserInfoState = {
@@ -11,5 +13,7 @@ export const UserInfoInitialState: UserInfoState = {
   code: "",
   loading: false,
   setPinCodeStatus: 0,
-  changePinCodeStatus: 0
+  changePinCodeStatus: 0,
+  connectionId: null,
+  connected: false
 };

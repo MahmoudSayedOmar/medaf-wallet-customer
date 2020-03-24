@@ -56,6 +56,26 @@ export function userInfoReducer(
         setPinCodeStatus: -1
       };
     }
+    case types.UPDATE_BALANCE: {
+      debugger;
+      return {
+        ...state,
+        balance: action.payload
+      };
+    }
+    case types.ON_CONNECTION_SUCCESS: {
+      return {
+        ...state,
+        connectionId: action.payload,
+        connected: true
+      };
+    }
+    case types.ON_CONNECTION_FAIL: {
+      return {
+        ...state,
+        connected: false
+      };
+    }
     case types.UPDATE_USER_INFO_FALIAR_ACTION:
     default:
       return state;

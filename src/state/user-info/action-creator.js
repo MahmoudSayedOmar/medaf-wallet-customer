@@ -123,3 +123,27 @@ export function changePinCodeSuccess(data): CHANGE_PIN_CODE_SUCCESS_ACTION {
 export function changePinCodeFail(data): CHANGE_PIN_CODE_FAILED_ACTION {
   return { type: types.CHANGE_PIN_CODE_FAILED, payload: data };
 }
+/////////////////////////////////////////////////////////////////
+
+export type UPDATE_BALANCE_ACTION = { type: string, payload: Number };
+export type ON_CONNECTION_SUCCESS_ACTION = { type: string, payload: String };
+export type ON_CONNECTION_FAIL_ACTION = { type: string };
+
+export function contBalanceUpdate(argOne) {
+  return async dispatch => {
+    debugger;
+
+    dispatch(updateBalance(argOne));
+  };
+}
+
+export function updateBalance(balance): ON_CHANGE_PIN_CODE_ACTION {
+  return { type: types.UPDATE_BALANCE, payload: balance };
+}
+
+export function connectionSuccess(id): ON_CONNECTION_SUCCESS_ACTION {
+  return { type: types.ON_CONNECTION_SUCCESS, payload: id };
+}
+export function connectionFail(): ON_CONNECTION_FAIL_ACTION {
+  return { type: types.ON_CONNECTION_FAIL };
+}

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template (TypeScript)",
+    "name": "Medaf Wallet",
     "slug": "medaf-wallet",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -18,7 +18,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.medaf.customerwallet",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.medaf.customerwallet",
+      "versionCode": 2
     }
   }
 }

@@ -8,12 +8,10 @@ import { ApplicationScreen } from "./src/screens/application-screen";
 import { PinCodeScreen } from "./src/screens/set-pin-code-screen";
 import { ChangePinCodeScreen } from "./src/screens/change-pin-code";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import { reducer } from "./src/state";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
-import thunk from "redux-thunk";
+import store from "./store";
 
 const Stack = createStackNavigator();
 
@@ -35,8 +33,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    const store = compose(applyMiddleware(thunk))(createStore)(reducer);
-    console.log(store.getState().authorization);
     if (!this.state.isReady) {
       return <AppLoading />;
     }

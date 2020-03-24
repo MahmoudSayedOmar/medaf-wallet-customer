@@ -1,144 +1,73 @@
-import React, { Component } from "react";
-import {
-  ImageBackground,
-  Alert,
-  TextInput,
-  View,
-  StyleSheet
-} from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from "react-native-responsive-screen";
-import { tryRefresh } from "../state";
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Body,
-  Text,
-  Button
-} from "native-base";
+import * as React from "react";
+import { View, Text, Button } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { connect } from "react-redux";
-import Barcode from "react-native-barcode-builder";
+
 import { Dispatch, bindActionCreators } from "redux";
+import { Ionicons } from "@expo/vector-icons";
 
-export class ApplicationContainer extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+import { HomeScreen } from "./home-screen";
 
-  static mapStatetToProps(state: State) {
-    return {
-      balance: state.userInfo.balance,
-      membershipId: state.authorization.membershipId
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+function SettingsScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Settings screen</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate("Details")}
+      />
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+export default class ApplicationContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
     };
+  }
+  static mapStatetToProps(state: State) {
+    return {};
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({ tryRefresh }, dispatch);
-  }
-  onRefresh() {
-    this.props.tryRefresh();
+    return bindActionCreators({}, dispatch);
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Card>
-          <CardItem
-            header
-            style={{
-              backgroundColor: "#D0C21D",
-              flexDirection: "row"
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 25,
-                color: "#202945"
-              }}
-            >
-              {this.props.balance}
-            </Text>
-            <Text style={{ fontSize: 25, color: "#202945" }}> EGP</Text>
-          </CardItem>
-          <CardItem>
-            <Body
-              style={{
-                flexDirection: "row",
-                flex: 1,
-                justifyContent: "center"
-              }}
-            >
-              <Barcode
-                style={{ alignSelf: "center" }}
-                value={this.props.membershipId}
-                format="CODE128"
-              />
-            </Body>
-          </CardItem>
-          <CardItem footer>
-            <View
-              style={{
-                flexDirection: "row",
-                flex: 1,
-                justifyContent: "center"
-              }}
-            >
-              <Text style={{ fontSize: 20, color: "#202945" }}>
-                {this.props.membershipId}
-              </Text>
-            </View>
-          </CardItem>
-        </Card>
-        <Button
-          style={{
-            flexDirection: "column",
-            alignItems: "center",
-            width: wp("35%"),
-            height: hp("5"),
-            backgroundColor: "#D0C21D",
-            shadowColor: "#000000",
-            color: "#202945",
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === "Home") {
+              iconName = focused
+                ? "ios-information-circle"
+                : "ios-information-circle-outline";
+            } else if (route.name === "Transfer") {
+              iconName = focused ? "ios-swap" : "ios-swap";
+            } else if (route.name === "History") {
+              iconName = focused ? "md-clock" : "md-clock";
+            } else if (route.name === "Settings") {
+              iconName = focused ? "ios-list-box" : "ios-list";
+            }
 
-            borderColor: "#202945",
-            borderWidth: 2,
-            paddingBottom: 5,
-            height: 40,
-            marginTop: 30,
-            alignSelf: "center"
-          }}
-          onPress={this.onRefresh.bind(this)}
-        >
-          <Text style={{ color: "#202945" }}>Refresh</Text>
-        </Button>
-        <Button
-          style={{
-            flexDirection: "column",
-            alignItems: "center",
-            width: wp("35%"),
-            height: hp("5"),
-            backgroundColor: "#D0C21D",
-            shadowColor: "#000000",
-            color: "#202945",
-
-            borderColor: "#202945",
-            borderWidth: 2,
-            paddingBottom: 5,
-            height: 40,
-            marginTop: 30,
-            alignSelf: "center"
-          }}
-          onPress={() => {
-            this.props.navigation.navigate("ChangePin");
-          }}
-        >
-          <Text style={{ color: "#202945" }}>Change My Pin Code</Text>
-        </Button>
-      </View>
+            return <Ionicons name={iconName} size={size} color={color} />;
+          }
+        })}
+        tabBarOptions={{
+          activeTintColor: "#D0C21D",
+          inactiveTintColor: "gray"
+        }}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Transfer" component={SettingsScreen} />
+        <Tab.Screen name="History" component={SettingsScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
     );
   }
 }
@@ -146,35 +75,3 @@ export const ApplicationScreen = connect(
   ApplicationContainer.mapStatetToProps,
   ApplicationContainer.mapDispatchToProps
 )(ApplicationContainer);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#FFFFFF"
-  },
-  input: {
-    textAlign: "center",
-    height: 50,
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 20,
-    backgroundColor: "#FFFFFF",
-    margin: 10
-  },
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    height: null
-  },
-  button: {
-    flexDirection: "column",
-    alignItems: "center",
-    width: wp("35%"),
-    height: hp("5"),
-    backgroundColor: "#60b4c2",
-    shadowColor: "#3cc2cf",
-    marginLeft: 5,
-    alignSelf: "center"
-  }
-});
