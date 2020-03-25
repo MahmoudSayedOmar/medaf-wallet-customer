@@ -7,6 +7,8 @@ import { Dispatch, bindActionCreators } from "redux";
 import { Ionicons } from "@expo/vector-icons";
 
 import { HomeScreen } from "./home-screen";
+import { History } from "./history";
+import { Transfer } from "./transfer";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -20,6 +22,13 @@ function SettingsScreen({ navigation }) {
       />
     </View>
   );
+}
+
+function HistoryScreen({ navigation }) {
+  return <History />;
+}
+function TransferScreen({ navigation }) {
+  return <Transfer />;
 }
 
 const Tab = createBottomTabNavigator();
@@ -64,8 +73,8 @@ export default class ApplicationContainer extends React.Component {
         }}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Transfer" component={SettingsScreen} />
-        <Tab.Screen name="History" component={SettingsScreen} />
+        <Tab.Screen name="Transfer" component={TransferScreen} />
+        <Tab.Screen name="History" component={HistoryScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     );

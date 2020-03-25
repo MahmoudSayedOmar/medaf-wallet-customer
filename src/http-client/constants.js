@@ -1,8 +1,8 @@
 const PROD_BASE_URL = "";
-const DEV_BASE_URL = "http://bd72e51a.ngrok.io/api/";
+const DEV_BASE_URL = "http://b146177e.ngrok.io/api/";
 
 const SR_PROD_BASE_URL = "";
-const SR_DEV_BASE_URL = "http://bd72e51a.ngrok.io";
+const SR_DEV_BASE_URL = "http://b146177e.ngrok.io";
 
 const DEV = true;
 
