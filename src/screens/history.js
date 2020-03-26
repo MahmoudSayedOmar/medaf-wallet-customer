@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: "20%",
+    paddingTop: "3%",
     backgroundColor: "#FFFFFF"
   },
   tableMargin: {

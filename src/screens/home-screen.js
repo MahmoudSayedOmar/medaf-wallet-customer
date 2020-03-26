@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -10,8 +10,9 @@ import { connect } from "react-redux";
 import Barcode from "react-native-barcode-builder";
 import { Dispatch, bindActionCreators } from "redux";
 import { BalanceWebsocketService } from "../services/balance-websocket.service";
-import QRCode from "react-native-qrcode-svg";
 
+import QRCode from "react-native-qrcode-svg";
+var logo = require("../../assets/download.jpg");
 export class HomeContainer extends Component {
   constructor() {
     super();
@@ -38,12 +39,17 @@ export class HomeContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.centerLogo}>
+          <Image source={logo} style={{ width: 150 }} />
+        </View>
         <Card>
           <CardItem
             header
             style={{
               backgroundColor: "#D0C21D",
-              flexDirection: "row"
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center"
             }}
           >
             <Text
@@ -136,7 +142,7 @@ export class HomeContainer extends Component {
         >
           <Text style={{ color: "#202945" }}>Refresh</Text>
         </Button>
-        <Button
+        {/* <Button
           style={{
             flexDirection: "column",
             alignItems: "center",
@@ -158,7 +164,7 @@ export class HomeContainer extends Component {
           }}
         >
           <Text style={{ color: "#202945" }}>Change My Pin Code</Text>
-        </Button>
+        </Button> */}
       </View>
     );
   }
@@ -171,8 +177,12 @@ export const HomeScreen = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: "2%",
     backgroundColor: "#FFFFFF"
+  },
+  centerLogo: {
+    justifyContent: "center",
+    alignItems: "center"
   },
   input: {
     textAlign: "center",
