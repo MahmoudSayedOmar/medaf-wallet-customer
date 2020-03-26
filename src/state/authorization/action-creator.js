@@ -33,22 +33,27 @@ export function tryLogin(user: UserLoginModel) {
     debugger;
     if (response.status === 200) {
       debugger;
-      dispatch(
-        onLoginSuccess({
-          CardNo: user.membershipId,
-          Mobile: user.mobileNumber,
-          BirthDate: user.dateOfBirth,
-          havePinCode: result["HavePinCode"]
-        })
-      );
-      dispatch(
-        updateUserInfo({
-          cardNo: user.membershipId,
-          balance: result["Balance"]
-        })
-      );
+
+      if (response.data.code == 1) {
+        dispatch(
+          onLoginSuccess({
+            CardNo: user.membershipId,
+            Mobile: user.mobileNumber,
+            BirthDate: user.dateOfBirth,
+            havePinCode: result["HavePinCode"]
+          })
+        );
+        dispatch(
+          updateUserInfo({
+            cardNo: user.membershipId,
+            balance: result["Balance"]
+          })
+        );
+      } else {
+        dispatch(onLoginFail(response.data.Message));
+      }
     } else {
-      dispatch(onLoginFail());
+      dispatch(onLoginFail(response.data.Message));
     }
   };
 }
@@ -61,8 +66,7 @@ export function onLoginSuccess(token): LOGIN_SUCCESS_Action {
   return { type: types.LOGIN_SUCCESS, payload: token };
 }
 
-export function onLoginFail(): LOGIN_FAIL_Action {
-  const errorMsg = "Invalid Credentials";
+export function onLoginFail(errorMsg): LOGIN_FAIL_Action {
   return { type: types.LOGIN_FAIL, payload: errorMsg };
 }
 ////////////////////////////////////////////////////////////////////
