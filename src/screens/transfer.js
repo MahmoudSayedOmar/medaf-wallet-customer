@@ -15,7 +15,6 @@ import {
   Image,
   ScrollView
 } from "react-native";
-import { Table, Row, Rows } from "react-native-table-component";
 
 import {
   widthPercentageToDP as wp,

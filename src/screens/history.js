@@ -5,45 +5,66 @@ import {
   TextInput,
   View,
   Text,
-  StyleSheet,
   Image,
-  ScrollView
+  SafeAreaView,
+  FlatList,
+  StyleSheet
 } from "react-native";
-import { Table, Row, Rows } from "react-native-table-component";
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
+
 var logo = require("../../assets/download.jpg");
 export class History extends Component {
   constructor() {
     super();
     this.state = {
-      tableHead: ["id", "Action", "Amount", "Date"],
-      tableData: [
-        ["1", "cash out carefoure", "10", "10.10.2020"],
-        ["2", "cash out", "20", "10.20.2020"],
-        ["3", "transer", "40", "10.30.2020"],
-        ["4", "cash in", "50", "10.10.2020"],
-        ["1", "cash out carefoure", "10", "10.10.2020"],
-        ["2", "cash out", "20", "10.20.2020"],
-        ["3", "transer", "40", "10.30.2020"],
-        ["4", "cash in", "50", "10.10.2020"],
-        ["1", "cash out carefoure", "10", "10.10.2020"],
-        ["2", "cash out", "20", "10.20.2020"],
-        ["3", "transer", "40", "10.30.2020"],
-        ["4", "cash in", "50", "10.10.2020"],
-        ["1", "cash out carefoure", "10", "10.10.2020"],
-        ["2", "cash out", "20", "10.20.2020"],
-        ["3", "transer", "40", "10.30.2020"],
-        ["4", "cash in", "50", "10.10.2020"],
-        ["1", "cash out carefoure", "10", "10.10.2020"],
-        ["2", "cash out", "20", "10.20.2020"],
-        ["3", "transer", "40", "10.30.2020"],
-        ["4", "cash in", "50", "10.10.2020"]
-      ],
-      widthArr: [40, 110, 80, 110]
+      data: [
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "Cash In",
+          dataBody: "500 L.E",
+          dataDate: "25 Jan, 2020",
+          currentBalance: "500 L.E"
+        },
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "Cash In",
+          dataBody: "500 L.E",
+          dataDate: "25 Jan, 2020",
+          currentBalance: "500 L.E"
+        },
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "Cash In",
+          dataBody: "500 L.E",
+          dataDate: "25 Jan, 2020",
+          currentBalance: "500 L.E"
+        },
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "Cash In",
+          dataBody: "500 L.E",
+          dataDate: "25 Jan, 2020",
+          currentBalance: "500 L.E"
+        },
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "Cash In",
+          dataBody: "500 L.E",
+          dataDate: "25 Jan, 2020",
+          currentBalance: "500 L.E"
+        },
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "Cash In",
+          dataBody: "500 L.E",
+          dataDate: "25 Jan, 2020",
+          currentBalance: "500 L.E"
+        }
+      ]
     };
   }
 
@@ -53,23 +74,32 @@ export class History extends Component {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-        <ScrollView>
-          <View style={styles.tableMargin}>
-            <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-              <Row
-                data={this.state.tableHead}
-                style={styles.head}
-                textStyle={styles.headertext}
-                widthArr={this.state.widthArr}
-              />
-              <Rows
-                data={this.state.tableData}
-                widthArr={this.state.widthArr}
-                textStyle={styles.bodytext}
-              />
-            </Table>
-          </View>
-        </ScrollView>
+        <SafeAreaView style={styles.container}>
+          <FlatList
+            data={this.state.data}
+            renderItem={({ item }) => {
+              return (
+                <View style={styles.item}>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        flexDirection: "column",
+                        width: "90%"
+                      }}
+                    >
+                      <Text style={styles.title}>{item.title}</Text>
+                      <Text style={styles.listBody}>{item.dataBody}</Text>
+                      <Text style={styles.listBody}>{item.dataDate}</Text>
+                    </View>
+                    {/* <Text style={styles.arrow}>></Text> */}
+                  </View>
+
+                  <Text style={styles.listBalance}>{item.currentBalance}</Text>
+                </View>
+              );
+            }}
+          />
+        </SafeAreaView>
       </View>
     );
   }
@@ -92,7 +122,29 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
 
-  head: { height: 30, backgroundColor: "#D0C21D" },
-  headertext: { marginLeft: 6, marginRight: 6, color: "#ffffff" },
-  bodytext: { marginLeft: 6, marginRight: 6, color: "#202945" }
+  item: {
+    backgroundColor: "#D0C21D",
+    padding: 10,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 10
+  },
+  title: {
+    fontSize: 20,
+    width: "80%"
+  },
+  listBody: {
+    fontSize: 15
+  },
+  listBalance: {
+    textAlign: "right",
+    color: "#202945"
+  },
+  arrow: {
+    width: "10%",
+    fontSize: 30,
+    paddingTop: 15,
+    textAlign: "right",
+    color: "#202945"
+  }
 });
