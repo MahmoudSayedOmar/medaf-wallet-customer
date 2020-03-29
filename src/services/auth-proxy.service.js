@@ -17,6 +17,8 @@ export class AuthProxyService {
           "content-Type": "application/json"
         }
       }
+    }).catch(function(err) {
+      return err;
     });
   }
   async preLogin() {
@@ -36,8 +38,7 @@ export class AuthProxyService {
         }
       }
     }).catch(function(err) {
-      console.log(err.message);
-      debugger;
+      return err;
     });
   }
 }

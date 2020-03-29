@@ -50,7 +50,8 @@ export class LoginContainer extends Component {
     return {
       isLoggedIn: state.authorization.isLoggedIn,
       loading: state.authorization.loading,
-      havePinCode: state.authorization.havePinCode
+      havePinCode: state.authorization.havePinCode,
+      errorMessage: state.authorization.errorMessage
     };
   }
 
@@ -110,9 +111,13 @@ export class LoginContainer extends Component {
         {this.props.loading ? (
           <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
         ) : (
-          <Button style={styles.button} onPress={this.onLogin.bind(this)}>
-            <Text style={{ color: "#202945" }}>Login</Text>
-          </Button>
+          <View>
+            <Text>{this.props.errorMessage}</Text>
+
+            <Button style={styles.button} onPress={this.onLogin.bind(this)}>
+              <Text style={{ color: "#202945" }}>Login</Text>
+            </Button>
+          </View>
         )}
       </View>
     );
