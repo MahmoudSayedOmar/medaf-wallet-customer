@@ -49,9 +49,9 @@ export class ChangePinCodeContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <View style={styles.centerLogo}>
+        <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
-        </View> */}
+        </View>
         <TextInput
           value={this.state.oldPinCode}
           onChangeText={oldPinCode => this.setState({ oldPinCode })}
@@ -105,15 +105,13 @@ export const ChangePinCodeScreen = connect(
 
 const styles = StyleSheet.create({
   centerLogo: {
-    width: wp("100%"),
-    height: hp("22%"),
-    backgroundColor: "#FFFFFF",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: "5%"
   },
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: "3%",
     backgroundColor: "#FFFFFF"
   },
   input: {
