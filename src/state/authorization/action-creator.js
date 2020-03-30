@@ -53,7 +53,7 @@ export function tryLogin(user: UserLoginModel) {
         dispatch(onLoginFail(response.data.Message));
       }
     } else {
-      dispatch(onLoginFail(response.data.Message));
+      dispatch(onLoginFail("something went wrong"));
     }
   };
 }

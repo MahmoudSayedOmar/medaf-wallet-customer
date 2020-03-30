@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 import { tryRefresh } from "../state";
-import { Card, CardItem, Body, Text, Button } from "native-base";
+import { Card, CardItem, Body, Text, Button, Spinner } from "native-base";
 import { connect } from "react-redux";
 import Barcode from "react-native-barcode-builder";
 import { Dispatch, bindActionCreators } from "redux";
@@ -65,14 +65,7 @@ export class HomeContainer extends Component {
                 justifyContent: "center"
               }}
             >
-              {this.props.connected ? (
-                <QRCode
-                  value={
-                    this.props.connectionId + "@" + this.props.membershipId
-                  }
-                  size={200}
-                />
-              ) : (
+              {this.props.connected === -1 ? (
                 <Button
                   style={{
                     flexDirection: "column",
@@ -98,6 +91,15 @@ export class HomeContainer extends Component {
                 >
                   <Text style={{ color: "#202945" }}>Reload</Text>
                 </Button>
+              ) : this.props.connected === 1 ? (
+                <QRCode
+                  value={
+                    this.props.connectionId + "@" + this.props.membershipId
+                  }
+                  size={200}
+                />
+              ) : (
+                <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
               )}
             </Body>
           </CardItem>

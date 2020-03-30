@@ -64,16 +64,18 @@ export function userInfoReducer(
       };
     }
     case types.ON_CONNECTION_SUCCESS: {
+      debugger;
       return {
         ...state,
         connectionId: action.payload,
-        connected: true
+        connected: 1
       };
     }
     case types.ON_CONNECTION_FAIL: {
+      debugger;
       return {
         ...state,
-        connected: false
+        connected: -1
       };
     }
     case types.UPDATE_USER_INFO_FALIAR_ACTION:
