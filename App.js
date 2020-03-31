@@ -7,6 +7,7 @@ import { PreLoginScreen } from "./src/screens/pre-login-screen";
 import { ApplicationScreen } from "./src/screens/application-screen";
 import { PinCodeScreen } from "./src/screens/set-pin-code-screen";
 import { ChangePinCodeScreen } from "./src/screens/change-pin-code";
+
 import { Provider } from "react-redux";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
