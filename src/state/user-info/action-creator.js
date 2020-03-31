@@ -1,5 +1,5 @@
 import * as types from "./actions";
-import { authProxyService, pinCodeProxyService } from "../../services";
+import { authProxyService, userManagerProxyService } from "../../services";
 
 export type UPDATE_USER_INFO_ACTION = { type: string, payload: Object };
 
@@ -54,7 +54,7 @@ export function trySetPinCode(confirmationData) {
     const state = getState();
     const token = state.authorization.token;
     dispatch(onSetPinCode());
-    let response = await pinCodeProxyService.setFirstPinCode(
+    let response = await userManagerProxyService.setFirstPinCode(
       {
         activationCode: confirmationData.confirmationCode,
         pinCode: confirmationData.newPinCode,
@@ -94,7 +94,7 @@ export function tryChangePinCode(confirmationData) {
     const state = getState();
     const token = state.authorization.token;
     dispatch(onChangePinCode());
-    let response = await pinCodeProxyService.changePinCode(
+    let response = await userManagerProxyService.changePinCode(
       {
         oldPinCode: confirmationData.oldPinCode,
         newPinCode: confirmationData.newPinCode,
@@ -146,4 +146,45 @@ export function connectionSuccess(id): ON_CONNECTION_SUCCESS_ACTION {
 }
 export function connectionFail(): ON_CONNECTION_FAIL_ACTION {
   return { type: types.ON_CONNECTION_FAIL };
+}
+/////////////////////////////////////////////////////////////////
+
+export type ON_RETRIVE_USER_TRANSACTIONS_HISTORY_ACTION = { type: string };
+export type RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS_ACTION = {
+  type: string,
+  payload: String
+};
+export type RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION = { type: string };
+
+export function tryRetriveTransactions() {
+  return async dispatch => {
+    debugger;
+    dispatch(onRetriveTransactions());
+
+    let response = await userManagerProxyService.retriveUserTransactionsHistory(
+      data
+    );
+
+    if (response.status === 200) {
+      dispatch(retriveTransactionsSuccess());
+    } else {
+      dispatch(retriveTransactionsFail());
+    }
+  };
+}
+
+export function onRetriveTransactions(): ON_RETRIVE_USER_TRANSACTIONS_HISTORY_ACTION {
+  return { type: types.ON_RETRIVE_USER_TRANSACTIONS_HISTORY };
+}
+
+export function retriveTransactionsSuccess(
+  data
+): RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS_ACTION {
+  return {
+    type: types.RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS,
+    payload: data
+  };
+}
+export function retriveTransactionsFail(): RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION {
+  return { type: types.RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL };
 }

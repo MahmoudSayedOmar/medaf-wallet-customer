@@ -3,10 +3,14 @@ import {
   AuthorizationInitialState
 } from "./authorization/state";
 
+import { UserInfoInitialState, UserInfoState } from "./user-info/state";
+
 export type State = {
-  authorization: AuthorizationState
+  authorization: AuthorizationState,
+  userInfo: UserInfoState
 };
 
 export const intialState = {
-  authorization: AuthorizationInitialState
+  authorization: AuthorizationInitialState,
+  userInfo: UserInfoInitialState
 };

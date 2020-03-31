@@ -2,7 +2,7 @@ import { BASE_URL } from "../http-client/constants";
 
 import axios from "axios";
 
-export class PinCodeProxyService {
+export class UserManagerProxyService {
   async setFirstPinCode(data, token) {
     debugger;
     return await axios({
@@ -24,6 +24,22 @@ export class PinCodeProxyService {
     return await axios({
       method: "post",
       url: `${BASE_URL}customer/changepincode`,
+      data: data,
+      headers: { token: token },
+      config: {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "content-Type": "application/json"
+        }
+      }
+    });
+  }
+
+  async retriveUserTransactionsHistory(data) {
+    debugger;
+    return await axios({
+      method: "get",
+      url: `${BASE_URL}points/getpointstransactions`,
       data: data,
       headers: { token: token },
       config: {

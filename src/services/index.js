@@ -1,7 +1,7 @@
 import { AuthProxyService } from "./auth-proxy.service";
-import { PinCodeProxyService } from "./pin-code-service";
+import { UserManagerProxyService } from "./user-manager-service";
 
 const authProxyService = new AuthProxyService();
-const pinCodeProxyService = new PinCodeProxyService();
+const userManagerProxyService = new UserManagerProxyService();
 
-export { authProxyService, pinCodeProxyService };
+export { authProxyService, userManagerProxyService };

@@ -91,7 +91,6 @@ export class History extends Component {
                       <Text style={styles.listBody}>{item.dataBody}</Text>
                       <Text style={styles.listBody}>{item.dataDate}</Text>
                     </View>
-                    {/* <Text style={styles.arrow}>></Text> */}
                   </View>
 
                   <Text style={styles.listBalance}>{item.currentBalance}</Text>
