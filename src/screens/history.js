@@ -10,7 +10,7 @@ import {
   FlatList,
   StyleSheet
 } from "react-native";
-
+import EachListingComponent from "./eachLisitngComponent";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -42,45 +42,53 @@ export class History extends Component {
       data: [
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ddad53abb28ba",
+          type: "cashIn",
           title: "Cash In",
-          dataBody: "500 L.E",
+          transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          currentBalance: "500 L.E"
+          remainingAmount: "500 L.E",
+          empolyeeName: "smash main center"
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad5ee3abb28ba",
-          title: "Cash In",
-          dataBody: "500 L.E",
+          type: "cashOut",
+          title: "Cash Out",
+          transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          currentBalance: "500 L.E"
+          remainingAmount: "500 L.E",
+          empolyeeName: "smash main center"
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad5gg3abb28ba",
-          title: "Cash In",
-          dataBody: "500 L.E",
+          type: "payment",
+          title: "Payment",
+          transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          currentBalance: "500 L.E"
+          remainingAmount: "500 L.E",
+          billType: "bill Type"
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53adabb28ba",
-          title: "Cash In",
-          dataBody: "500 L.E",
+          type: "transfer",
+          title: "Transfer",
+          transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          currentBalance: "500 L.E"
+          remainingAmount: "500 L.E",
+          transferTo: "ahmed mohamed #9997"
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abgeb28ba",
           title: "Cash In",
-          dataBody: "500 L.E",
+          transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          currentBalance: "500 L.E"
+          remainingAmount: "500 L.E"
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abba28ba",
           title: "Cash In",
-          dataBody: "500 L.E",
+          transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          currentBalance: "500 L.E"
+          remainingAmount: "500 L.E"
         }
       ]
     };
@@ -223,25 +231,7 @@ export class History extends Component {
           <FlatList
             data={this.state.data}
             renderItem={({ item }) => {
-              return (
-                <View style={styles.item}>
-                  <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        flexDirection: "column",
-                        width: "90%"
-                      }}
-                    >
-                      <Text style={styles.title}>{item.title}</Text>
-                      <Text style={styles.listBody}>{item.dataBody}</Text>
-                      <Text style={styles.listBody}>{item.dataDate}</Text>
-                    </View>
-                    {/* <Text style={styles.arrow}>></Text> */}
-                  </View>
-
-                  <Text style={styles.listBalance}>{item.currentBalance}</Text>
-                </View>
-              );
+              return <EachListingComponent item={item} />;
             }}
           />
         </SafeAreaView>
