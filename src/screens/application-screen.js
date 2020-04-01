@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { HomeScreen } from "./home-screen";
 
 import { ChangePinCodeScreen } from "./change-pin-code";
-import { History } from "./history";
+import { History } from "./history-screen";
 import { Transfer } from "./transfer";
 import {
   widthPercentageToDP as wp,
