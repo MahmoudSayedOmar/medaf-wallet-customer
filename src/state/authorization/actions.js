@@ -5,3 +5,5 @@ export const LOGIN_FAIL = "[auth] login fail";
 export const ON_PRE_LOGIN = "[auth] on pre login";
 export const PRE_LOGIN_SUCCESS = "[auth] pre login success";
 export const PRE_LOGIN_FAIL = "[auth] pre login fail";
+
+export const LOGOUT = "USER_LOGOUT";

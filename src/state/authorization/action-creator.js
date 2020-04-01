@@ -106,3 +106,17 @@ export function onPreLoginFail(): PRE_LOGIN_FAIL_Action {
   const errorMsg = "Invalid Credentials";
   return { type: types.PRE_LOGIN_FAIL, payload: errorMsg };
 }
+
+///////////////////////////////////////////
+
+export type LOGOUT_Action = { type: string };
+
+export function loggingout() {
+  return async dispatch => {
+    dispatch(logout());
+  };
+}
+
+export function logout(): LOGOUT_Action {
+  return { type: types.LOGOUT };
+}

@@ -40,12 +40,15 @@ export class LoginContainer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn) {
       if (nextProps.havePinCode) {
-        this.props.navigation.navigate("Application");
+        this.props.navigation.reset({
+          routes: [{ name: "Application" }]
+        });
       } else {
         this.props.navigation.navigate("PinConfirmation");
       }
     }
   }
+
   static mapStatetToProps(state: State) {
     return {
       isLoggedIn: state.authorization.isLoggedIn,

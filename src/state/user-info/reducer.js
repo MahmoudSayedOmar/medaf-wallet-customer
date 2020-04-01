@@ -78,6 +78,28 @@ export function userInfoReducer(
         connected: -1
       };
     }
+    case types.ON_RETRIVE_USER_TRANSACTIONS_HISTORY: {
+      debugger;
+      return {
+        ...state,
+        loadingTransactions: true
+      };
+    }
+    case types.RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS: {
+      debugger;
+      return {
+        ...state,
+        loadingTransactions: false,
+        transactionsHistory: action.payload
+      };
+    }
+    case types.RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL: {
+      debugger;
+      return {
+        ...state,
+        loadingTransactions: false
+      };
+    }
     case types.UPDATE_USER_INFO_FALIAR_ACTION:
     default:
       return state;

@@ -243,7 +243,7 @@ export default History;
 
 const styles = StyleSheet.create({
   centerLogo: {
-    justifyContent: "center",
+    justifyContent: "center",ad
     alignItems: "center",
     marginBottom: "2%"
   },
