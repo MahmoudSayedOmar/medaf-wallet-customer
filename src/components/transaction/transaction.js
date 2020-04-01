@@ -3,6 +3,23 @@ import { View, Text } from "react-native";
 import { styles } from "./transaction-styles";
 
 function TransactionComponent({ item }) {
+  let TransactionType = null;
+  switch (item.type) {
+    case "transfer": {
+      TransactionType = (
+        <Text style={styles.listBody}>Transfer To: {item.transferTo}</Text>
+      );
+    }
+    case "payment": {
+      TransactionType = <Text>Bill Type: {item.billType}</Text>;
+    }
+    case "cashIn": {
+      TransactionType = <Text>Cash In By: {item.empolyeeName}</Text>;
+    }
+    case "cashOut": {
+      TransactionType = <Text>Cash Out By: {item.empolyeeName}</Text>;
+    }
+  }
   return (
     <View style={styles.item}>
       <View style={{ flexDirection: "row" }}>
@@ -15,23 +32,8 @@ function TransactionComponent({ item }) {
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.listBody}>{item.transactionAmount}</Text>
           <Text style={styles.listBody}>{item.dataDate}</Text>
-          {(() => {
-            if (item.type == "transfer") {
-              return (
-                <Text style={styles.listBody}>
-                  Transfer To: {item.transferTo}
-                </Text>
-              );
-            } else if (item.type == "payment") {
-              return <Text>Bill Type: {item.billType}</Text>;
-            } else if (item.type == "cashIn") {
-              return <Text>Cash In By: {item.empolyeeName}</Text>;
-            } else if (item.type == "cashOut") {
-              return <Text>Cash Out By: {item.empolyeeName}</Text>;
-            }
-          })()}
+          <TransactionType />
         </View>
-        {/* <Text style={styles.arrow}>></Text> */}
       </View>
 
       <Text style={styles.listBalance}>

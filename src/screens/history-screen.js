@@ -11,11 +11,14 @@ import {
   StyleSheet
 } from "react-native";
 
+import { connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
+
 import {
   TransactionsListingComponent,
   HistoryHeaderComponent
 } from "../components";
-export class History extends Component {
+export class HistoryContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -80,6 +83,13 @@ export class History extends Component {
       ]
     };
   }
+  static mapStatetToProps(state: State) {
+    return {};
+  }
+
+  static mapDispatchToProps(dispatch: Dispatch) {
+    return bindActionCreators({}, dispatch);
+  }
   setDate(newDate) {
     this.setState({ dateFrom: newDate });
   }
@@ -111,7 +121,11 @@ export class History extends Component {
     );
   }
 }
-export default History;
+
+export const HistoryScreen = connect(
+  HistoryContainer.mapStatetToProps,
+  HistoryContainer.mapDispatchToProps
+)(HistoryContainer);
 
 const styles = StyleSheet.create({
   container: {

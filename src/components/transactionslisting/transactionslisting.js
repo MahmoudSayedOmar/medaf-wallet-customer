@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, FlatList, StyleSheet } from "react-native";
-import Transacion from "../transaction/transaction";
+import TransactionComponent from "../transaction/transaction";
 import { styles } from "./transactionslisting-styles";
 
 function TransactionsListingComponent({ data }) {
@@ -9,7 +9,7 @@ function TransactionsListingComponent({ data }) {
       <FlatList
         data={data}
         renderItem={({ item }) => {
-          return <Transacion item={item} />;
+          return <TransactionComponent item={item} />;
         }}
       />
     </SafeAreaView>

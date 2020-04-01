@@ -23,7 +23,8 @@ export class ChangePinCodeContainer extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.changePinCodeStatus == 1) {
-      this.props.navigation.navigate("Application");
+      debugger;
+      this.props.navigation.navigate("Settings");
     }
   }
 

@@ -109,8 +109,9 @@ export function tryChangePinCode(confirmationData) {
       } else {
         dispatch(changePinCodeFail());
       }
+    } else {
+      dispatch(changePinCodeFail());
     }
-    dispatch(changePinCodeFail());
   };
 }
 
