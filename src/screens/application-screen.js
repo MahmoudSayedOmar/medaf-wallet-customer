@@ -67,20 +67,20 @@ export default class ApplicationContainer extends React.Component {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = null;
             switch (route.name) {
-              case "Home": {
+              case "Home":
                 iconName = focused
                   ? "ios-information-circle"
                   : "ios-information-circle-outline";
-              }
-              case "Transfer": {
+                break;
+              case "Transfer":
                 iconName = focused ? "ios-swap" : "ios-swap";
-              }
-              case "History": {
+                break;
+              case "History":
                 iconName = focused ? "md-clock" : "md-clock";
-              }
-              case "Settings": {
+                break;
+              case "Settings":
                 iconName = focused ? "ios-list-box" : "ios-list";
-              }
+                break;
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
