@@ -118,18 +118,18 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("75%"),
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
 
     borderColor: "#202945",
-    borderWidth: 2,
+    borderWidth: 1,
 
-    height: 35,
-    marginTop: 20,
-    marginBottom: 20,
+    height: 31,
+    marginTop: 10,
+    padding: 10,
     alignSelf: "center"
   }
 });

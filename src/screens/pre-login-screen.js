@@ -72,14 +72,14 @@ export const PreLoginScreen = connect(
 const styles = StyleSheet.create({
   centerLogo: {
     width: wp("100%"),
-    height: hp("50%"),
+    height: hp("35%"),
     backgroundColor: "#FFFFFF",
     justifyContent: "center",
     alignItems: "center"
   },
   container: {
     flex: 1,
-    paddingTop: "20%",
+    paddingTop: "13%",
     backgroundColor: "#FFFFFF"
   },
   input: {
@@ -99,13 +99,15 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("35%"),
+    width: "auto",
+    padding: 10,
+    paddingTop: 5,
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
     borderColor: "#202945",
-    borderWidth: 2,
+    borderWidth: 1,
     marginTop: 30,
     alignSelf: "center"
   }

@@ -76,7 +76,7 @@ export class Transfer extends Component {
                 this.setState({ membershipMobileNo })
               }
               placeholder={"Member Mob. number"}
-              placeholderTextColor="#ffffff"
+              placeholderTextColor="#D0C21D"
               keyboardType="numeric"
               style={styles.input}
             />
@@ -90,7 +90,7 @@ export class Transfer extends Component {
                 this.setState({ transferToMemberId })
               }
               placeholder={"Enter Member Id"}
-              placeholderTextColor="#ffffff"
+              placeholderTextColor="#D0C21D"
               keyboardType="numeric"
               style={styles.input}
             />
@@ -103,7 +103,7 @@ export class Transfer extends Component {
             value={this.state.transferAmount}
             onChangeText={transferAmount => this.setState({ transferAmount })}
             placeholder={"Enter Amount"}
-            placeholderTextColor="#ffffff"
+            placeholderTextColor="#D0C21D"
             keyboardType="numeric"
             style={styles.input}
           />
@@ -124,7 +124,7 @@ export class Transfer extends Component {
             value={this.state.memberPin}
             onChangeText={memberPin => this.setState({ memberPin })}
             placeholder={"Enter Pin"}
-            placeholderTextColor="#ffffff"
+            placeholderTextColor="#D0C21D"
             keyboardType="numeric"
             style={styles.input}
           />
@@ -160,13 +160,15 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   input: {
-    textAlign: "center",
+    textAlign: "left",
     height: 35,
     width: "50%",
-    borderWidth: 2,
-    borderColor: "black",
+
     borderRadius: 5,
-    backgroundColor: "#D0C21D",
+    borderWidth: 2,
+    borderColor: "#D0C21D",
+    borderRadius: 5,
+    color: "#D0C21D",
     margin: 10,
     paddingLeft: 5,
     paddingRight: 5
@@ -185,19 +187,21 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("75%"),
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
 
     borderColor: "#202945",
-    borderWidth: 2,
+    borderWidth: 1,
 
-    height: 35,
-    marginTop: 20,
-    marginBottom: 20,
-    alignSelf: "center"
+    height: 31,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: "center",
+    padding: 10,
+    paddingTop: 5
   },
   head: { height: 30, backgroundColor: "#D0C21D" },
   headertext: { marginLeft: 6, marginRight: 6, color: "#ffffff" },
