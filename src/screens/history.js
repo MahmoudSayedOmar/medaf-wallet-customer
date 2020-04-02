@@ -206,21 +206,33 @@ export class History extends Component {
                 </Picker>
               </View>
             </View>
-            <View style={{ flexDirection: "row" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
               <Button style={styles.buttonStyle} onPress={() => {}}>
-                <Text style={{ color: "#ffffff" }}>Filter</Text>
+                <Text style={{ color: "#202945" }}>Filter</Text>
               </Button>
             </View>
           </View>
         </View>
         <View style={styles.filter}>
           <View style={{ flexDirection: "row" }}>
-            <View style={styles.datePickerViewLeft}>
-              <Text style={styles.paddingText}>
+            <View
+              style={{
+                borderColor: "#D0C21D",
+                borderRightWidth: 1,
+                paddingRight: 10
+              }}
+            >
+              <Text style={styles.paddingTextLeft}>
                 Initial Value:<Text> 3000</Text>
               </Text>
             </View>
-            <View style={styles.datePickerViewRight}>
+            <View>
               <Text style={styles.paddingText}>
                 Current Value:<Text> 5000</Text>
               </Text>
@@ -243,7 +255,7 @@ export default History;
 
 const styles = StyleSheet.create({
   centerLogo: {
-    justifyContent: "center",ad
+    justifyContent: "center",
     alignItems: "center",
     marginBottom: "2%"
   },
@@ -320,21 +332,28 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
 
     borderColor: "#202945",
-    borderWidth: 2,
+    borderWidth: 1,
 
-    height: 35,
+    height: 31,
     marginTop: 10,
 
-    alignSelf: "center"
+    alignSelf: "center",
+    padding: 10,
+    paddingTop: 5
   },
   paddingText: {
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  paddingTextLeft: {
     paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 5

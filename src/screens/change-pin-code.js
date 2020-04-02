@@ -58,7 +58,7 @@ export class ChangePinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your Old Pin Code"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#D0C21D"
           style={styles.input}
         />
         <TextInput
@@ -67,7 +67,7 @@ export class ChangePinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your New Pin Code"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#D0C21D"
           style={styles.input}
         />
         <TextInput
@@ -76,12 +76,12 @@ export class ChangePinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Re-Enter Your New Pin Code"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#D0C21D"
           style={styles.input}
         />
         {this.props.changePinCodeStatus == -1 ? (
-          <Text style={{ alignSelf: "center" }} color="red">
-            Worng Pin Code{" "}
+          <Text style={{ alignSelf: "center", color: "red" }}>
+            Worng Pin Code
           </Text>
         ) : null}
         {this.props.loading ? (
@@ -115,12 +115,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF"
   },
   input: {
-    textAlign: "center",
+    textAlign: "left",
+    paddingLeft: 8,
     height: 50,
     borderWidth: 2,
-    borderColor: "black",
+    borderColor: "#D0C21D",
     borderRadius: 5,
-    backgroundColor: "#D0C21D",
+    color: "#D0C21D",
+
     margin: 10
   },
   backgroundImage: {
@@ -131,17 +133,16 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("35%"),
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
-
     borderColor: "#202945",
-    borderWidth: 2,
-    paddingBottom: 5,
-    height: 40,
-    marginTop: 30,
-    alignSelf: "center"
+    borderWidth: 1,
+    marginTop: 10,
+    alignSelf: "center",
+
+    paddingTop: 4
   }
 });

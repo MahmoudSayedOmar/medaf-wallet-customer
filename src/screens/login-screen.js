@@ -74,7 +74,7 @@ export class LoginContainer extends Component {
           value={this.state.membershipId}
           onChangeText={membershipId => this.setState({ membershipId })}
           placeholder={"Enter Your Membership ID"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#D0C21D"
           keyboardType="numeric"
           style={styles.input}
         />
@@ -84,14 +84,14 @@ export class LoginContainer extends Component {
           keyboardType="numeric"
           maxLength={11}
           placeholder={"Enter Your Mobile Number"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#D0C21D"
           style={styles.input}
         />
         <View
           style={{
             ...styles.input,
             flexDirection: "row",
-            justifyContent: "center"
+            paddingLeft: -5
           }}
         >
           <DatePicker
@@ -100,10 +100,10 @@ export class LoginContainer extends Component {
             modalTransparent={false}
             animationType={"fade"}
             androidMode={"default"}
-            placeHolderText="Select Your Birth Date"
-            textStyle={{ color: "black" }}
+            placeHolderText="Date of birth"
+            textStyle={{ color: "#D0C21D" }}
             placeHolderTextStyle={{
-              color: "#ffffff",
+              color: "#D0C21D",
               fontSize: 15,
               paddingTop: 14
             }}
@@ -115,7 +115,9 @@ export class LoginContainer extends Component {
           <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
         ) : (
           <View>
-            <Text>{this.props.errorMessage}</Text>
+            <Text style={{ paddingLeft: 15, color: "red" }}>
+              {this.props.errorMessage}
+            </Text>
 
             <Button style={styles.button} onPress={this.onLogin.bind(this)}>
               <Text style={{ color: "#202945" }}>Login</Text>
@@ -141,16 +143,18 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: "13%",
     backgroundColor: "#FFFFFF"
   },
   input: {
-    textAlign: "center",
+    textAlign: "left",
+    paddingLeft: 8,
     height: 50,
     borderWidth: 2,
-    borderColor: "black",
+    borderColor: "#D0C21D",
     borderRadius: 5,
-    backgroundColor: "#D0C21D",
+    color: "#D0C21D",
+
     margin: 10
   },
   backgroundImage: {
@@ -161,17 +165,16 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("35%"),
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
-
     borderColor: "#202945",
-    borderWidth: 2,
-    paddingBottom: 5,
-    height: 40,
-    marginTop: 30,
-    alignSelf: "center"
+    borderWidth: 1,
+    marginTop: 10,
+    alignSelf: "center",
+    padding: 10,
+    paddingTop: 5
   }
 });

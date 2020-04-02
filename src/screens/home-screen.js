@@ -73,22 +73,7 @@ export class HomeContainer extends Component {
             >
               {this.props.connected === -1 ? (
                 <Button
-                  style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: wp("35%"),
-                    height: hp("5"),
-                    backgroundColor: "#D0C21D",
-                    shadowColor: "#000000",
-                    color: "#202945",
-
-                    borderColor: "#202945",
-                    borderWidth: 2,
-                    paddingBottom: 5,
-                    height: 40,
-                    marginTop: 30,
-                    alignSelf: "center"
-                  }}
+                  style={styles.button}
                   onPress={() => {
                     this.setState({
                       balanceWebsocketService: new BalanceWebsocketService()
@@ -123,50 +108,9 @@ export class HomeContainer extends Component {
             </View>
           </CardItem>
         </Card>
-        <Button
-          style={{
-            flexDirection: "column",
-            alignItems: "center",
-            width: wp("35%"),
-            height: hp("5"),
-            backgroundColor: "#D0C21D",
-            shadowColor: "#000000",
-            color: "#202945",
-
-            borderColor: "#202945",
-            borderWidth: 2,
-            paddingBottom: 5,
-            height: 40,
-            marginTop: 30,
-            alignSelf: "center"
-          }}
-          onPress={this.onRefresh.bind(this)}
-        >
+        <Button style={styles.button} onPress={this.onRefresh.bind(this)}>
           <Text style={{ color: "#202945" }}>Refresh</Text>
         </Button>
-        {/* <Button
-          style={{
-            flexDirection: "column",
-            alignItems: "center",
-            width: wp("35%"),
-            height: hp("5"),
-            backgroundColor: "#D0C21D",
-            shadowColor: "#000000",
-            color: "#202945",
-
-            borderColor: "#202945",
-            borderWidth: 2,
-            paddingBottom: 5,
-            height: 40,
-            marginTop: 30,
-            alignSelf: "center"
-          }}
-          onPress={() => {
-            this.props.navigation.navigate("ChangePin");
-          }}
-        >
-          <Text style={{ color: "#202945" }}>Change My Pin Code</Text>
-        </Button> */}
       </View>
     );
   }
@@ -203,11 +147,20 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("35%"),
+    width: "auto",
     height: hp("5"),
-    backgroundColor: "#60b4c2",
-    shadowColor: "#3cc2cf",
-    marginLeft: 5,
-    alignSelf: "center"
+    backgroundColor: "#D0C21D",
+    shadowColor: "#000000",
+    color: "#202945",
+
+    borderColor: "#202945",
+    borderWidth: 1,
+
+    height: 31,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: "center",
+
+    paddingTop: 4
   }
 });
