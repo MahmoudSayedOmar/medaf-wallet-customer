@@ -10,7 +10,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { HomeScreen } from "./home-screen";
 
 import { ChangePinCodeScreen } from "./change-pin-code";
-import { History } from "./history";
+import { HistoryScreen } from "./history-screen";
+import { SettingsScreen } from "./settings-screen";
+
 import { Transfer } from "./transfer";
 import {
   widthPercentageToDP as wp,
@@ -20,70 +22,27 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 var logo = require("../../assets/download.jpg");
 
-function ChangePasswordScreen() {
-  return <ChangePinCodeScreen />;
-}
-
 const SettingsStack = createStackNavigator();
+
 function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator>
+    <SettingsStack.Navigator initialRouteName="Settings" headerMode="none">
       <SettingsStack.Screen name="Settings" component={SettingsScreen} />
       <SettingsStack.Screen
         name="Change Password"
-        component={ChangePasswordScreen}
+        component={ChangePinCodeScreen}
       />
     </SettingsStack.Navigator>
   );
 }
 
-const HistoryStack = createStackNavigator();
-function HistoryStackScreen() {
-  return (
-    <HistoryStack.Navigator>
-      <HistoryStack.Screen name="History" component={HistoryScreen} />
-    </HistoryStack.Navigator>
-  );
-}
-
-const HomeStack = createStackNavigator();
-function HomeStackScreen() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-    </HomeStack.Navigator>
-  );
-}
 const TransferStack = createStackNavigator();
 function TransferStackScreen() {
   return (
     <TransferStack.Navigator>
-      <TransferStack.Screen name="Transfer" component={TransferScreen} />
+      <TransferStack.Screen name="Transfer" component={Transfer} />
     </TransferStack.Navigator>
   );
-}
-TransferStackScreen;
-function SettingsScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.centerLogo}>
-        <Image source={logo} style={{ width: 150 }} />
-      </View>
-      <Button
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate("Change Password")}
-      >
-        <Text style={{ color: "#202945" }}>Change Pin</Text>
-      </Button>
-    </View>
-  );
-}
-
-function HistoryScreen({ navigation }) {
-  return <History />;
-}
-function TransferScreen({ navigation }) {
-  return <Transfer />;
 }
 
 const Tab = createBottomTabNavigator();
@@ -106,17 +65,22 @@ export default class ApplicationContainer extends React.Component {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            if (route.name === "Home") {
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
-            } else if (route.name === "Transfer") {
-              iconName = focused ? "ios-swap" : "ios-swap";
-            } else if (route.name === "History") {
-              iconName = focused ? "md-clock" : "md-clock";
-            } else if (route.name === "Settings") {
-              iconName = focused ? "ios-list-box" : "ios-list";
+            let iconName = null;
+            switch (route.name) {
+              case "Home": {
+                iconName = focused
+                  ? "ios-information-circle"
+                  : "ios-information-circle-outline";
+              }
+              case "Transfer": {
+                iconName = focused ? "ios-swap" : "ios-swap";
+              }
+              case "History": {
+                iconName = focused ? "md-clock" : "md-clock";
+              }
+              case "Settings": {
+                iconName = focused ? "ios-list-box" : "ios-list";
+              }
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -127,9 +91,9 @@ export default class ApplicationContainer extends React.Component {
           inactiveTintColor: "gray"
         }}
       >
-        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Transfer" component={TransferStackScreen} />
-        <Tab.Screen name="History" component={HistoryStackScreen} />
+        <Tab.Screen name="History" component={HistoryScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     );

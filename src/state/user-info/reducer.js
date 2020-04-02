@@ -43,6 +43,8 @@ export function userInfoReducer(
       };
     }
     case types.SET_PIN_CODE_SUCCESS: {
+      debugger;
+
       return {
         ...state,
         loading: false,
