@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  ImageBackground,
-  Alert,
-  TextInput,
-  View,
-  StyleSheet,
-  Image
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, StyleSheet, Image } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -17,8 +9,7 @@ import { Button, Text, DatePicker, Spinner } from "native-base";
 import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
-import { tryPreLogin, contBalanceUpdate } from "../state";
-import signalr from "react-native-signalr";
+import { tryPreLogin } from "../state";
 var logo = require("../../assets/download.jpg");
 export class PreLoginContainer extends Component {
   constructor() {

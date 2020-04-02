@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  ImageBackground,
-  Alert,
-  TextInput,
-  View,
-  Text,
-  Image,
-  SafeAreaView,
-  FlatList,
-  StyleSheet
-} from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { Button } from "native-base";
 

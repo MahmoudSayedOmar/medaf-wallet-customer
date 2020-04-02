@@ -1,7 +1,6 @@
 import * as React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Button } from "native-base";
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+
 import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";

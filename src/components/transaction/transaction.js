@@ -34,6 +34,7 @@ export function TransactionComponent({ item }) {
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.listBody}>{item.transactionAmount}</Text>
           <Text style={styles.listBody}>{item.dataDate}</Text>
+          {TransactionType}
         </View>
       </View>
 
