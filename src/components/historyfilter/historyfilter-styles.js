@@ -47,19 +47,21 @@ const styles = StyleSheet.create({
   buttonStyle: {
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
 
     borderColor: "#202945",
-    borderWidth: 2,
+    borderWidth: 1,
 
-    height: 35,
+    height: 31,
     marginTop: 10,
 
-    alignSelf: "center"
+    alignSelf: "center",
+    padding: 10,
+    paddingTop: 5
   },
   paddingText: {
     paddingLeft: 10,

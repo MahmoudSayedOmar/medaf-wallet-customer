@@ -39,6 +39,9 @@ export class HomeContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.centerTitle}>
+          <Text style={{ fontWeight: "bold", color: "#D0C21D" }}>Home</Text>
+        </View>
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
@@ -125,6 +128,18 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: "2%",
     backgroundColor: "#FFFFFF"
+  },
+  centerTitle: {
+    borderColor: "#D0C21D",
+
+    borderBottomWidth: 1,
+    paddingRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: 7,
+    paddingBottom: 12,
+    paddingTop: 25
   },
   centerLogo: {
     justifyContent: "center",

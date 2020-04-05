@@ -6,7 +6,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: "2%"
   },
-
+  centerTitle: {
+    borderColor: "#D0C21D",
+    borderBottomWidth: 1,
+    paddingRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: 7,
+    paddingBottom: 11,
+    paddingTop: 22
+  },
   datePickerViewLeft: {
     width: "50%",
     borderWidth: 2,
@@ -34,6 +44,16 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   paddingText: {
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  paddingText: {
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  paddingTextLeft: {
     paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 5

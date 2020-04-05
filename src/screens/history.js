@@ -254,11 +254,27 @@ export class History extends Component {
 export default History;
 
 const styles = StyleSheet.create({
-  centerLogo: {
+  container: {
+    flex: 1,
+    paddingTop: "2%",
+    backgroundColor: "#FFFFFF"
+  },
+  centerTitle: {
+    borderColor: "#D0C21D",
+
+    borderBottomWidth: 1,
+    paddingRight: 10,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "2%"
+    width: "100%",
+    marginBottom: 7,
+    paddingBottom: 12,
+    paddingTop: 25
   },
+  centerLogo: {
+    justifyContent: "center",
+    alignItems: "center"
+  }
   selectField: {
     width: "100%",
     marginTop: 10,
@@ -281,11 +297,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 2
   },
-  container: {
-    flex: 1,
-    paddingTop: "3%",
-    backgroundColor: "#FFFFFF"
-  },
+  
   filter: {
     justifyContent: "center",
     alignItems: "center",

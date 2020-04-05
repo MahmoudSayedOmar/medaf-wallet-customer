@@ -107,9 +107,15 @@ function HistoryFilterComponent({
             </Picker>
           </View>
         </View>
-        <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
           <Button style={styles.buttonStyle} onPress={() => {}}>
-            <Text style={{ color: "#ffffff" }}>Filter</Text>
+            <Text style={{ color: "#202945" }}>Filter</Text>
           </Button>
         </View>
       </View>

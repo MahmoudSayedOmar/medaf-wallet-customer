@@ -5,15 +5,13 @@ import { styles } from "./transactionslisting-styles";
 
 export function TransactionsListingComponent({ data }) {
   return (
-    <View>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => {
-            return <TransactionComponent item={item} />;
-          }}
-        />
-      </SafeAreaView>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => {
+          return <TransactionComponent item={item} />;
+        }}
+      />
+    </SafeAreaView>
   );
 }

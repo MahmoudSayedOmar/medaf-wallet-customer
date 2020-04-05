@@ -39,6 +39,11 @@ export class Transfer extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.centerTitle}>
+          <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
+            Transfer
+          </Text>
+        </View>
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
@@ -146,10 +151,27 @@ export class Transfer extends Component {
 export default Transfer;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: "2%",
+    backgroundColor: "#FFFFFF"
+  },
+  centerTitle: {
+    borderColor: "#D0C21D",
+
+    borderBottomWidth: 1,
+    paddingRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: 7,
+    paddingBottom: 12,
+    paddingTop: 25
+  },
   centerLogo: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "5%"
+    marginBottom: 12
   },
   inputTitle: { width: "20%" },
   inputTitleText: { width: "25%" },
@@ -173,11 +195,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5
   },
-  container: {
-    flex: 1,
-    paddingTop: "3%",
-    backgroundColor: "#FFFFFF"
-  },
+
   centerContent: {
     justifyContent: "center",
     marginLeft: "5%",

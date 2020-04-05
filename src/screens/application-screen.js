@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, Icon } from "react-native";
 
 import { connect } from "react-redux";
 
@@ -25,22 +25,36 @@ const SettingsStack = createStackNavigator();
 
 function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator initialRouteName="Settings" headerMode="none">
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+    // headerMode="none"
+    <SettingsStack.Navigator initialRouteName="Settings">
       <SettingsStack.Screen
-        name="Change Password"
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          title: "Settings",
+          headerStyle: { borderWidth: 1, borderBottomColor: "#D0C21D" },
+          headerTintColor: "#D0C21D",
+          headerTitleStyle: {
+            fontWeight: "bold"
+          }
+        }}
+      />
+      <SettingsStack.Screen
+        headerMode="none"
+        name="Change Pin"
         component={ChangePinCodeScreen}
+        options={{
+          title: "Change Pin",
+          headerStyle: { borderWidth: 1, borderBottomColor: "#D0C21D" },
+          headerTintColor: "#202945",
+          headerBackTitle: "back",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#D0C21D"
+          }
+        }}
       />
     </SettingsStack.Navigator>
-  );
-}
-
-const TransferStack = createStackNavigator();
-function TransferStackScreen() {
-  return (
-    <TransferStack.Navigator>
-      <TransferStack.Screen name="Transfer" component={Transfer} />
-    </TransferStack.Navigator>
   );
 }
 
@@ -91,7 +105,7 @@ export default class ApplicationContainer extends React.Component {
         }}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Transfer" component={TransferStackScreen} />
+        <Tab.Screen name="Transfer" component={Transfer} />
         <Tab.Screen name="History" component={HistoryScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>

@@ -15,6 +15,11 @@ function HistoryHeaderComponent({
 }) {
   return (
     <View>
+      <View style={styles.centerTitle}>
+        <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
+          History
+        </Text>
+      </View>
       <View style={styles.centerLogo}>
         <Image source={logo} style={{ width: 150 }} />
       </View>
@@ -28,12 +33,18 @@ function HistoryHeaderComponent({
       />
       <View style={styles.filter}>
         <View style={{ flexDirection: "row" }}>
-          <View style={styles.datePickerViewLeft}>
-            <Text style={styles.paddingText}>
+          <View
+            style={{
+              borderColor: "#D0C21D",
+              borderRightWidth: 1,
+              paddingRight: 10
+            }}
+          >
+            <Text style={styles.paddingTextLeft}>
               Initial Value:<Text> 3000</Text>
             </Text>
           </View>
-          <View style={styles.datePickerViewRight}>
+          <View>
             <Text style={styles.paddingText}>
               Current Value:<Text> 5000</Text>
             </Text>
