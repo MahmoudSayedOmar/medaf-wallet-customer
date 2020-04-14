@@ -15,7 +15,14 @@ import {
   Image,
   ScrollView
 } from "react-native";
+import Toast from "react-native-tiny-toast";
+
 import { Table, Row, Rows } from "react-native-table-component";
+
+import { connect } from "react-redux";
+import { bindActionCreators, Dispatch } from "redux";
+import { State } from "../state/state";
+import { transfer } from "../state/transfer/action-creator";
 
 import {
   widthPercentageToDP as wp,
@@ -23,27 +30,56 @@ import {
 } from "react-native-responsive-screen";
 var logo = require("../../assets/download.jpg");
 
-export class Transfer extends Component {
+class TransferContainer extends Component {
   constructor() {
     super();
     this.state = {
       radioValue: "mob",
-      transferToMemberId: "",
-      transferAmount: "",
-      membershipMobileNo: "",
-      memberPin: ""
+      receiverCodeNo: "",
+      amount: "",
+      senderCodeNo: "",
+      pin: ""
     };
   }
+
   onChooseInput(value) {
     this.setState({ radioValue: value });
   }
+  static mapStateToProps(state: State) {
+    return {
+      isTransfer: state.transfer.isTransfer,
+      transferStatus: state.transfer.transferStatus
+    };
+  }
+
+  static mapDispatchToProps(dispatch: Dispatch) {
+    return bindActionCreators({ transfer }, dispatch);
+  }
+
+  makeTransfer() {
+    this.props.transfer(this.state);
+  }
+  // componentWillReceiveProps(nextProps, prevState) {
+  //   debugger;
+  //   if (nextProps == prevState) {
+  //     Toast.show(prevState.transferStatus, {
+  //       position: Toast.position.center
+  //     });
+  //   } else {
+  //     if (nextProps.isTransfer) {
+  //       Toast.show(nextProps.transferStatus, {
+  //         position: Toast.position.center
+  //       });
+  //     }
+  //   }
+  // }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-
         <View style={styles.eachRow}>
           <Text style={styles.inputTitleText}>From</Text>
           <Text style={{ width: "50%" }}>#89778 (50EGP)</Text>
@@ -72,10 +108,8 @@ export class Transfer extends Component {
           <View style={styles.eachRow}>
             <Text style={styles.inputTitle}>Member Mobile</Text>
             <TextInput
-              value={this.state.membershipMobileNo}
-              onChangeText={membershipMobileNo =>
-                this.setState({ membershipMobileNo })
-              }
+              value={this.state.senderCodeNo}
+              onChangeText={senderCodeNo => this.setState({ senderCodeNo })}
               placeholder={"Member Mob. number"}
               placeholderTextColor="#ffffff"
               keyboardType="numeric"
@@ -86,10 +120,8 @@ export class Transfer extends Component {
           <View style={styles.eachRow}>
             <Text style={styles.inputTitle}>Member Id</Text>
             <TextInput
-              value={this.state.transferToMemberId}
-              onChangeText={transferToMemberId =>
-                this.setState({ transferToMemberId })
-              }
+              value={this.state.receiverCodeNo}
+              onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
               placeholder={"Enter Member Id"}
               placeholderTextColor="#ffffff"
               keyboardType="numeric"
@@ -101,8 +133,8 @@ export class Transfer extends Component {
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
           <TextInput
-            value={this.state.transferAmount}
-            onChangeText={transferAmount => this.setState({ transferAmount })}
+            value={this.state.amount}
+            onChangeText={amount => this.setState({ amount })}
             placeholder={"Enter Amount"}
             placeholderTextColor="#ffffff"
             keyboardType="numeric"
@@ -122,8 +154,8 @@ export class Transfer extends Component {
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Pin</Text>
           <TextInput
-            value={this.state.memberPin}
-            onChangeText={memberPin => this.setState({ memberPin })}
+            value={this.state.pin}
+            onChangeText={pin => this.setState({ pin })}
             placeholder={"Enter Pin"}
             placeholderTextColor="#ffffff"
             keyboardType="numeric"
@@ -132,11 +164,7 @@ export class Transfer extends Component {
         </View>
         <Button
           style={styles.buttonStyle}
-          onPress={() => {
-            // this.setState({
-            //   balanceWebsocketService: new BalanceWebsocketService()
-            // });
-          }}
+          onPress={this.makeTransfer.bind(this)}
         >
           <Text style={{ color: "#202945" }}>Confirm</Text>
         </Button>
@@ -144,7 +172,10 @@ export class Transfer extends Component {
     );
   }
 }
-export default Transfer;
+export const TransferScreen = connect(
+  TransferContainer.mapStateToProps,
+  TransferContainer.mapDispatchToProps
+)(TransferContainer);
 
 const styles = StyleSheet.create({
   centerLogo: {

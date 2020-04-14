@@ -2,10 +2,13 @@ import { combineReducers } from "redux";
 
 import { authorizationReducer } from "./authorization/reducer";
 
+import { transferReducer } from "./transfer/reducer";
+
 import { userInfoReducer } from "./user-info/reducer";
 const appReducer = combineReducers({
   authorization: authorizationReducer,
-  userInfo: userInfoReducer
+  userInfo: userInfoReducer,
+  transfer: transferReducer
 });
 
 export const reducer = (state, action) => {
