@@ -14,7 +14,12 @@ import { styles } from "./selectMerchant-styles";
 
 var logo = require("../../../assets/download.jpg");
 
-function SelectMerchantComponent({ selected, onValueChange, onNavigateTo }) {
+function SelectMerchantComponent({
+  selected,
+  listOfMerchants,
+  onValueChange,
+  onNavigateTo
+}) {
   return (
     <View>
       <View style={styles.centerTitle}>
@@ -37,14 +42,14 @@ function SelectMerchantComponent({ selected, onValueChange, onNavigateTo }) {
                   </Button>
                 </Left>
                 <Body style={{ flex: 3 }}>
-                  <Title style={{ color: "#FFFFFF" }}>Transaction Type</Title>
+                  <Title style={{ color: "#FFFFFF" }}>List of merchants</Title>
                 </Body>
                 <Right />
               </Header>
             )}
             mode="dropdown"
-            iosHeader="Transaction"
-            placeholder="Transaction Type"
+            iosHeader="List of merchants"
+            placeholder="List of merchants"
             placeholderStyle={{ color: "#D0C21D" }}
             iosIcon={<Icon name="arrow-down" style={{ color: "#D0C21D" }} />}
             textStyle={{ color: "#D0C21D" }}
@@ -58,9 +63,7 @@ function SelectMerchantComponent({ selected, onValueChange, onNavigateTo }) {
             selectedValue={selected}
             onValueChange={onValueChange}
           >
-            <Picker.Item label="Merchant 1" value="merchant1 id" />
-            <Picker.Item label="Merchant 2" value="merchant2 id" />
-            <Picker.Item label="Merchant 3" value="merchant3 id" />
+            {listOfMerchants}
           </Picker>
         </View>
         <Button

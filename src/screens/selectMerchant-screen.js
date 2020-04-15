@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-
+import { Picker } from "native-base";
 import { SelectMerchantComponent } from "../components";
 export class SelectMerchantContainer extends Component {
   constructor() {
     super();
     this.state = {
-      selected: "undefined"
+      selected: "undefined",
+      merchantList: [
+        { id: "1", merchantName: "name1" },
+        { id: "2", merchantName: "name2" },
+        { id: "3", merchantName: "name3" }
+      ]
     };
   }
   static mapStatetToProps(state: State) {
@@ -30,12 +35,21 @@ export class SelectMerchantContainer extends Component {
   }
 
   render() {
+    let allMerchantList = this.state.merchantList.map((eachMerchant, index) => {
+      return (
+        <Picker.Item
+          label={eachMerchant.merchantName}
+          value={eachMerchant.id}
+        />
+      );
+    });
     return (
       <View style={styles.container}>
         <SelectMerchantComponent
           onValueChange={value => this.onValueChange(value)}
           selected={this.state.selected}
           onNavigateTo={goTo => this.onNavigateTo(goTo)}
+          listOfMerchants={allMerchantList}
         />
       </View>
     );
