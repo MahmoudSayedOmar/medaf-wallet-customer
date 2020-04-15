@@ -41,7 +41,7 @@ export class LoginContainer extends Component {
     if (nextProps.isLoggedIn) {
       if (nextProps.havePinCode) {
         this.props.navigation.reset({
-          routes: [{ name: "Application" }]
+          routes: [{ name: "SelectMerchant" }]
         });
       } else {
         this.props.navigation.navigate("PinConfirmation");
