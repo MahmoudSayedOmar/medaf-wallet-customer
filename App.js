@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LoginScreen } from "./src/screens/login-screen";
+import { FirstLoginScreen } from "./src/screens/first-login-screen";
 
 import { SelectMerchantScreen } from "./src/screens/selectMerchant-screen";
 import { ApplicationScreen } from "./src/screens/application-screen";
@@ -42,7 +43,11 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="PreLogin" headerMode="none">
+          <Stack.Navigator
+            initialRouteName="FirstLoginScreen"
+            headerMode="none"
+          >
+            <Stack.Screen name="FirstLogin" component={FirstLoginScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="PinConfirmation" component={PinCodeScreen} />
             <Stack.Screen name="ChangePin" component={ChangePinCodeScreen} />

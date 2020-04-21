@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import { LinearGradient } from "expo";
 
-import { styles } from "./login-form-styles";
+import { styles } from "./first-login-form-styles";
 import { Image, TextInput } from "react-native";
 
 import { Form, View, Text, Spinner, Button, Icon } from "native-base";
 var logo = require("../../../assets/download.jpg");
-export class LoginForm extends Component {
+export class FirstLoginForm extends Component {
   constructor() {
     super();
     this.state = {
       userName: "",
+      oldPassword: "",
       password: "",
-      showPassword: true
+      showPassword: true,
+      showOldPassword: true
     };
   }
 
@@ -27,9 +29,9 @@ export class LoginForm extends Component {
   login() {
     this.props.tryLogin(this.state);
   }
-  toggleSwitch() {
+  toggleSwitch(whichPassword) {
     this.setState({
-      showPassword: !this.state.showPassword
+      [whichPassword]: !this.state[whichPassword]
     });
   }
 
@@ -49,7 +51,7 @@ export class LoginForm extends Component {
             this.props.tryLogin(this.state);
           }}
         >
-          <Text style={{ color: "#202945" }}>Login</Text>
+          <Text style={{ color: "#202945" }}>Change Pin</Text>
         </Button>
       </View>
     );
@@ -72,27 +74,40 @@ export class LoginForm extends Component {
           />
           <View style={styles.passwordContainer}>
             <TextInput
+              value={this.state.oldPassword}
+              onChangeText={txt => {
+                this.setState({ password: txt });
+              }}
+              secureTextEntry={this.state.showOldPassword}
+              onChangeText={oldPassword => this.setState({ oldPassword })}
+              placeholder={"Enter your old password"}
+              placeholderTextColor="#D0C21D"
+              style={{ flex: 1, color: "#D0C21D" }}
+            />
+            <Icon
+              name={this.state.showOldPassword ? "eye-off" : "eye"}
+              onPress={() => this.toggleSwitch("showOldPassword")}
+              style={styles.showHideIcon}
+            />
+          </View>
+          <View style={styles.passwordContainer}>
+            <TextInput
               value={this.state.password}
               onChangeText={txt => {
                 this.setState({ password: txt });
               }}
               secureTextEntry={this.state.showPassword}
               onChangeText={password => this.setState({ password })}
-              placeholder={"Enter your password"}
+              placeholder={"Enter your new password"}
               placeholderTextColor="#D0C21D"
               style={{ flex: 1, color: "#D0C21D" }}
             />
             <Icon
               name={this.state.showPassword ? "eye-off" : "eye"}
-              onPress={() => this.toggleSwitch()}
+              onPress={() => this.toggleSwitch("showPassword")}
               style={styles.showHideIcon}
             />
           </View>
-          {/* <Switch
-            onValueChange={() => this.toggleSwitch()}
-            value={!this.state.showPassword}
-          />
-          <Text>Showwww</Text> */}
 
           {loadingSpinner}
         </Form>
