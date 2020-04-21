@@ -3,7 +3,9 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LoginScreen } from "./src/screens/login-screen";
-import { PreLoginScreen } from "./src/screens/pre-login-screen";
+import { FirstLoginScreen } from "./src/screens/first-login-screen";
+
+import { SelectMerchantScreen } from "./src/screens/selectMerchant-screen";
 import { ApplicationScreen } from "./src/screens/application-screen";
 import { PinCodeScreen } from "./src/screens/set-pin-code-screen";
 import { ChangePinCodeScreen } from "./src/screens/change-pin-code";
@@ -41,12 +43,19 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="PreLogin" headerMode="none">
-            <Stack.Screen name="PreLogin" component={PreLoginScreen} />
+          <Stack.Navigator
+            initialRouteName="FirstLoginScreen"
+            headerMode="none"
+          >
+            <Stack.Screen name="FirstLogin" component={FirstLoginScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="PinConfirmation" component={PinCodeScreen} />
             <Stack.Screen name="ChangePin" component={ChangePinCodeScreen} />
             <Stack.Screen name="Application" component={ApplicationScreen} />
+            <Stack.Screen
+              name="SelectMerchant"
+              component={SelectMerchantScreen}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

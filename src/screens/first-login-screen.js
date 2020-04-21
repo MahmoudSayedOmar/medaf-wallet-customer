@@ -6,12 +6,12 @@ import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
 
-import { LoginForm } from "../components";
+import { FirstLoginForm } from "../components";
 
 import { State, tryLogin } from "../state";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-class loginContainer extends Component {
+class firstloginContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -60,7 +60,7 @@ class loginContainer extends Component {
           enableOnAndroid={true}
           keyboardShouldPersistTaps="handled"
         >
-          <LoginForm
+          <FirstLoginForm
             loading={this.props.loading}
             tryLogin={this.props.tryLogin}
             errorMessage={this.props.loginError}
@@ -73,10 +73,10 @@ class loginContainer extends Component {
     );
   }
 }
-export const LoginScreen = connect(
-  loginContainer.mapStatetToProps,
-  loginContainer.mapDispatchToProps
-)(loginContainer);
+export const FirstLoginScreen = connect(
+  firstloginContainer.mapStatetToProps,
+  firstloginContainer.mapDispatchToProps
+)(firstloginContainer);
 
 var styles = StyleSheet.create({
   container: {
