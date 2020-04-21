@@ -6,86 +6,39 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import {
   TransactionsListingComponent,
-  HistoryHeaderComponent
+  HistoryHeaderComponent,
 } from "../components";
+
+import { tryRetriveTransactions } from "../state";
+
 export class HistoryContainer extends Component {
   constructor() {
     super();
     this.state = {
       dateFrom: "",
       dateTo: "",
-      selected: "undefined",
+      selected: undefined,
       filterShowHide: "hide",
       results: {
-        items: []
+        items: [],
       },
-      data: [
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ddad53abb28ba",
-          type: "cashIn",
-          title: "Cash In",
-          transactionAmount: "500 L.E",
-          dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E",
-          empolyeeName: "smash main center"
-        },
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad5ee3abb28ba",
-          type: "cashOut",
-          title: "Cash Out",
-          transactionAmount: "500 L.E",
-          dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E",
-          empolyeeName: "smash main center"
-        },
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad5gg3abb28ba",
-          type: "payment",
-          title: "Payment",
-          transactionAmount: "500 L.E",
-          dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E",
-          billType: "bill Type"
-        },
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad53adabb28ba",
-          type: "transfer",
-          title: "Transfer",
-          transactionAmount: "500 L.E",
-          dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E",
-          transferTo: "ahmed mohamed #9997"
-        },
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad53abgeb28ba",
-          title: "Cash In",
-          transactionAmount: "500 L.E",
-          dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E"
-        },
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad53abba28ba",
-          title: "Cash In",
-          transactionAmount: "500 L.E",
-          dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E"
-        }
-      ]
     };
   }
   static mapStatetToProps(state: State) {
-    return {};
+    return { transactionsHistory: state.userInfo.transactionsHistory };
   }
-
+  componentWillMount() {
+    this.props.tryRetriveTransactions();
+  }
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ tryRetriveTransactions }, dispatch);
   }
   setDate(newDate) {
     this.setState({ dateFrom: newDate });
   }
   onValueChange(value: string) {
     this.setState({
-      selected: value
+      selected: value,
     });
   }
   onShowHideFilters() {
@@ -101,12 +54,19 @@ export class HistoryContainer extends Component {
         <HistoryHeaderComponent
           filterShowHide={this.state.filterShowHide}
           onShowHideFilters={this.onShowHideFilters.bind(this)}
-          onToDateChange={dateTo => this.setState({ dateTo })}
-          onFromDateChange={dateFrom => this.setState({ dateFrom })}
+          onToDateChange={(dateTo) => this.setState({ dateTo })}
+          onFromDateChange={(dateFrom) => this.setState({ dateFrom })}
           selected={this.state.selected}
           onValueChange={this.onValueChange.bind(this)}
+          onPressFilter={() => {
+            this.props.tryRetriveTransactions({
+              StartDate: this.state.dateFrom,
+              EndDate: this.state.dateTo,
+              Status: this.state.selected,
+            });
+          }}
         />
-        <TransactionsListingComponent data={this.state.data} />
+        <TransactionsListingComponent data={this.props.transactionsHistory} />
       </View>
     );
   }
@@ -121,6 +81,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: "3%",
-    backgroundColor: "#FFFFFF"
-  }
+    backgroundColor: "#FFFFFF",
+  },
 });

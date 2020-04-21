@@ -10,7 +10,7 @@ import {
   Right,
   Body,
   Left,
-  Title
+  Title,
 } from "native-base";
 
 function HistoryFilterComponent({
@@ -19,7 +19,8 @@ function HistoryFilterComponent({
   onFromDateChange,
   onToDateChange,
   selected,
-  onValueChange
+  onValueChange,
+  onPressFilter,
 }) {
   return (
     <View style={styles.filter}>
@@ -28,7 +29,7 @@ function HistoryFilterComponent({
       {filterShowHide === "hide" ? null : (
         <View
           style={{
-            marginTop: 10
+            marginTop: 10,
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -44,7 +45,7 @@ function HistoryFilterComponent({
                 textStyle={{ color: "#D0C21D" }}
                 placeHolderTextStyle={{
                   fontSize: 15,
-                  color: "#D0C21D"
+                  color: "#D0C21D",
                 }}
                 onDateChange={onFromDateChange}
                 disabled={false}
@@ -62,7 +63,7 @@ function HistoryFilterComponent({
                 textStyle={{ color: "#D0C21D" }}
                 placeHolderTextStyle={{
                   fontSize: 15,
-                  color: "#D0C21D"
+                  color: "#D0C21D",
                 }}
                 onDateChange={onToDateChange}
                 disabled={false}
@@ -73,7 +74,7 @@ function HistoryFilterComponent({
           <View style={{ flexDirection: "row" }}>
             <View style={styles.selectField}>
               <Picker
-                renderHeader={backAction => (
+                renderHeader={(backAction) => (
                   <Header style={{ backgroundColor: "#D0C21D" }}>
                     <Left>
                       <Button transparent onPress={backAction}>
@@ -100,7 +101,7 @@ function HistoryFilterComponent({
                   backgroundColor: "#ffffff",
                   marginLeft: 0,
                   paddingLeft: 10,
-                  color: "#D0C21D"
+                  color: "#D0C21D",
                 }}
                 itemTextStyle={{ color: "#D0C21D" }}
                 selectedValue={selected}
@@ -116,10 +117,10 @@ function HistoryFilterComponent({
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
-            <Button style={styles.buttonStyle} onPress={() => {}}>
+            <Button style={styles.buttonStyle} onPress={onPressFilter}>
               <Text style={{ color: "#202945" }}>Filter</Text>
             </Button>
           </View>

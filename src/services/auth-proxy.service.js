@@ -14,13 +14,14 @@ export class AuthProxyService {
       config: {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
-    }).catch(function(err) {
+          "content-Type": "application/json",
+        },
+      },
+    }).catch(function (err) {
       return err;
     });
   }
+
   async preLogin() {
     let data = {};
     data["UserName"] = "3samAli";
@@ -34,10 +35,10 @@ export class AuthProxyService {
       config: {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
-    }).catch(function(err) {
+          "content-Type": "application/json",
+        },
+      },
+    }).catch(function (err) {
       return err;
     });
   }
