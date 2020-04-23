@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextInput, View, StyleSheet, Image } from "react-native";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
 import { Button, Text, Spinner } from "native-base";
@@ -18,12 +18,14 @@ export class PinCodeContainer extends Component {
     this.state = {
       confirmationCode: "",
       newPinCode: "",
-      reNewPinCode: ""
+      reNewPinCode: "",
     };
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.setPinCodeStatus == 1) {
-      this.props.navigation.navigate("Application");
+      this.props.navigation.reset({
+        routes: [{ name: "Application" }],
+      });
     }
   }
 
@@ -31,14 +33,14 @@ export class PinCodeContainer extends Component {
     this.props.trySetPinCode({
       confirmationCode: this.state.confirmationCode,
       newPinCode: this.state.newPinCode,
-      reNewPinCode: this.state.reNewPinCode
+      reNewPinCode: this.state.reNewPinCode,
     });
   }
 
   static mapStatetToProps(state: State) {
     return {
       loading: state.userInfo.loading,
-      setPinCodeStatus: state.userInfo.setPinCodeStatus
+      setPinCodeStatus: state.userInfo.setPinCodeStatus,
     };
   }
 
@@ -54,7 +56,9 @@ export class PinCodeContainer extends Component {
         </View>
         <TextInput
           value={this.state.confirmationCode}
-          onChangeText={confirmationCode => this.setState({ confirmationCode })}
+          onChangeText={(confirmationCode) =>
+            this.setState({ confirmationCode })
+          }
           placeholder={"Enter Your Confirmation Code"}
           placeholderTextColor="#ffffff"
           keyboardType="numeric"
@@ -63,7 +67,7 @@ export class PinCodeContainer extends Component {
         />
         <TextInput
           value={this.state.newPinCode}
-          onChangeText={newPinCode => this.setState({ newPinCode })}
+          onChangeText={(newPinCode) => this.setState({ newPinCode })}
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your New Pin Code"}
@@ -72,7 +76,7 @@ export class PinCodeContainer extends Component {
         />
         <TextInput
           value={this.state.reNewPinCode}
-          onChangeText={reNewPinCode => this.setState({ reNewPinCode })}
+          onChangeText={(reNewPinCode) => this.setState({ reNewPinCode })}
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your New Pin Code"}
@@ -102,12 +106,12 @@ const styles = StyleSheet.create({
     height: hp("22%"),
     backgroundColor: "#FFFFFF",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   input: {
     textAlign: "center",
@@ -116,12 +120,12 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderRadius: 5,
     backgroundColor: "#D0C21D",
-    margin: 10
+    margin: 10,
   },
   backgroundImage: {
     flex: 1,
     width: null,
-    height: null
+    height: null,
   },
   button: {
     flexDirection: "column",
@@ -137,6 +141,6 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     height: 40,
     marginTop: 30,
-    alignSelf: "center"
-  }
+    alignSelf: "center",
+  },
 });

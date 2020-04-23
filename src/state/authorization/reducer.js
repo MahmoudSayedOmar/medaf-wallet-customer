@@ -7,7 +7,10 @@ import * as types from "./actions";
 type Action =
   | actions.ON_LOGIN_Action
   | actions.LOGIN_SUCCESS_Action
-  | actions.LOGIN_FAIL_Action;
+  | actions.LOGIN_FAIL_Action
+  | actions.ON_FIRST_LOGIN_Action
+  | actions.FIRST_LOGIN_SUCCESS_Action
+  | actions.FIRST_LOGIN_FAIL_Action;
 
 export function authorizationReducer(
   state: AuthorizationState = AuthorizationInitialState,
@@ -18,9 +21,7 @@ export function authorizationReducer(
       return {
         ...state,
         loading: true,
-        membershipId: action.payload.membershipId,
-        mobileNumber: action.payload.mobileNumber,
-        dateOfBirth: action.payload.dateOfBirth
+        userName: action.payload.userName,
       };
     }
 
@@ -30,7 +31,7 @@ export function authorizationReducer(
         ...state,
         isLoggedIn: true,
         loading: false,
-        ...action.payload
+        ...action.payload,
       };
     }
 
@@ -39,36 +40,25 @@ export function authorizationReducer(
         ...state,
         isLoggedIn: false,
         errorMessage: action.payload,
-        loading: false
+        loading: false,
       };
     }
-    case types.ON_PRE_LOGIN: {
+    case types.ON_FIRST_LOGIN: {
       return {
         ...state,
-        loading: true
       };
     }
 
-    case types.PRE_LOGIN_SUCCESS: {
+    case types.FIRST_LOGIN_SUCCESS: {
       debugger;
       return {
         ...state,
-        token: action.payload.Token,
-        isPreLoggedIn: true,
-        loading: false,
-        userID: action.payload.UserId,
-        brandID: action.payload.BrandId,
-        groupID: action.payload.GroupId,
-        amount: 0
       };
     }
 
-    case types.PRE_LOGIN_FAIL: {
+    case types.FIRST_LOGIN_FAIL: {
       return {
         ...state,
-        isPreLoggedIn: false,
-        errorMessage: action.payload,
-        loading: false
       };
     }
 

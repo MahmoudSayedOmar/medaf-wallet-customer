@@ -15,20 +15,20 @@ class loginContainer extends Component {
   constructor() {
     super();
     this.state = {
-      isMounted: false
+      isMounted: false,
     };
   }
   static navigationOptions = {
-    header: null
+    header: null,
   };
   static navigatorStyle = { navBarHidden: true };
   static mapStatetToProps(state: State) {
     return {
       loginError: state.authorization.errorMessage,
       isLoggedIn: state.authorization.isLoggedIn,
-      token: state.authorization.token,
       loading: state.authorization.loading,
-      loginFail: state.authorization.loginFail
+      havePinCode: state.authorization.havePinCode,
+      firstLogIn: state.authorization.firstLogIn,
     };
   }
 
@@ -40,13 +40,19 @@ class loginContainer extends Component {
     loginError: string,
     loading: boolean,
     isLoggedIn: boolean,
-    tryLogin: (userModel: UserLoginModel) => void
+    tryLogin: (userModel: UserLoginModel) => void,
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn) {
+      if (nextProps.firstLogIn) {
+        this.props.navigation.navigate("FirstLogin");
+      }
+      if (!nextProps.havePinCode) {
+        this.props.navigation.navigate("PinConfirmation");
+      }
       this.props.navigation.reset({
-        routes: [{ name: "Application" }]
+        routes: [{ name: "Application" }],
       });
     }
 
@@ -66,7 +72,6 @@ class loginContainer extends Component {
             errorMessage={this.props.loginError}
             isLoggedIn={this.props.isLoggedIn}
             navigation={this.props.navigation}
-            loginFail={this.props.loginFail}
           />
         </KeyboardAwareScrollView>
       </View>
@@ -82,6 +87,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#ffffff"
-  }
+    backgroundColor: "#ffffff",
+  },
 });
