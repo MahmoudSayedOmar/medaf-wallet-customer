@@ -81,7 +81,7 @@ export class Transfer extends Component {
                 this.setState({ membershipMobileNo })
               }
               placeholder={"Member Mob. number"}
-              placeholderTextColor="#D0C21D"
+              placeholderTextColor="#202945"
               keyboardType="numeric"
               style={styles.input}
             />
@@ -95,7 +95,7 @@ export class Transfer extends Component {
                 this.setState({ transferToMemberId })
               }
               placeholder={"Enter Member Id"}
-              placeholderTextColor="#D0C21D"
+              placeholderTextColor="#202945"
               keyboardType="numeric"
               style={styles.input}
             />
@@ -108,7 +108,7 @@ export class Transfer extends Component {
             value={this.state.transferAmount}
             onChangeText={transferAmount => this.setState({ transferAmount })}
             placeholder={"Enter Amount"}
-            placeholderTextColor="#D0C21D"
+            placeholderTextColor="#202945"
             keyboardType="numeric"
             style={styles.input}
           />

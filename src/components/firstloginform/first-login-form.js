@@ -69,7 +69,7 @@ export class FirstLoginForm extends Component {
               this.setState({ userName: txt });
             }}
             placeholder={"Enter your username"}
-            placeholderTextColor="#D0C21D"
+            placeholderTextColor="#202945"
             style={styles.input}
           />
           <View style={styles.passwordContainer}>
@@ -81,8 +81,8 @@ export class FirstLoginForm extends Component {
               secureTextEntry={this.state.showOldPassword}
               onChangeText={oldPassword => this.setState({ oldPassword })}
               placeholder={"Enter your old password"}
-              placeholderTextColor="#D0C21D"
-              style={{ flex: 1, color: "#D0C21D" }}
+              placeholderTextColor="#202945"
+              style={{ flex: 1, color: "#202945" }}
             />
             <Icon
               name={this.state.showOldPassword ? "eye-off" : "eye"}
@@ -99,8 +99,8 @@ export class FirstLoginForm extends Component {
               secureTextEntry={this.state.showPassword}
               onChangeText={password => this.setState({ password })}
               placeholder={"Enter your new password"}
-              placeholderTextColor="#D0C21D"
-              style={{ flex: 1, color: "#D0C21D" }}
+              placeholderTextColor="#202945"
+              style={{ flex: 1, color: "#202945" }}
             />
             <Icon
               name={this.state.showPassword ? "eye-off" : "eye"}

@@ -132,10 +132,10 @@ export class History extends Component {
                   animationType={"fade"}
                   androidMode={"default"}
                   placeHolderText="from Date"
-                  textStyle={{ color: "#D0C21D" }}
+                  textStyle={{ color: "#202945" }}
                   placeHolderTextStyle={{
                     fontSize: 15,
-                    color: "#D0C21D"
+                    color: "#202945"
                   }}
                   onDateChange={dateFrom => this.setState({ dateFrom })}
                   disabled={false}
@@ -150,10 +150,10 @@ export class History extends Component {
                   animationType={"fade"}
                   androidMode={"default"}
                   placeHolderText="To Date"
-                  textStyle={{ color: "#D0C21D" }}
+                  textStyle={{ color: "#202945" }}
                   placeHolderTextStyle={{
                     fontSize: 15,
-                    color: "#D0C21D"
+                    color: "#202945"
                   }}
                   onDateChange={dateTo => this.setState({ dateTo })}
                   disabled={false}
@@ -185,16 +185,16 @@ export class History extends Component {
                   mode="dropdown"
                   iosHeader="Transaction"
                   placeholder="Transaction Type"
-                  placeholderStyle={{ color: "#D0C21D" }}
+                  placeholderStyle={{ color: "#202945" }}
                   iosIcon={
-                    <Icon name="arrow-down" style={{ color: "#D0C21D" }} />
+                    <Icon name="arrow-down" style={{ color: "#202945" }} />
                   }
-                  textStyle={{ color: "#D0C21D" }}
+                  textStyle={{ color: "#202945" }}
                   itemStyle={{
                     backgroundColor: "#ffffff",
                     marginLeft: 0,
                     paddingLeft: 10,
-                    color: "#D0C21D"
+                    color: "#202945"
                   }}
                   itemTextStyle={{ color: "#D0C21D" }}
                   selectedValue={this.state.selected}
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   centerLogo: {
     justifyContent: "center",
     alignItems: "center"
-  }
+  },
   selectField: {
     width: "100%",
     marginTop: 10,
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 2
   },
-  
+
   filter: {
     justifyContent: "center",
     alignItems: "center",

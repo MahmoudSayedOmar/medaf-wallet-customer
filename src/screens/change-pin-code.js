@@ -59,7 +59,7 @@ export class ChangePinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your Old Pin Code"}
-          placeholderTextColor="#D0C21D"
+          placeholderTextColor="#202945"
           style={styles.input}
         />
         <TextInput
@@ -68,7 +68,7 @@ export class ChangePinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your New Pin Code"}
-          placeholderTextColor="#D0C21D"
+          placeholderTextColor="#202945"
           style={styles.input}
         />
         <TextInput
@@ -77,7 +77,7 @@ export class ChangePinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Re-Enter Your New Pin Code"}
-          placeholderTextColor="#D0C21D"
+          placeholderTextColor="#202945"
           style={styles.input}
         />
         {this.props.changePinCodeStatus == -1 ? (
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#D0C21D",
     borderRadius: 5,
-    color: "#D0C21D",
+    color: "#202945",
 
     margin: 10
   },

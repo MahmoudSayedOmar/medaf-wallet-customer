@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#D0C21D",
     borderRadius: 5,
-    color: "#D0C21D",
+    color: "#202945",
     margin: 10
   },
   showHideIcon: {
