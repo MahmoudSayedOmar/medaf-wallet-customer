@@ -10,7 +10,7 @@ import {
   Right,
   Body,
   Left,
-  Title,
+  Title
 } from "native-base";
 
 function HistoryFilterComponent({
@@ -20,7 +20,7 @@ function HistoryFilterComponent({
   onToDateChange,
   selected,
   onValueChange,
-  onPressFilter,
+  onPressFilter
 }) {
   return (
     <View style={styles.filter}>
@@ -29,7 +29,7 @@ function HistoryFilterComponent({
       {filterShowHide === "hide" ? null : (
         <View
           style={{
-            marginTop: 10,
+            marginTop: 10
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -45,11 +45,7 @@ function HistoryFilterComponent({
                 textStyle={{ color: "#202945" }}
                 placeHolderTextStyle={{
                   fontSize: 15,
-<<<<<<< HEAD
                   color: "#202945"
-=======
-                  color: "#D0C21D",
->>>>>>> 5bc6c09e56e626590fc3cc6d610d9870e8405d30
                 }}
                 onDateChange={onFromDateChange}
                 disabled={false}
@@ -67,11 +63,7 @@ function HistoryFilterComponent({
                 textStyle={{ color: "#202945" }}
                 placeHolderTextStyle={{
                   fontSize: 15,
-<<<<<<< HEAD
                   color: "#202945"
-=======
-                  color: "#D0C21D",
->>>>>>> 5bc6c09e56e626590fc3cc6d610d9870e8405d30
                 }}
                 onDateChange={onToDateChange}
                 disabled={false}
@@ -82,7 +74,7 @@ function HistoryFilterComponent({
           <View style={{ flexDirection: "row" }}>
             <View style={styles.selectField}>
               <Picker
-                renderHeader={(backAction) => (
+                renderHeader={backAction => (
                   <Header style={{ backgroundColor: "#D0C21D" }}>
                     <Left>
                       <Button transparent onPress={backAction}>
@@ -125,7 +117,7 @@ function HistoryFilterComponent({
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <Button style={styles.buttonStyle} onPress={onPressFilter}>
