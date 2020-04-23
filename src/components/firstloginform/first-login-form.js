@@ -10,9 +10,9 @@ export class FirstLoginForm extends Component {
   constructor() {
     super();
     this.state = {
-      userName: "",
       oldPassword: "",
       password: "",
+      retypePassword: "",
       showPassword: true,
       showOldPassword: true
     };
@@ -51,7 +51,7 @@ export class FirstLoginForm extends Component {
             this.props.tryLogin(this.state);
           }}
         >
-          <Text style={{ color: "#202945" }}>Change Pin</Text>
+          <Text style={{ color: "#202945" }}>Change Password</Text>
         </Button>
       </View>
     );
@@ -63,15 +63,6 @@ export class FirstLoginForm extends Component {
         </View>
 
         <Form>
-          <TextInput
-            value={this.state.userName}
-            onChangeText={txt => {
-              this.setState({ userName: txt });
-            }}
-            placeholder={"Enter your username"}
-            placeholderTextColor="#202945"
-            style={styles.input}
-          />
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.oldPassword}
@@ -108,7 +99,24 @@ export class FirstLoginForm extends Component {
               style={styles.showHideIcon}
             />
           </View>
-
+          <View style={styles.passwordContainer}>
+            <TextInput
+              value={this.state.retypePassword}
+              onChangeText={txt => {
+                this.setState({ retypePassword: txt });
+              }}
+              secureTextEntry={this.state.showPassword}
+              onChangeText={retypePassword => this.setState({ retypePassword })}
+              placeholder={"Re-Enter your new password"}
+              placeholderTextColor="#D0C21D"
+              style={{ flex: 1, color: "#D0C21D" }}
+            />
+            <Icon
+              name={this.state.showPassword ? "eye-off" : "eye"}
+              onPress={() => this.toggleSwitch("showPassword")}
+              style={styles.showHideIcon}
+            />
+          </View>
           {loadingSpinner}
         </Form>
       </View>

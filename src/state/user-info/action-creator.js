@@ -16,7 +16,7 @@ export function tryRefresh() {
       CardNo: state.authorization.membershipId,
       Mobile: state.authorization.mobileNumber,
       BirthDate: state.authorization.dateOfBirth,
-      Amount: 0
+      Amount: 0,
     };
     let response = await authProxyService.login(
       data,
@@ -28,7 +28,7 @@ export function tryRefresh() {
       dispatch(
         updateUserInfo({
           cardNo: state.authorization.membershipId,
-          balance: result["Balance"]
+          balance: result["Balance"],
         })
       );
     } else {
@@ -58,7 +58,7 @@ export function trySetPinCode(confirmationData) {
       {
         activationCode: confirmationData.confirmationCode,
         pinCode: confirmationData.newPinCode,
-        cardNumber: state.authorization.membershipId
+        cardNumber: state.authorization.membershipId,
       },
       token
     );
@@ -98,7 +98,7 @@ export function tryChangePinCode(confirmationData) {
       {
         oldPinCode: confirmationData.oldPinCode,
         newPinCode: confirmationData.newPinCode,
-        cardNumber: state.authorization.membershipId
+        cardNumber: state.authorization.membershipId,
       },
       token
     );
@@ -131,7 +131,7 @@ export type ON_CONNECTION_SUCCESS_ACTION = { type: string, payload: String };
 export type ON_CONNECTION_FAIL_ACTION = { type: string };
 
 export function contBalanceUpdate(argOne) {
-  return async dispatch => {
+  return async (dispatch) => {
     debugger;
 
     dispatch(updateBalance(argOne));
@@ -153,21 +153,24 @@ export function connectionFail(): ON_CONNECTION_FAIL_ACTION {
 export type ON_RETRIVE_USER_TRANSACTIONS_HISTORY_ACTION = { type: string };
 export type RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS_ACTION = {
   type: string,
-  payload: String
+  payload: String,
 };
 export type RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION = { type: string };
 
-export function tryRetriveTransactions() {
-  return async dispatch => {
+export function tryRetriveTransactions(data) {
+  return async (dispatch, getState) => {
     debugger;
+    const state = getState();
     dispatch(onRetriveTransactions());
-
+    data.CardNo = state.authorization.membershipId;
     let response = await userManagerProxyService.retriveUserTransactionsHistory(
-      data
+      data,
+      state.authorization.token
     );
+    debugger;
 
     if (response.status === 200) {
-      dispatch(retriveTransactionsSuccess());
+      dispatch(retriveTransactionsSuccess(response.data));
     } else {
       dispatch(retriveTransactionsFail());
     }
@@ -183,7 +186,7 @@ export function retriveTransactionsSuccess(
 ): RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS_ACTION {
   return {
     type: types.RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS,
-    payload: data
+    payload: data,
   };
 }
 export function retriveTransactionsFail(): RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION {

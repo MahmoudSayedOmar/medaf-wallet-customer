@@ -11,7 +11,8 @@ function HistoryHeaderComponent({
   onFromDateChange,
   onToDateChange,
   selected,
-  onValueChange
+  onValueChange,
+  onPressFilter,
 }) {
   return (
     <View>
@@ -30,6 +31,7 @@ function HistoryHeaderComponent({
         onFromDateChange={onFromDateChange}
         selected={selected}
         onValueChange={onValueChange}
+        onPressFilter={onPressFilter}
       />
       <View style={styles.filter}>
         <View style={{ flexDirection: "row" }}>
@@ -37,7 +39,7 @@ function HistoryHeaderComponent({
             style={{
               borderColor: "#D0C21D",
               borderRightWidth: 1,
-              paddingRight: 10
+              paddingRight: 10,
             }}
           >
             <Text style={styles.paddingTextLeft}>

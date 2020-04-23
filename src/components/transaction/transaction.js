@@ -4,21 +4,21 @@ import { styles } from "./transaction-styles";
 
 export function TransactionComponent({ item }) {
   let TransactionType = null;
-  switch (item.type) {
-    case "transfer":
+  switch (item.Status) {
+    case "4":
       TransactionType = (
         <Text style={styles.listBody}>Transfer To: {item.transferTo}</Text>
       );
       break;
 
-    case "payment":
+    case "3":
       TransactionType = <Text>Bill Type: {item.billType}</Text>;
       break;
-    case "cashIn":
-      TransactionType = <Text>Cash In By: {item.empolyeeName}</Text>;
+    case "1":
+      TransactionType = <Text>Cash In By: {item.EmployeeName}</Text>;
       break;
-    case "cashOut":
-      TransactionType = <Text>Cash Out By: {item.empolyeeName}</Text>;
+    case "2":
+      TransactionType = <Text>Cash Out By: {item.EmployeeName}</Text>;
       break;
   }
   debugger;
@@ -28,12 +28,12 @@ export function TransactionComponent({ item }) {
         <View
           style={{
             flexDirection: "column",
-            width: "90%"
+            width: "90%",
           }}
         >
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.listBody}>{item.transactionAmount}</Text>
-          <Text style={styles.listBody}>{item.dataDate}</Text>
+          <Text style={styles.title}>{item.PointsTransactionsName}</Text>
+          <Text style={styles.listBody}>{item.Amount}</Text>
+          <Text style={styles.listBody}>{item.Creationdatetime}</Text>
           {TransactionType}
         </View>
       </View>

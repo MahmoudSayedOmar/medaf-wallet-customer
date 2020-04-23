@@ -8,46 +8,49 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import { FirstLoginForm } from "../components";
 
-import { State, tryLogin } from "../state";
+import { State, tryFirstLogin } from "../state";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 class firstloginContainer extends Component {
   constructor() {
     super();
     this.state = {
-      isMounted: false
+      isMounted: false,
     };
   }
   static navigationOptions = {
-    header: null
+    header: null,
   };
   static navigatorStyle = { navBarHidden: true };
   static mapStatetToProps(state: State) {
     return {
-      loginError: state.authorization.errorMessage,
+      havePinCode: state.authorization.havePinCode,
       isLoggedIn: state.authorization.isLoggedIn,
-      token: state.authorization.token,
+      loginError: state.authorization.errorMessage,
       loading: state.authorization.loading,
-      loginFail: state.authorization.loginFail
     };
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({ tryLogin }, dispatch);
+    return bindActionCreators({ tryFirstLogin }, dispatch);
   }
 
   props: {
     loginError: string,
     loading: boolean,
     isLoggedIn: boolean,
-    tryLogin: (userModel: UserLoginModel) => void
+    tryFirstLogin: (data) => void,
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn) {
-      this.props.navigation.reset({
-        routes: [{ name: "Application" }]
-      });
+      if (nextProps.havePinCode) {
+        this.props.navigation.reset({
+          routes: [{ name: "Application" }],
+        });
+      } else {
+        this.props.navigation.navigate("PinConfirmation");
+      }
     }
 
     this.setState({ isMounted: !this.state.isMounted });
@@ -62,11 +65,9 @@ class firstloginContainer extends Component {
         >
           <FirstLoginForm
             loading={this.props.loading}
-            tryLogin={this.props.tryLogin}
+            tryLogin={this.props.tryFirstLogin}
             errorMessage={this.props.loginError}
             isLoggedIn={this.props.isLoggedIn}
-            navigation={this.props.navigation}
-            loginFail={this.props.loginFail}
           />
         </KeyboardAwareScrollView>
       </View>
@@ -82,6 +83,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#ffffff"
-  }
+    backgroundColor: "#ffffff",
+  },
 });

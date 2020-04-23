@@ -13,9 +13,9 @@ export class UserManagerProxyService {
       config: {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
+          "content-Type": "application/json",
+        },
+      },
     });
   }
 
@@ -29,25 +29,25 @@ export class UserManagerProxyService {
       config: {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
+          "content-Type": "application/json",
+        },
+      },
     });
   }
 
-  async retriveUserTransactionsHistory(data) {
+  async retriveUserTransactionsHistory(data, token) {
     debugger;
     return await axios({
-      method: "get",
-      url: `${BASE_URL}points/getpointstransactions`,
+      method: "post",
+      url: `${BASE_URL}points/GetHistory`,
       data: data,
       headers: { token: token },
       config: {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
+          "content-Type": "application/json",
+        },
+      },
     });
   }
 }

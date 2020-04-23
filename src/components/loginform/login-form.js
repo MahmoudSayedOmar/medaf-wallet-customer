@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { LinearGradient } from "expo";
 
 import { styles } from "./login-form-styles";
 import { Image, TextInput } from "react-native";
@@ -38,7 +37,7 @@ export class LoginForm extends Component {
       <Spinner color="#ef9c05" />
     ) : (
       <View style={styles.loginContainer}>
-        {this.props.loginFail ? (
+        {this.props.isLoggedIn != true ? (
           <Text style={{ color: "red", alignSelf: "center" }}>
             Check your Email or Password
           </Text>
@@ -88,11 +87,6 @@ export class LoginForm extends Component {
               style={styles.showHideIcon}
             />
           </View>
-          {/* <Switch
-            onValueChange={() => this.toggleSwitch()}
-            value={!this.state.showPassword}
-          />
-          <Text>Showwww</Text> */}
 
           {loadingSpinner}
         </Form>

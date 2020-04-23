@@ -43,16 +43,11 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="FirstLogin" headerMode="none">
+          <Stack.Navigator initialRouteName="Login" headerMode="none">
             <Stack.Screen name="FirstLogin" component={FirstLoginScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="PinConfirmation" component={PinCodeScreen} />
-            <Stack.Screen name="ChangePin" component={ChangePinCodeScreen} />
             <Stack.Screen name="Application" component={ApplicationScreen} />
-            <Stack.Screen
-              name="SelectMerchant"
-              component={SelectMerchantScreen}
-            />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

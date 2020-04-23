@@ -4,29 +4,11 @@ import { UserLoginModel, UserRegisterModel } from "../proxy";
 import axios from "axios";
 
 export class AuthProxyService {
-  async login(userData: UserLoginModel, token: String) {
-    debugger;
-    return await axios({
-      method: "post",
-      url: `${BASE_URL}customer/getcustomerbalancebydate`,
-      data: userData,
-      headers: { token: token },
-      config: {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
-    }).catch(function(err) {
-      return err;
-    });
-  }
-  async preLogin() {
+  async login(userData: UserLoginModel) {
     let data = {};
     data["UserName"] = "3samAli";
     data["Password"] = "3samAli123";
     let URL = `${BASE_URL}User/Authenticate`;
-    console.log("baseeee", URL);
     return await axios({
       method: "post",
       url: URL,
@@ -34,10 +16,10 @@ export class AuthProxyService {
       config: {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "content-Type": "application/json"
-        }
-      }
-    }).catch(function(err) {
+          "content-Type": "application/json",
+        },
+      },
+    }).catch(function (err) {
       return err;
     });
   }
