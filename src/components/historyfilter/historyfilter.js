@@ -10,7 +10,7 @@ import {
   Right,
   Body,
   Left,
-  Title,
+  Title
 } from "native-base";
 
 function HistoryFilterComponent({
@@ -20,7 +20,7 @@ function HistoryFilterComponent({
   onToDateChange,
   selected,
   onValueChange,
-  onPressFilter,
+  onPressFilter
 }) {
   return (
     <View style={styles.filter}>
@@ -29,7 +29,7 @@ function HistoryFilterComponent({
       {filterShowHide === "hide" ? null : (
         <View
           style={{
-            marginTop: 10,
+            marginTop: 10
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -42,10 +42,10 @@ function HistoryFilterComponent({
                 animationType={"fade"}
                 androidMode={"default"}
                 placeHolderText="from Date"
-                textStyle={{ color: "#D0C21D" }}
+                textStyle={{ color: "#202945" }}
                 placeHolderTextStyle={{
                   fontSize: 15,
-                  color: "#D0C21D",
+                  color: "#202945"
                 }}
                 onDateChange={onFromDateChange}
                 disabled={false}
@@ -60,10 +60,10 @@ function HistoryFilterComponent({
                 animationType={"fade"}
                 androidMode={"default"}
                 placeHolderText="To Date"
-                textStyle={{ color: "#D0C21D" }}
+                textStyle={{ color: "#202945" }}
                 placeHolderTextStyle={{
                   fontSize: 15,
-                  color: "#D0C21D",
+                  color: "#202945"
                 }}
                 onDateChange={onToDateChange}
                 disabled={false}
@@ -74,7 +74,7 @@ function HistoryFilterComponent({
           <View style={{ flexDirection: "row" }}>
             <View style={styles.selectField}>
               <Picker
-                renderHeader={(backAction) => (
+                renderHeader={backAction => (
                   <Header style={{ backgroundColor: "#D0C21D" }}>
                     <Left>
                       <Button transparent onPress={backAction}>
@@ -92,18 +92,18 @@ function HistoryFilterComponent({
                 mode="dropdown"
                 iosHeader="Transaction"
                 placeholder="Transaction Type"
-                placeholderStyle={{ color: "#D0C21D" }}
+                placeholderStyle={{ color: "#202945" }}
                 iosIcon={
-                  <Icon name="arrow-down" style={{ color: "#D0C21D" }} />
+                  <Icon name="arrow-down" style={{ color: "#202945" }} />
                 }
-                textStyle={{ color: "#D0C21D" }}
+                textStyle={{ color: "#202945" }}
                 itemStyle={{
                   backgroundColor: "#ffffff",
                   marginLeft: 0,
                   paddingLeft: 10,
-                  color: "#D0C21D",
+                  color: "#202945"
                 }}
-                itemTextStyle={{ color: "#D0C21D" }}
+                itemTextStyle={{ color: "#202945" }}
                 selectedValue={selected}
                 onValueChange={onValueChange}
               >
@@ -117,7 +117,7 @@ function HistoryFilterComponent({
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <Button style={styles.buttonStyle} onPress={onPressFilter}>

@@ -14,7 +14,7 @@ export class FirstLoginForm extends Component {
       password: "",
       retypePassword: "",
       showPassword: true,
-      showOldPassword: true,
+      showOldPassword: true
     };
   }
 
@@ -23,12 +23,12 @@ export class FirstLoginForm extends Component {
     loading: boolean,
     errorMessage: string,
     navigation: any,
-    tryLogin: (UserLoginModel) => void,
+    tryLogin: UserLoginModel => void
   };
 
   toggleSwitch(whichPassword) {
     this.setState({
-      [whichPassword]: !this.state[whichPassword],
+      [whichPassword]: !this.state[whichPassword]
     });
   }
 
@@ -67,14 +67,14 @@ export class FirstLoginForm extends Component {
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.oldPassword}
-              onChangeText={(txt) => {
+              onChangeText={txt => {
                 this.setState({ password: txt });
               }}
               secureTextEntry={this.state.showOldPassword}
-              onChangeText={(oldPassword) => this.setState({ oldPassword })}
+              onChangeText={oldPassword => this.setState({ oldPassword })}
               placeholder={"Enter your old password"}
-              placeholderTextColor="#D0C21D"
-              style={{ flex: 1, color: "#D0C21D" }}
+              placeholderTextColor="#202945"
+              style={{ flex: 1, color: "#202945" }}
             />
             <Icon
               name={this.state.showOldPassword ? "eye-off" : "eye"}
@@ -85,14 +85,14 @@ export class FirstLoginForm extends Component {
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.password}
-              onChangeText={(txt) => {
+              onChangeText={txt => {
                 this.setState({ password: txt });
               }}
               secureTextEntry={this.state.showPassword}
-              onChangeText={(password) => this.setState({ password })}
+              onChangeText={password => this.setState({ password })}
               placeholder={"Enter your new password"}
-              placeholderTextColor="#D0C21D"
-              style={{ flex: 1, color: "#D0C21D" }}
+              placeholderTextColor="#202945"
+              style={{ flex: 1, color: "#202945" }}
             />
             <Icon
               name={this.state.showPassword ? "eye-off" : "eye"}
@@ -103,13 +103,11 @@ export class FirstLoginForm extends Component {
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.retypePassword}
-              onChangeText={(txt) => {
+              onChangeText={txt => {
                 this.setState({ retypePassword: txt });
               }}
               secureTextEntry={this.state.showPassword}
-              onChangeText={(retypePassword) =>
-                this.setState({ retypePassword })
-              }
+              onChangeText={retypePassword => this.setState({ retypePassword })}
               placeholder={"Re-Enter your new password"}
               placeholderTextColor="#D0C21D"
               style={{ flex: 1, color: "#D0C21D" }}

@@ -11,7 +11,7 @@ export class LoginForm extends Component {
     this.state = {
       userName: "",
       password: "",
-      showPassword: true,
+      showPassword: true
     };
   }
 
@@ -20,7 +20,7 @@ export class LoginForm extends Component {
     loading: boolean,
     errorMessage: string,
     navigation: any,
-    tryLogin: (UserLoginModel) => void,
+    tryLogin: UserLoginModel => void
   };
 
   login() {
@@ -31,7 +31,7 @@ export class LoginForm extends Component {
   }
   toggleSwitch() {
     this.setState({
-      showPassword: !this.state.showPassword,
+      showPassword: !this.state.showPassword
     });
   }
 
@@ -65,24 +65,24 @@ export class LoginForm extends Component {
         <Form>
           <TextInput
             value={this.state.userName}
-            onChangeText={(txt) => {
+            onChangeText={txt => {
               this.setState({ userName: txt });
             }}
             placeholder={"Enter your username"}
-            placeholderTextColor="#D0C21D"
+            placeholderTextColor="#202945"
             style={styles.input}
           />
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.password}
-              onChangeText={(txt) => {
+              onChangeText={txt => {
                 this.setState({ password: txt });
               }}
               secureTextEntry={this.state.showPassword}
-              onChangeText={(password) => this.setState({ password })}
+              onChangeText={password => this.setState({ password })}
               placeholder={"Enter your password"}
-              placeholderTextColor="#D0C21D"
-              style={{ flex: 1, color: "#D0C21D" }}
+              placeholderTextColor="#202945"
+              style={{ flex: 1, color: "#202945" }}
             />
             <Icon
               name={this.state.showPassword ? "eye-off" : "eye"}

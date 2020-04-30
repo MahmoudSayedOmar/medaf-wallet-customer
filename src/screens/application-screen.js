@@ -1,18 +1,16 @@
 import * as React from "react";
 import { StyleSheet, Text, Icon } from "react-native";
-
 import { connect } from "react-redux";
-
 import { Dispatch, bindActionCreators } from "redux";
 import { Ionicons } from "@expo/vector-icons";
 
 import { HomeScreen } from "./home-screen";
-
 import { ChangePinCodeScreen } from "./change-pin-code";
+// import { Transfer } from "./transfer";
+import { TransferScreen } from "./transfer";
+// import { History } from "./history";
 import { HistoryScreen } from "./history-screen";
 import { SettingsScreen } from "./settings-screen";
-
-import { Transfer } from "./transfer";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -56,6 +54,13 @@ function SettingsStackScreen() {
       />
     </SettingsStack.Navigator>
   );
+}
+
+function History({ navigation }) {
+  return <HistoryScreen />;
+}
+function Transfer({ navigation }) {
+  return <TransferScreen />;
 }
 
 const Tab = createBottomTabNavigator();
@@ -106,7 +111,7 @@ export default class ApplicationContainer extends React.Component {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Transfer" component={Transfer} />
-        <Tab.Screen name="History" component={HistoryScreen} />
+        <Tab.Screen name="History" component={History} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     );
