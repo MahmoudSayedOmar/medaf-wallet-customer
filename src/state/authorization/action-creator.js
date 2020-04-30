@@ -13,32 +13,28 @@ export type LOGIN_FAIL_Action = { type: string, payload: string };
 export function tryLogin(user: UserLoginModel) {
   return async (dispatch, getState) => {
     dispatch(onLogin(user));
-
-    let response = await authProxyService.login(data);
+    debugger;
+    let response = await authProxyService.login(user);
     result = await response.data;
 
     debugger;
     if (response.status === 200) {
       debugger;
 
-      if (response.data.code == 1) {
-        dispatch(
-          onLoginSuccess({
-            // CardNo: user.membershipId,
-            // Mobile: user.mobileNumber,
-            // BirthDate: user.dateOfBirth,
-            // havePinCode: result["HavePinCode"]
-          })
-        );
-        dispatch(
-          updateUserInfo({
-            cardNo: user.membershipId,
-            balance: result["Balance"],
-          })
-        );
-      } else {
-        dispatch(onLoginFail(response.data.Message));
-      }
+      dispatch(
+        onLoginSuccess({
+          CardNo: result["MemberShipId"],
+          havePinCode: result["HasPin"],
+          firstLogIn: result["IsFirstLogin"],
+          token: result["Token"],
+        })
+      );
+      dispatch(
+        updateUserInfo({
+          cardNo: result["MemberShipId"],
+          balance: result["Balance"],
+        })
+      );
     } else {
       dispatch(onLoginFail("something went wrong"));
     }
@@ -78,23 +74,30 @@ export type FIRST_LOGIN_SUCCESS_Action = {
 export type FIRST_LOGIN_FAIL_Action = { type: string, payload: string };
 
 export function tryFirstLogin(data) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     dispatch(onFirstLogin());
-
-    let response = await authProxyService.login(data);
-    result = await response.data;
-
-    debugger;
-    if (response.status === 200) {
-      debugger;
-
-      if (response.data.code == 1) {
-        dispatch(onFirstLoginSuccess({}));
-      } else {
-        dispatch(onFirstLoginFail(response.data.Message));
-      }
+    if (data.newPassword != data.retypePassword) {
+      dispatch(
+        onFirstLoginFail("make sure New Password and Retyped ones is the same")
+      );
     } else {
-      dispatch(onFirstLoginFail("something went wrong"));
+      debugger;
+      data.userName = getState().authorization.userName;
+      let response = await authProxyService.setFirstPassword(data);
+      result = await response.data;
+
+      debugger;
+      if (response.status === 200) {
+        debugger;
+
+        if (result.Code == "1") {
+          dispatch(onFirstLoginSuccess({}));
+        } else {
+          dispatch(onFirstLoginFail(response.data.Message));
+        }
+      } else {
+        dispatch(onFirstLoginFail("something went wrong"));
+      }
     }
   };
 }

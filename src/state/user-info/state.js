@@ -8,6 +8,7 @@ export interface UserInfoState {
   changePinCodeStatus: Number;
   connectionId: String;
   connected: Number;
+  setPinCodeErrorMsg: String;
 }
 
 export const UserInfoInitialState: UserInfoState = {
@@ -19,5 +20,6 @@ export const UserInfoInitialState: UserInfoState = {
   connectionId: null,
   connected: 0,
   transactionsHistory: [],
-  loadingTransactions: false
+  loadingTransactions: false,
+  setPinCodeErrorMsg: "",
 };

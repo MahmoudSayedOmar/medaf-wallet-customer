@@ -25,7 +25,7 @@ class firstloginContainer extends Component {
   static mapStatetToProps(state: State) {
     return {
       havePinCode: state.authorization.havePinCode,
-      isLoggedIn: state.authorization.isLoggedIn,
+      firstLogIn: state.authorization.firstLogIn,
       loginError: state.authorization.errorMessage,
       loading: state.authorization.loading,
     };
@@ -43,7 +43,7 @@ class firstloginContainer extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isLoggedIn) {
+    if (nextProps.firstLogIn == false) {
       if (nextProps.havePinCode) {
         this.props.navigation.reset({
           routes: [{ name: "Application" }],
@@ -65,9 +65,8 @@ class firstloginContainer extends Component {
         >
           <FirstLoginForm
             loading={this.props.loading}
-            tryLogin={this.props.tryFirstLogin}
+            tryFirstLogin={this.props.tryFirstLogin}
             errorMessage={this.props.loginError}
-            isLoggedIn={this.props.isLoggedIn}
           />
         </KeyboardAwareScrollView>
       </View>

@@ -58,7 +58,7 @@ export function trySetPinCode(confirmationData) {
       {
         activationCode: confirmationData.confirmationCode,
         pinCode: confirmationData.newPinCode,
-        cardNumber: state.authorization.membershipId,
+        cardNumber: state.authorization.CardNo,
       },
       token
     );
@@ -67,10 +67,10 @@ export function trySetPinCode(confirmationData) {
       if (response.data.code == 1) {
         dispatch(SetPinCodeSuccess());
       } else {
-        dispatch(SetPinCodeFail());
+        dispatch(SetPinCodeFail("Make sure of your confirmation code"));
       }
     }
-    dispatch(SetPinCodeFail());
+    dispatch(SetPinCodeFail("Something went wrong"));
   };
 }
 
@@ -98,7 +98,7 @@ export function tryChangePinCode(confirmationData) {
       {
         oldPinCode: confirmationData.oldPinCode,
         newPinCode: confirmationData.newPinCode,
-        cardNumber: state.authorization.membershipId,
+        cardNumber: state.authorization.CardNo,
       },
       token
     );

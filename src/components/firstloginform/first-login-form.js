@@ -26,9 +26,6 @@ export class FirstLoginForm extends Component {
     tryLogin: (UserLoginModel) => void,
   };
 
-  login() {
-    this.props.tryLogin(this.state);
-  }
   toggleSwitch(whichPassword) {
     this.setState({
       [whichPassword]: !this.state[whichPassword],
@@ -40,15 +37,19 @@ export class FirstLoginForm extends Component {
       <Spinner color="#ef9c05" />
     ) : (
       <View style={styles.loginContainer}>
-        {this.props.loginFail ? (
+        {this.props.errorMessage != "" ? (
           <Text style={{ color: "red", alignSelf: "center" }}>
-            Check your Email or Password
+            {this.props.errorMessage}
           </Text>
         ) : null}
         <Button
           style={styles.button}
           onPress={() => {
-            this.props.tryLogin(this.state);
+            this.props.tryFirstLogin({
+              oldPassword: this.state.oldPassword,
+              newPassword: this.state.password,
+              retypePassword: this.state.retypePassword,
+            });
           }}
         >
           <Text style={{ color: "#202945" }}>Change Password</Text>

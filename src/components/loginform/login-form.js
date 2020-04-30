@@ -24,7 +24,10 @@ export class LoginForm extends Component {
   };
 
   login() {
-    this.props.tryLogin(this.state);
+    this.props.tryLogin({
+      userName: this.state.userName,
+      password: this.state.password,
+    });
   }
   toggleSwitch() {
     this.setState({
@@ -37,9 +40,9 @@ export class LoginForm extends Component {
       <Spinner color="#ef9c05" />
     ) : (
       <View style={styles.loginContainer}>
-        {this.props.isLoggedIn != true ? (
+        {this.props.errorMessage != "" ? (
           <Text style={{ color: "red", alignSelf: "center" }}>
-            Check your Email or Password
+            {this.props.errorMessage}
           </Text>
         ) : null}
         <Button

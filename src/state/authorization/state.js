@@ -22,6 +22,6 @@ export const AuthorizationInitialState: AuthorizationState = {
   isChange: false,
   amount: 0,
   havePinCode: false,
-  firstLogIn: false,
+  firstLogIn: true,
   haveSetFirstPassword: false,
 };

@@ -41,6 +41,7 @@ export class PinCodeContainer extends Component {
     return {
       loading: state.userInfo.loading,
       setPinCodeStatus: state.userInfo.setPinCodeStatus,
+      setPinCodeErrorMsg: state.userInfo.setPinCodeErrorMsg,
     };
   }
 
@@ -49,6 +50,29 @@ export class PinCodeContainer extends Component {
   }
 
   render() {
+    let loadingSpinner = this.props.loading ? (
+      <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
+    ) : (
+      <View
+        style={{
+          shadowOpacity: 0.25,
+          shadowRadius: 5,
+          shadowColor: "black",
+          shadowOffset: { height: 0, width: 0 },
+          paddingTop: 20,
+        }}
+      >
+        {this.props.setPinCodeStatus === -1 ? (
+          <Text style={{ color: "red", alignSelf: "center" }}>
+            {this.props.setPinCodeErrorMsg}
+          </Text>
+        ) : null}
+        <Button style={styles.button} onPress={this.onSetPinCode.bind(this)}>
+          <Text style={{ color: "#202945" }}>Confirm</Text>
+        </Button>
+      </View>
+    );
+
     return (
       <View style={styles.container}>
         <View style={styles.centerLogo}>
@@ -84,13 +108,7 @@ export class PinCodeContainer extends Component {
           style={styles.input}
         />
 
-        {this.props.loading ? (
-          <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
-        ) : (
-          <Button style={styles.button} onPress={this.onSetPinCode.bind(this)}>
-            <Text style={{ color: "#202945" }}>Confirm</Text>
-          </Button>
-        )}
+        {loadingSpinner}
       </View>
     );
   }

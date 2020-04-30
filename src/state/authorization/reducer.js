@@ -32,6 +32,7 @@ export function authorizationReducer(
         isLoggedIn: true,
         loading: false,
         ...action.payload,
+        errorMessage: "",
       };
     }
 
@@ -43,9 +44,11 @@ export function authorizationReducer(
         loading: false,
       };
     }
+
     case types.ON_FIRST_LOGIN: {
       return {
         ...state,
+        loading: true,
       };
     }
 
@@ -53,12 +56,18 @@ export function authorizationReducer(
       debugger;
       return {
         ...state,
+        firstLogIn: false,
+        loading: false,
+        errorMessage: "",
       };
     }
 
     case types.FIRST_LOGIN_FAIL: {
       return {
         ...state,
+        firstLogIn: true,
+        loading: false,
+        errorMessage: action.payload,
       };
     }
 

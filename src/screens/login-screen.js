@@ -44,16 +44,17 @@ class loginContainer extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    debugger;
     if (nextProps.isLoggedIn) {
-      if (nextProps.firstLogIn) {
+      if (nextProps.firstLogIn == true) {
         this.props.navigation.navigate("FirstLogin");
-      }
-      if (!nextProps.havePinCode) {
+      } else if (nextProps.havePinCode == false) {
         this.props.navigation.navigate("PinConfirmation");
+      } else {
+        this.props.navigation.reset({
+          routes: [{ name: "Application" }],
+        });
       }
-      this.props.navigation.reset({
-        routes: [{ name: "Application" }],
-      });
     }
 
     this.setState({ isMounted: !this.state.isMounted });
