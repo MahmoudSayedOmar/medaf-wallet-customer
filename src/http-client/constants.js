@@ -1,8 +1,8 @@
 const PROD_BASE_URL = "http://81.10.30.157:8095/api/";
-const DEV_BASE_URL = "http://13e8da46.ngrok.io/api/";
+const DEV_BASE_URL = "http://eb76b4ca.ngrok.io/api/";
 
 const SR_PROD_BASE_URL = "http://81.10.30.157:8095";
-const SR_DEV_BASE_URL = "http://13e8da46.ngrok.io";
+const SR_DEV_BASE_URL = "http://eb76b4ca.ngrok.io";
 
 const DEV = false;
 export const BASE_URL = DEV ? DEV_BASE_URL : PROD_BASE_URL;

@@ -28,7 +28,7 @@ export class HistoryContainer extends Component {
     return { transactionsHistory: state.userInfo.transactionsHistory };
   }
   componentWillMount() {
-    this.props.tryRetriveTransactions();
+    this.props.tryRetriveTransactions({});
   }
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ tryRetriveTransactions }, dispatch);

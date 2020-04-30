@@ -94,7 +94,9 @@ export function userInfoReducer(
       return {
         ...state,
         loadingTransactions: false,
-        transactionsHistory: action.payload,
+        transactionsHistory: action.payload["PointsTransactions"],
+        finalBalance: action.payload["FinalBalance"],
+        intialBalance: action.payload["IntialBalance"],
       };
     }
     case types.RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL: {

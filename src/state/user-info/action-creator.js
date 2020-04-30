@@ -162,7 +162,8 @@ export function tryRetriveTransactions(data) {
     debugger;
     const state = getState();
     dispatch(onRetriveTransactions());
-    data.CardNo = state.authorization.membershipId;
+    data.CardNo = state.authorization.CardNo;
+    debugger;
     let response = await userManagerProxyService.retriveUserTransactionsHistory(
       data,
       state.authorization.token

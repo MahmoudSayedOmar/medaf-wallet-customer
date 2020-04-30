@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, Image } from "react-native";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { tryRefresh } from "../state";
 import { Card, CardItem, Body, Text, Button, Spinner } from "native-base";
@@ -17,16 +17,16 @@ export class HomeContainer extends Component {
   constructor() {
     super();
     this.state = {
-      balanceWebsocketService: new BalanceWebsocketService()
+      balanceWebsocketService: new BalanceWebsocketService(),
     };
   }
 
   static mapStatetToProps(state: State) {
     return {
       balance: state.userInfo.balance,
-      membershipId: state.authorization.membershipId,
+      membershipId: state.authorization.CardNo,
       connectionId: state.userInfo.connectionId,
-      connected: state.userInfo.connected
+      connected: state.userInfo.connected,
     };
   }
 
@@ -52,13 +52,13 @@ export class HomeContainer extends Component {
               backgroundColor: "#D0C21D",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <Text
               style={{
                 fontSize: 25,
-                color: "#202945"
+                color: "#202945",
               }}
             >
               {this.props.balance}
@@ -71,7 +71,7 @@ export class HomeContainer extends Component {
                 flex: 1,
                 backgroundColor: "white",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               {this.props.connected === -1 ? (
@@ -79,7 +79,7 @@ export class HomeContainer extends Component {
                   style={styles.button}
                   onPress={() => {
                     this.setState({
-                      balanceWebsocketService: new BalanceWebsocketService()
+                      balanceWebsocketService: new BalanceWebsocketService(),
                     });
                   }}
                 >
@@ -102,7 +102,7 @@ export class HomeContainer extends Component {
               style={{
                 flexDirection: "row",
                 flex: 1,
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               <Text style={{ fontSize: 20, color: "#202945" }}>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: "2%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   centerTitle: {
     borderColor: "#D0C21D",
@@ -139,11 +139,11 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 7,
     paddingBottom: 12,
-    paddingTop: 25
+    paddingTop: 25,
   },
   centerLogo: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   input: {
     textAlign: "center",
@@ -152,12 +152,12 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderRadius: 20,
     backgroundColor: "#FFFFFF",
-    margin: 10
+    margin: 10,
   },
   backgroundImage: {
     flex: 1,
     width: null,
-    height: null
+    height: null,
   },
   button: {
     flexDirection: "column",
@@ -176,6 +176,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: "center",
 
-    paddingTop: 4
-  }
+    paddingTop: 4,
+  },
 });

@@ -9,6 +9,8 @@ export interface UserInfoState {
   connectionId: String;
   connected: Number;
   setPinCodeErrorMsg: String;
+  intialBalance: Number;
+  finalBalance: Number;
 }
 
 export const UserInfoInitialState: UserInfoState = {
@@ -22,4 +24,6 @@ export const UserInfoInitialState: UserInfoState = {
   transactionsHistory: [],
   loadingTransactions: false,
   setPinCodeErrorMsg: "",
+  intialBalance: 0,
+  finalBalance: 0,
 };
