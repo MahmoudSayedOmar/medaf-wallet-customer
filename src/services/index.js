@@ -1,7 +1,10 @@
 import { AuthProxyService } from "./auth-proxy.service";
 import { UserManagerProxyService } from "./user-manager-service";
 
-const authProxyService = new AuthProxyService();
-const userManagerProxyService = new UserManagerProxyService();
+import { TransferService } from "./transfer.service";
 
-export { authProxyService, userManagerProxyService };
+const authProxyService = new AuthProxyService();
+const transferService = new TransferService();
+const userManagerProxyService = new UserManagerProxyService();
+export { authProxyService, userManagerProxyService,transferService };
+
