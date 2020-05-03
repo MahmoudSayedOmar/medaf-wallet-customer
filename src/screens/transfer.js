@@ -146,7 +146,7 @@ class TransferContainer extends Component {
             style={styles.input}
           />
         </View>
-        <Button
+        {/* <Button
           style={styles.buttonStyle}
           onPress={() => {
             // this.setState({
@@ -155,7 +155,7 @@ class TransferContainer extends Component {
           }}
         >
           <Text style={{ color: "#202945" }}>Check Member</Text>
-        </Button>
+        </Button> */}
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Pin</Text>
           <TextInput

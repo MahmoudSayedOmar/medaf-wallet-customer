@@ -36,7 +36,7 @@ export function tryLogin(user: UserLoginModel) {
         })
       );
     } else {
-      dispatch(onLoginFail("something went wrong"));
+      dispatch(onLoginFail("Invalid UserName Or Password"));
     }
   };
 }

@@ -22,6 +22,9 @@ export function authorizationReducer(
         ...state,
         loading: true,
         userName: action.payload.userName,
+        firstLogIn:false,
+        isLoggedIn:false,
+        havePinCode:false
       };
     }
 
@@ -42,6 +45,7 @@ export function authorizationReducer(
         isLoggedIn: false,
         errorMessage: action.payload,
         loading: false,
+        firstLogIn:false
       };
     }
 

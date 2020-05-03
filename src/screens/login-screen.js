@@ -48,12 +48,14 @@ class loginContainer extends Component {
     if (nextProps.isLoggedIn) {
       if (nextProps.firstLogIn == true) {
         this.props.navigation.navigate("FirstLogin");
-      } else if (nextProps.havePinCode == false) {
+      }
+       else if (nextProps.havePinCode == false) {
         this.props.navigation.navigate("PinConfirmation");
-      } else {
+      }
+      else {
         this.props.navigation.reset({
           routes: [{ name: "Application" }],
-        });
+        }); 
       }
     }
 

@@ -27,6 +27,7 @@ export function userInfoReducer(
         ...state,
         loading: false,
         changePinCodeStatus: 1,
+        
       };
     }
     case types.CHANGE_PIN_CODE_FAILED: {
