@@ -48,7 +48,7 @@ export function transfer(transferModel) {
     const transferDto = {};
     transferDto["receiverCodeNo"] = transferModel["receiverCodeNo"];
     transferDto["amount"] = transferModel["amount"];
-    transferDto["senderCodeNo"] = state.authorization.membershipId;
+    transferDto["senderCodeNo"] = state.authorization.CardNo;
     transferDto["pin"] = transferModel["pin"];
     debugger;
 
@@ -60,9 +60,13 @@ export function transfer(transferModel) {
     result = await response.data;
     debugger;
     dispatch(onTransferFailed(result["Message"]));
-    Toast.show(result["Message"], {
-      position: Toast.position.center
+
+    const toast = Toast.show(result["Message"], {
+      position: Toast.position.center,
     });
+    setTimeout(() => {
+      Toast.hide(toast) 
+     }, 3000)
 
     // if (response.status === 200) {
     //   debugger;

@@ -89,7 +89,7 @@ class TransferContainer extends Component {
           <Text style={styles.inputTitleText}>From</Text>
           <Text style={{ width: "50%" }}>#89778 (50EGP)</Text>
         </View>
-
+{/* 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitleText}>Search By</Text>
           <View style={{ width: "50%", marginTop: "3%" }}>
@@ -108,10 +108,23 @@ class TransferContainer extends Component {
               }}
             />
           </View>
-        </View>
-        {this.state.radioValue === "mob" ? (
+        </View> */}
+
+
+        <View style={styles.eachRow}>
+            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
+            <TextInput
+              value={this.state.receiverCodeNo}
+              onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
+              placeholder={"Receiver Code No"}
+              placeholderTextColor="#202945"
+              keyboardType="numeric"
+              style={styles.input}
+            />
+          </View>
+        {/* {this.state.radioValue === "mob" ? (
           <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>Member Mobile</Text>
+            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
             <TextInput
               value={this.state.senderCodeNo}
               onChangeText={senderCodeNo => this.setState({ senderCodeNo })}
@@ -123,7 +136,7 @@ class TransferContainer extends Component {
           </View>
         ) : (
           <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>Member Id</Text>
+            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
             <TextInput
               value={this.state.receiverCodeNo}
               onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
@@ -133,7 +146,7 @@ class TransferContainer extends Component {
               style={styles.input}
             />
           </View>
-        )}
+        )} */}
 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
