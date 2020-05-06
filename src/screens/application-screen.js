@@ -13,7 +13,7 @@ import { HistoryScreen } from "./history-screen";
 import { SettingsScreen } from "./settings-screen";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -33,8 +33,8 @@ function SettingsStackScreen() {
           headerStyle: { borderWidth: 1, borderBottomColor: "#D0C21D" },
           headerTintColor: "#D0C21D",
           headerTitleStyle: {
-            fontWeight: "bold"
-          }
+            fontWeight: "bold",
+          },
         }}
       />
       <SettingsStack.Screen
@@ -48,8 +48,8 @@ function SettingsStackScreen() {
           headerBackTitle: "back",
           headerTitleStyle: {
             fontWeight: "bold",
-            color: "#D0C21D"
-          }
+            color: "#D0C21D",
+          },
         }}
       />
     </SettingsStack.Navigator>
@@ -68,7 +68,7 @@ export default class ApplicationContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false
+      isReady: false,
     };
   }
   static mapStatetToProps(state: State) {
@@ -102,11 +102,20 @@ export default class ApplicationContainer extends React.Component {
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
-          }
+          },
         })}
         tabBarOptions={{
           activeTintColor: "#D0C21D",
-          inactiveTintColor: "gray"
+          inactiveTintColor: "#fff",
+          borderTopWidth: 0,
+
+          tabStyle: {
+            backgroundColor: "#202945",
+            borderRightColor: "#D0C21D",
+            borderRightWidth: 1,
+            // borderTopWidth: 1,
+            // borderTopColor: "red",
+          },
         }}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
@@ -126,12 +135,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: "3%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   centerLogo: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "5%"
+    marginBottom: "5%",
   },
   buttonStyle: {
     flexDirection: "column",
@@ -148,6 +157,6 @@ const styles = StyleSheet.create({
     height: 31,
     marginTop: 10,
     padding: 10,
-    alignSelf: "center"
-  }
+    alignSelf: "center",
+  },
 });

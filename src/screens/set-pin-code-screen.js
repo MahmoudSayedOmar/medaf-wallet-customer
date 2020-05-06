@@ -84,7 +84,7 @@ export class PinCodeContainer extends Component {
             this.setState({ confirmationCode })
           }
           placeholder={"Enter Your Confirmation Code"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#202945"
           keyboardType="numeric"
           maxLength={6}
           style={styles.input}
@@ -95,7 +95,7 @@ export class PinCodeContainer extends Component {
           keyboardType="numeric"
           maxLength={5}
           placeholder={"Enter Your New Pin Code"}
-          placeholderTextColor="#ffffff"
+          placeholderTextColor="#202945"
           style={styles.input}
         />
         <TextInput
@@ -103,8 +103,8 @@ export class PinCodeContainer extends Component {
           onChangeText={(reNewPinCode) => this.setState({ reNewPinCode })}
           keyboardType="numeric"
           maxLength={5}
-          placeholder={"Enter Your New Pin Code"}
-          placeholderTextColor="#ffffff"
+          placeholder={"Confirm Your New Pin Code"}
+          placeholderTextColor="#202945"
           style={styles.input}
         />
 
@@ -132,13 +132,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   input: {
-    textAlign: "center",
-    height: 50,
-    borderWidth: 2,
-    borderColor: "black",
+    textAlign: "left",
+    height: 35,
+    width: "94%",
+
     borderRadius: 5,
-    backgroundColor: "#D0C21D",
-    margin: 10,
+    borderWidth: 2,
+    borderColor: "#D0C21D",
+    borderRadius: 5,
+    color: "#202945",
+    margin: "3%",
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   backgroundImage: {
     flex: 1,
@@ -148,17 +153,20 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "column",
     alignItems: "center",
-    width: wp("35%"),
+    width: "auto",
     height: hp("5"),
     backgroundColor: "#D0C21D",
     shadowColor: "#000000",
     color: "#202945",
 
     borderColor: "#202945",
-    borderWidth: 2,
-    paddingBottom: 5,
-    height: 40,
-    marginTop: 30,
+    borderWidth: 1,
+
+    height: 31,
+    marginTop: 10,
+    marginBottom: 10,
     alignSelf: "center",
+    padding: 10,
+    paddingTop: 4,
   },
 });
