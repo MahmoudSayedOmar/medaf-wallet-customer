@@ -13,6 +13,8 @@ function HistoryHeaderComponent({
   selected,
   onValueChange,
   onPressFilter,
+  finalBalance,
+  intialBalance,
 }) {
   return (
     <View>
@@ -43,12 +45,12 @@ function HistoryHeaderComponent({
             }}
           >
             <Text style={styles.paddingTextLeft}>
-              Initial Value:<Text> 3000</Text>
+              Initial Value:<Text>{intialBalance} </Text>
             </Text>
           </View>
           <View>
             <Text style={styles.paddingText}>
-              Current Value:<Text> 5000</Text>
+              Current Value:<Text> {finalBalance}</Text>
             </Text>
           </View>
         </View>

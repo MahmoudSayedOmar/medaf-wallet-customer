@@ -39,7 +39,7 @@ export function TransactionComponent({ item }) {
       </View>
 
       <Text style={styles.listBalance}>
-        Remaining amount: {item.remainingAmount}
+        Remaining amount: {item.AmountAfter == null ? 0 : item.AmountAfter}
       </Text>
     </View>
   );

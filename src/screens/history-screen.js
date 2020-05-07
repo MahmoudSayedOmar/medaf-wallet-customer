@@ -14,9 +14,12 @@ import { tryRetriveTransactions } from "../state";
 export class HistoryContainer extends Component {
   constructor() {
     super();
+    const today = new Date(Date.now());
+    const endDay = new Date(Date.now());
+    endDay.setMonth(endDay.getMonth() - 1);
     this.state = {
-      dateFrom: "",
-      dateTo: "",
+      dateFrom: endDay,
+      dateTo: today,
       selected: undefined,
       filterShowHide: "hide",
       results: {
@@ -25,10 +28,17 @@ export class HistoryContainer extends Component {
     };
   }
   static mapStatetToProps(state: State) {
-    return { transactionsHistory: state.userInfo.transactionsHistory };
+    return {
+      transactionsHistory: state.userInfo.transactionsHistory,
+      finalBalance: state.userInfo.finalBalance,
+      intialBalance: state.userInfo.intialBalance,
+    };
   }
   componentWillMount() {
-    this.props.tryRetriveTransactions({});
+    this.props.tryRetriveTransactions({
+      StartDate: this.state.dateFrom,
+      EndDate: this.state.dateTo,
+    });
   }
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ tryRetriveTransactions }, dispatch);
@@ -54,6 +64,8 @@ export class HistoryContainer extends Component {
         <HistoryHeaderComponent
           filterShowHide={this.state.filterShowHide}
           onShowHideFilters={this.onShowHideFilters.bind(this)}
+          finalBalance={this.props.finalBalance}
+          intialBalance={this.props.intialBalance}
           onToDateChange={(dateTo) => this.setState({ dateTo })}
           onFromDateChange={(dateFrom) => this.setState({ dateFrom })}
           selected={this.state.selected}
@@ -64,6 +76,7 @@ export class HistoryContainer extends Component {
               EndDate: this.state.dateTo,
               Status: this.state.selected,
             });
+            this.onShowHideFilters();
           }}
         />
         <TransactionsListingComponent data={this.props.transactionsHistory} />
