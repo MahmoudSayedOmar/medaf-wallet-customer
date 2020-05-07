@@ -56,8 +56,27 @@ class TransferContainer extends Component {
     return bindActionCreators({ transfer }, dispatch);
   }
 
-  makeTransfer() {
-    this.props.transfer(this.state);
+  clearState(){
+    this.setState({
+      receiverCodeNo: "",
+     senderCodeNo: "",
+     pin: "",})
+  }
+
+  onTextChanged(e) {
+    const re = new RegExp(/^\d*\.?\d*$/);
+    debugger;
+    if (re.test(e)) { 
+      this.setState({amount:e });
+    }
+     
+  }
+
+async makeTransfer() {
+    var res= await this.props.transfer(this.state);
+   if(res){
+    this.clearState();
+   } 
   }
   // componentWillReceiveProps(nextProps, prevState) {
   //   debugger;
@@ -75,6 +94,8 @@ class TransferContainer extends Component {
   // }
 
   render() {
+    const isEnabled = this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
+
     return (
       <View style={styles.container}>
         <View style={styles.centerTitle}>
@@ -89,28 +110,6 @@ class TransferContainer extends Component {
           <Text style={styles.inputTitleText}>From</Text>
           <Text style={{ width: "50%" }}>#89778 (50EGP)</Text>
         </View>
-{/* 
-        <View style={styles.eachRow}>
-          <Text style={styles.inputTitleText}>Search By</Text>
-          <View style={{ width: "50%", marginTop: "3%" }}>
-            <RadioForm
-              formHorizontal={true}
-              radio_props={[
-                { label: "Mob", value: "mob" },
-                { label: "Id", value: "id" },
-              ]}
-              initial={0}
-              buttonColor={"#D0C21D"}
-              selectedButtonColor={"#D0C21D"}
-              radioStyle={{ paddingRight: 25 }}
-              onPress={(value) => {
-                this.onChooseInput(value);
-              }}
-            />
-          </View>
-        </View> */}
-
-
         <View style={styles.eachRow}>
             <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
             <TextInput
@@ -118,59 +117,22 @@ class TransferContainer extends Component {
               onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
               placeholder={"Receiver Code No"}
               placeholderTextColor="#202945"
-              keyboardType="numeric"
+              keyboardType={'numeric'}
               style={styles.input}
             />
           </View>
-        {/* {this.state.radioValue === "mob" ? (
-          <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
-            <TextInput
-              value={this.state.senderCodeNo}
-              onChangeText={(senderCodeNo) => this.setState({ senderCodeNo })}
-              placeholder={"Member Mob. number"}
-              placeholderTextColor="#202945"
-              keyboardType="numeric"
-              style={styles.input}
-            />
-          </View>
-        ) : (
-          <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
-            <TextInput
-              value={this.state.receiverCodeNo}
-              onChangeText={(receiverCodeNo) =>
-                this.setState({ receiverCodeNo })
-              }
-              placeholder={"Enter Member Id"}
-              placeholderTextColor="#202945"
-              keyboardType="numeric"
-              style={styles.input}
-            />
-          </View>
-        )} */}
-
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
           <TextInput
             value={this.state.amount}
-            onChangeText={(amount) => this.setState({ amount })}
+            onChangeText = {(e)=> this.onTextChanged(e)}
+         
             placeholder={"Enter Amount"}
             placeholderTextColor="#202945"
-            keyboardType="numeric"
+            keyboardType={'numeric'}
             style={styles.input}
           />
         </View>
-        {/* <Button
-          style={styles.buttonStyle}
-          onPress={() => {
-            // this.setState({
-            //   balanceWebsocketService: new BalanceWebsocketService()
-            // });
-          }}
-        >
-          <Text style={{ color: "#202945" }}>Check Member</Text>
-        </Button> */}
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Pin</Text>
           <TextInput
@@ -183,6 +145,7 @@ class TransferContainer extends Component {
           />
         </View>
         <Button
+         disabled={!isEnabled}
           style={styles.buttonStyle}
           onPress={this.makeTransfer.bind(this)}
         >
