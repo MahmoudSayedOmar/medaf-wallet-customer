@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
-  RadioButtonLabel
+  RadioButtonLabel,
 } from "react-native-simple-radio-button";
 import { Button } from "native-base";
 import {
@@ -13,7 +13,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import Toast from "react-native-tiny-toast";
 
@@ -26,7 +26,7 @@ import { transfer } from "../state/transfer/action-creator";
 
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 var logo = require("../../assets/download.jpg");
 
@@ -38,7 +38,7 @@ class TransferContainer extends Component {
       receiverCodeNo: "",
       amount: "",
       senderCodeNo: "",
-      pin: ""
+      pin: "",
     };
   }
 
@@ -48,7 +48,7 @@ class TransferContainer extends Component {
   static mapStateToProps(state: State) {
     return {
       isTransfer: state.transfer.isTransfer,
-      transferStatus: state.transfer.transferStatus
+      transferStatus: state.transfer.transferStatus,
     };
   }
 
@@ -89,7 +89,7 @@ class TransferContainer extends Component {
           <Text style={styles.inputTitleText}>From</Text>
           <Text style={{ width: "50%" }}>#89778 (50EGP)</Text>
         </View>
-
+{/* 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitleText}>Search By</Text>
           <View style={{ width: "50%", marginTop: "3%" }}>
@@ -97,24 +97,37 @@ class TransferContainer extends Component {
               formHorizontal={true}
               radio_props={[
                 { label: "Mob", value: "mob" },
-                { label: "Id", value: "id" }
+                { label: "Id", value: "id" },
               ]}
               initial={0}
               buttonColor={"#D0C21D"}
               selectedButtonColor={"#D0C21D"}
               radioStyle={{ paddingRight: 25 }}
-              onPress={value => {
+              onPress={(value) => {
                 this.onChooseInput(value);
               }}
             />
           </View>
-        </View>
-        {this.state.radioValue === "mob" ? (
+        </View> */}
+
+
+        <View style={styles.eachRow}>
+            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
+            <TextInput
+              value={this.state.receiverCodeNo}
+              onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
+              placeholder={"Receiver Code No"}
+              placeholderTextColor="#202945"
+              keyboardType="numeric"
+              style={styles.input}
+            />
+          </View>
+        {/* {this.state.radioValue === "mob" ? (
           <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>Member Mobile</Text>
+            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
             <TextInput
               value={this.state.senderCodeNo}
-              onChangeText={senderCodeNo => this.setState({ senderCodeNo })}
+              onChangeText={(senderCodeNo) => this.setState({ senderCodeNo })}
               placeholder={"Member Mob. number"}
               placeholderTextColor="#202945"
               keyboardType="numeric"
@@ -123,23 +136,25 @@ class TransferContainer extends Component {
           </View>
         ) : (
           <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>Member Id</Text>
+            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
             <TextInput
               value={this.state.receiverCodeNo}
-              onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
+              onChangeText={(receiverCodeNo) =>
+                this.setState({ receiverCodeNo })
+              }
               placeholder={"Enter Member Id"}
               placeholderTextColor="#202945"
               keyboardType="numeric"
               style={styles.input}
             />
           </View>
-        )}
+        )} */}
 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
           <TextInput
             value={this.state.amount}
-            onChangeText={amount => this.setState({ amount })}
+            onChangeText={(amount) => this.setState({ amount })}
             placeholder={"Enter Amount"}
             placeholderTextColor="#202945"
             keyboardType="numeric"
@@ -160,9 +175,9 @@ class TransferContainer extends Component {
           <Text style={styles.inputTitle}>Pin</Text>
           <TextInput
             value={this.state.pin}
-            onChangeText={pin => this.setState({ pin })}
+            onChangeText={(pin) => this.setState({ pin })}
             placeholder={"Enter Pin"}
-            placeholderTextColor="#D0C21D"
+            placeholderTextColor="#202945"
             keyboardType="numeric"
             style={styles.input}
           />
@@ -186,7 +201,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: "2%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   centerTitle: {
     borderColor: "#D0C21D",
@@ -198,12 +213,12 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 7,
     paddingBottom: 12,
-    paddingTop: 25
+    paddingTop: 25,
   },
   centerLogo: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 12
+    marginBottom: 12,
   },
   inputTitle: { width: "20%" },
   inputTitleText: { width: "25%" },
@@ -211,7 +226,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
 
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   input: {
     textAlign: "left",
@@ -222,17 +237,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#D0C21D",
     borderRadius: 5,
-    color: "#D0C21D",
+    color: "#202945",
     margin: 10,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
   },
 
   centerContent: {
     justifyContent: "center",
     marginLeft: "5%",
     marginTop: "5%",
-    height: 30
+    height: 30,
   },
   buttonStyle: {
     flexDirection: "column",
@@ -251,9 +266,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: "center",
     padding: 10,
-    paddingTop: 5
+    paddingTop: 5,
   },
   head: { height: 30, backgroundColor: "#D0C21D" },
   headertext: { marginLeft: 6, marginRight: 6, color: "#ffffff" },
-  bodytext: { marginLeft: 6, marginRight: 6, color: "#202945" }
+  bodytext: { marginLeft: 6, marginRight: 6, color: "#202945" },
 });
