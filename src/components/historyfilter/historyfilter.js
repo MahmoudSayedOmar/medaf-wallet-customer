@@ -10,7 +10,7 @@ import {
   Right,
   Body,
   Left,
-  Title
+  Title,
 } from "native-base";
 
 function HistoryFilterComponent({
@@ -20,7 +20,9 @@ function HistoryFilterComponent({
   onToDateChange,
   selected,
   onValueChange,
-  onPressFilter
+  onPressFilter,
+  dateTo,
+  dateFrom,
 }) {
   return (
     <View style={styles.filter}>
@@ -29,7 +31,7 @@ function HistoryFilterComponent({
       {filterShowHide === "hide" ? null : (
         <View
           style={{
-            marginTop: 10
+            marginTop: 10,
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -43,9 +45,11 @@ function HistoryFilterComponent({
                 androidMode={"default"}
                 placeHolderText="from Date"
                 textStyle={{ color: "#202945" }}
+                defaultDate={dateFrom}
+                maximumDate={dateTo}
                 placeHolderTextStyle={{
                   fontSize: 15,
-                  color: "#202945"
+                  color: "#202945",
                 }}
                 onDateChange={onFromDateChange}
                 disabled={false}
@@ -61,9 +65,11 @@ function HistoryFilterComponent({
                 androidMode={"default"}
                 placeHolderText="To Date"
                 textStyle={{ color: "#202945" }}
+                defaultDate={dateTo}
+                maximumDate={dateTo}
                 placeHolderTextStyle={{
                   fontSize: 15,
-                  color: "#202945"
+                  color: "#202945",
                 }}
                 onDateChange={onToDateChange}
                 disabled={false}
@@ -74,7 +80,7 @@ function HistoryFilterComponent({
           <View style={{ flexDirection: "row" }}>
             <View style={styles.selectField}>
               <Picker
-                renderHeader={backAction => (
+                renderHeader={(backAction) => (
                   <Header style={{ backgroundColor: "#D0C21D" }}>
                     <Left>
                       <Button transparent onPress={backAction}>
@@ -101,15 +107,17 @@ function HistoryFilterComponent({
                   backgroundColor: "#ffffff",
                   marginLeft: 0,
                   paddingLeft: 10,
-                  color: "#202945"
+                  color: "#202945",
                 }}
                 itemTextStyle={{ color: "#202945" }}
                 selectedValue={selected}
                 onValueChange={onValueChange}
               >
-                <Picker.Item label="Cash In" value="key0" />
-                <Picker.Item label="Cash Out" value="key1" />
-                <Picker.Item label="Transfer" value="key2" />
+                <Picker.Item label="All" value="0" />
+                <Picker.Item label="Cash In" value="1" />
+                <Picker.Item label="Cash Out" value="2" />
+                <Picker.Item label="Payment" value="3" />
+                <Picker.Item label="Transfer" value="4" />
               </Picker>
             </View>
           </View>
@@ -117,7 +125,7 @@ function HistoryFilterComponent({
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <Button style={styles.buttonStyle} onPress={onPressFilter}>

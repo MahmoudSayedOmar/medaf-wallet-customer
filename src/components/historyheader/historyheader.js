@@ -15,6 +15,8 @@ function HistoryHeaderComponent({
   onPressFilter,
   finalBalance,
   intialBalance,
+  dateTo,
+  dateFrom,
 }) {
   return (
     <View>
@@ -34,6 +36,8 @@ function HistoryHeaderComponent({
         selected={selected}
         onValueChange={onValueChange}
         onPressFilter={onPressFilter}
+        dateFrom={dateFrom}
+        dateTo={dateTo}
       />
       <View style={styles.filter}>
         <View style={{ flexDirection: "row" }}>

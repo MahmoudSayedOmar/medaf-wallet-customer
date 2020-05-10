@@ -14,9 +14,12 @@ import { tryRetriveTransactions } from "../state";
 export class HistoryContainer extends Component {
   constructor() {
     super();
+
     const today = new Date(Date.now());
     const endDay = new Date(Date.now());
+
     endDay.setMonth(endDay.getMonth() - 1);
+
     this.state = {
       dateFrom: endDay,
       dateTo: today,
@@ -70,6 +73,8 @@ export class HistoryContainer extends Component {
           onFromDateChange={(dateFrom) => this.setState({ dateFrom })}
           selected={this.state.selected}
           onValueChange={this.onValueChange.bind(this)}
+          dateFrom={this.state.dateFrom}
+          dateTo={this.state.dateTo}
           onPressFilter={() => {
             this.props.tryRetriveTransactions({
               StartDate: this.state.dateFrom,
