@@ -67,6 +67,7 @@ export function transfer(transferModel) {
     setTimeout(() => {
       Toast.hide(toast) 
      }, 3000)
+     return true;
 
     // if (response.status === 200) {
     //   debugger;
