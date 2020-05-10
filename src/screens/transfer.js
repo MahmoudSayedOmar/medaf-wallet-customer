@@ -60,6 +60,7 @@ class TransferContainer extends Component {
     this.setState({
       receiverCodeNo: "",
      senderCodeNo: "",
+     amount:"",
      pin: "",})
   }
 
