@@ -113,11 +113,11 @@ function HistoryFilterComponent({
                 selectedValue={selected}
                 onValueChange={onValueChange}
               >
-                <Picker.Item label="All" value="0" />
-                <Picker.Item label="Cash In" value="1" />
-                <Picker.Item label="Cash Out" value="2" />
-                <Picker.Item label="Payment" value="3" />
-                <Picker.Item label="Transfer" value="4" />
+                <Picker.Item label="All" value={0} />
+                <Picker.Item label="Cash In" value={1} />
+                <Picker.Item label="Cash Out" value={2} />
+                <Picker.Item label="Payment" value={3} />
+                <Picker.Item label="Transfer" value={4} />
               </Picker>
             </View>
           </View>

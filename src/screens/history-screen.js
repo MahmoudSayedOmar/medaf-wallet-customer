@@ -23,7 +23,7 @@ export class HistoryContainer extends Component {
     this.state = {
       dateFrom: endDay,
       dateTo: today,
-      selected: undefined,
+      selected: 0,
       filterShowHide: "hide",
       results: {
         items: [],
