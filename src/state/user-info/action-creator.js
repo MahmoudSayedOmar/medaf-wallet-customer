@@ -6,29 +6,26 @@ export type UPDATE_USER_INFO_ACTION = { type: string, payload: Object };
 export type UPDATE_USER_INFO_FALIAR_ACTION = { type: string, payload: Object };
 
 export function tryRefresh() {
+  debugger;
   return async (dispatch, getState) => {
     const state = getState();
     debugger;
-    let data = {
-      UserID: state.authorization.userID,
-      BrandID: state.authorization.brandID,
-      GroupID: state.authorization.groupID,
-      CardNo: state.authorization.membershipId,
-      Mobile: state.authorization.mobileNumber,
-      BirthDate: state.authorization.dateOfBirth,
-      Amount: 0,
-    };
-    let response = await authProxyService.login(
-      data,
-      state.authorization.token
-    );
-    result = await response.data;
+    // let data = {
+    //   userName: state.authorization.userName,
+    //   password: state.authorization.password
+    // };
+    var cardNo=state.authorization.CardNo;
+    const token = state.authorization.token;
 
+    let response = await authProxyService.refresh(cardNo,token);
+    console.log("respons",response);
+    result = await response.data;
+      debugger;
     if (response.status === 200) {
       dispatch(
         updateUserInfo({
           cardNo: state.authorization.membershipId,
-          balance: result["Balance"],
+          balance: result,
         })
       );
     } else {

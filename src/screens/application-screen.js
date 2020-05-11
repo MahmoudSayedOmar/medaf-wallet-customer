@@ -118,7 +118,13 @@ export default class ApplicationContainer extends React.Component {
           },
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen}
+          listeners={{
+            focus: e => {
+              // Prevent default action
+            },
+          }}
+        />
         <Tab.Screen name="Transfer" component={Transfer} />
         <Tab.Screen name="History" component={History} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />

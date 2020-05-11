@@ -21,6 +21,18 @@ export class HomeContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      debugger;
+     this.onRefresh();
+    });
+  }
+
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
+
+
   static mapStatetToProps(state: State) {
     return {
       balance: state.userInfo.balance,

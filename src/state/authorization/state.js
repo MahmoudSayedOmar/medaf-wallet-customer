@@ -1,6 +1,7 @@
 export interface AuthorizationState {
   membershipId: String;
   userName: String;
+  password:String;
   token: TokenDto;
   isLoggedIn: boolean;
   errorMessage: string;
