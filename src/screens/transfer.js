@@ -17,8 +17,6 @@ import {
 } from "react-native";
 import Toast from "react-native-tiny-toast";
 
-import { Table, Row, Rows } from "react-native-table-component";
-
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { State } from "../state/state";

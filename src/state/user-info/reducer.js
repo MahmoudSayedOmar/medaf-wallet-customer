@@ -21,6 +21,7 @@ export function userInfoReducer(
       return {
         ...state,
         loading: true,
+        changePinCodeStatus: 0,
       };
     }
     case types.CHANGE_PIN_CODE_SUCCESS: {
