@@ -110,18 +110,20 @@ class TransferContainer extends Component {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-        <View style={styles.eachRow}>
-          <Text style={styles.inputTitleText}>From</Text>
-          <Text style={{ width: "50%" }}>
-            #{this.props.membershipId} ({this.props.balance}EGP)
-          </Text>
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>From Account</Text>
+          <Text style={{ width: "50%" }}> #{this.props.membershipId}</Text>
+        </View>
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>Balance</Text>
+          <Text style={{ width: "50%" }}> {this.props.balance}EGP</Text>
         </View>
         <View style={styles.eachRow}>
-          <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
+          <Text style={styles.inputTitle}>To Account</Text>
           <TextInput
             value={this.state.receiverCodeNo}
             onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
-            placeholder={"Receiver Code No"}
+            placeholder={"To Account"}
             placeholderTextColor="#202945"
             keyboardType={"numeric"}
             style={styles.input}
@@ -188,9 +190,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 12,
   },
-  inputTitle: { width: "20%" },
-  inputTitleText: { width: "25%" },
+  inputTitle: { width: "25%" },
+  inputTitleText: { width: "30%" },
   eachRow: {
+    flexDirection: "row",
+
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  eachRowAccount: {
+    marginTop: 8,
+    marginBottom: 8,
     flexDirection: "row",
 
     alignItems: "center",

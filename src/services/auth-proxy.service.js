@@ -4,7 +4,7 @@ import { UserLoginModel, UserRegisterModel } from "../proxy";
 import axios from "axios";
 
 export class AuthProxyService {
-  async login(userData: UserLoginModel) {
+  async login(userData) {
     let data = {};
     debugger;
     data["UserName"] = userData.userName;
@@ -24,6 +24,26 @@ export class AuthProxyService {
       return err;
     });
   }
+  
+  async refresh(cardNo,token) {
+    debugger;
+    let URL = `${BASE_URL}points/GetBalanceByCardNo?CardNo=${cardNo}`;
+    return await axios({
+      method: "get",
+      url: URL,
+      headers:{ token: token },
+      config: {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "content-Type": "application/json",
+        },
+      },
+    }).catch(function (err) {
+      return err;
+    });
+  } 
+
+
   async setFirstPassword(setFirstPasswordData) {
     let data = {};
     debugger;

@@ -22,6 +22,7 @@ export function authorizationReducer(
         ...state,
         loading: true,
         userName: action.payload.userName,
+        password: action.payload.password,
         firstLogIn:false,
         isLoggedIn:false,
         havePinCode:false

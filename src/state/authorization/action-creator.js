@@ -42,6 +42,7 @@ export function tryLogin(user: UserLoginModel) {
 }
 
 export function onLogin(user): ON_LOGIN_Action {
+  debugger;
   return { type: types.ON_LOGIN, payload: user };
 }
 
