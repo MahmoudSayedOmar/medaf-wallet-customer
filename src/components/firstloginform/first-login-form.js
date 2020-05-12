@@ -64,6 +64,9 @@ export class FirstLoginForm extends Component {
         </View>
 
         <Form>
+          <View style={styles.eachRowAccount}>
+            <Text style={styles.inputTitleText}>Old Password</Text>
+          </View>
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.oldPassword}
@@ -82,6 +85,9 @@ export class FirstLoginForm extends Component {
               style={styles.showHideIcon}
             />
           </View>
+          <View style={styles.eachRowAccount}>
+            <Text style={styles.inputTitleText}>New Password</Text>
+          </View>
           <View style={styles.passwordContainer}>
             <TextInput
               value={this.state.password}
@@ -99,6 +105,9 @@ export class FirstLoginForm extends Component {
               onPress={() => this.toggleSwitch("showPassword")}
               style={styles.showHideIcon}
             />
+          </View>
+          <View style={styles.eachRowAccount}>
+            <Text style={styles.inputTitleText}>New Password Confirmation</Text>
           </View>
           <View style={styles.passwordContainer}>
             <TextInput

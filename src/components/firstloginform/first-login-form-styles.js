@@ -3,21 +3,32 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: "13%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   companyTitle: {
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "center",
 
-    marginTop: -9
+    marginTop: -9,
+  },
+  inputTitleText: {
+    fontSize: 14,
+  },
+
+  eachRowAccount: {
+    flexDirection: "row",
+
+    textAlign: "left",
+    marginLeft: 13,
+    marginBottom: 3,
   },
   passwordContainer: {
     flexDirection: "row",
@@ -30,7 +41,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: "#D0C21D",
 
-    margin: 10
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
   },
 
   loginContainer: {
@@ -38,14 +51,14 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowColor: "black",
     shadowOffset: { height: 0, width: 0 },
-    paddingTop: 20
+    paddingTop: 20,
   },
   centerLogo: {
     width: wp("100%"),
     height: hp("22%"),
     backgroundColor: "#FFFFFF",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   button: {
     flexDirection: "column",
@@ -60,7 +73,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: "center",
     padding: 10,
-    paddingTop: 5
+    paddingTop: 5,
   },
   input: {
     textAlign: "left",
@@ -70,12 +83,12 @@ const styles = StyleSheet.create({
     borderColor: "#D0C21D",
     borderRadius: 5,
     color: "#202945",
-    margin: 10
+    margin: 10,
   },
   showHideIcon: {
     marginTop: 7,
     marginRight: 10,
-    color: "#D0C21D"
-  }
+    color: "#D0C21D",
+  },
 });
 export { styles };

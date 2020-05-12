@@ -78,6 +78,9 @@ export class PinCodeContainer extends Component {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>Confirmation Code</Text>
+        </View>
         <TextInput
           value={this.state.confirmationCode}
           onChangeText={(confirmationCode) =>
@@ -89,6 +92,9 @@ export class PinCodeContainer extends Component {
           maxLength={6}
           style={styles.input}
         />
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>New Pin Code</Text>
+        </View>
         <TextInput
           value={this.state.newPinCode}
           onChangeText={(newPinCode) => this.setState({ newPinCode })}
@@ -98,6 +104,9 @@ export class PinCodeContainer extends Component {
           placeholderTextColor="#202945"
           style={styles.input}
         />
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>New Pin Code Confirmation</Text>
+        </View>
         <TextInput
           value={this.state.reNewPinCode}
           onChangeText={(reNewPinCode) => this.setState({ reNewPinCode })}
@@ -119,6 +128,16 @@ export const PinCodeScreen = connect(
 )(PinCodeContainer);
 
 const styles = StyleSheet.create({
+  eachRowAccount: {
+    flexDirection: "row",
+
+    textAlign: "left",
+    marginLeft: 13,
+    marginBottom: 3,
+  },
+  inputTitleText: {
+    fontSize: 14,
+  },
   centerLogo: {
     width: wp("100%"),
     height: hp("22%"),
@@ -141,7 +160,9 @@ const styles = StyleSheet.create({
     borderColor: "#D0C21D",
     borderRadius: 5,
     color: "#202945",
-    margin: "3%",
+    marginLeft: "3%",
+    marginRight: "3%",
+    marginBottom: "3%",
     paddingLeft: 5,
     paddingRight: 5,
   },
