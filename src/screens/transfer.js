@@ -56,28 +56,28 @@ class TransferContainer extends Component {
     return bindActionCreators({ transfer }, dispatch);
   }
 
-  clearState(){
+  clearState() {
     this.setState({
       receiverCodeNo: "",
-     senderCodeNo: "",
-     amount:"",
-     pin: "",})
+      senderCodeNo: "",
+      amount: "",
+      pin: "",
+    });
   }
 
   onTextChanged(e) {
     const re = new RegExp(/^\d*\.?\d*$/);
     debugger;
-    if (re.test(e)) { 
-      this.setState({amount:e });
+    if (re.test(e)) {
+      this.setState({ amount: e });
     }
-     
   }
 
-async makeTransfer() {
-    var res= await this.props.transfer(this.state);
-   if(res){
-    this.clearState();
-   } 
+  async makeTransfer() {
+    var res = await this.props.transfer(this.state);
+    if (res) {
+      this.clearState();
+    }
   }
   // componentWillReceiveProps(nextProps, prevState) {
   //   debugger;
@@ -95,7 +95,8 @@ async makeTransfer() {
   // }
 
   render() {
-    const isEnabled = this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
+    const isEnabled =
+      this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
 
     return (
       <View style={styles.container}>
@@ -107,30 +108,33 @@ async makeTransfer() {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-        <View style={styles.eachRow}>
-          <Text style={styles.inputTitleText}>From</Text>
-          <Text style={{ width: "50%" }}>#89778 (50EGP)</Text>
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>From Account</Text>
+          <Text style={{ width: "50%" }}>#89778</Text>
+        </View>
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>Balance</Text>
+          <Text style={{ width: "50%" }}>50EGP</Text>
         </View>
         <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
-            <TextInput
-              value={this.state.receiverCodeNo}
-              onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
-              placeholder={"Receiver Code No"}
-              placeholderTextColor="#202945"
-              keyboardType={'numeric'}
-              style={styles.input}
-            />
-          </View>
+          <Text style={styles.inputTitle}>To Account</Text>
+          <TextInput
+            value={this.state.receiverCodeNo}
+            onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
+            placeholder={"To Account"}
+            placeholderTextColor="#202945"
+            keyboardType={"numeric"}
+            style={styles.input}
+          />
+        </View>
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
           <TextInput
             value={this.state.amount}
-            onChangeText = {(e)=> this.onTextChanged(e)}
-         
+            onChangeText={(e) => this.onTextChanged(e)}
             placeholder={"Enter Amount"}
             placeholderTextColor="#202945"
-            keyboardType={'numeric'}
+            keyboardType={"numeric"}
             style={styles.input}
           />
         </View>
@@ -146,7 +150,7 @@ async makeTransfer() {
           />
         </View>
         <Button
-         disabled={!isEnabled}
+          disabled={!isEnabled}
           style={styles.buttonStyle}
           onPress={this.makeTransfer.bind(this)}
         >
@@ -184,9 +188,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 12,
   },
-  inputTitle: { width: "20%" },
-  inputTitleText: { width: "25%" },
+  inputTitle: { width: "25%" },
+  inputTitleText: { width: "30%" },
   eachRow: {
+    flexDirection: "row",
+
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  eachRowAccount: {
+    marginTop: 8,
+    marginBottom: 8,
     flexDirection: "row",
 
     alignItems: "center",
