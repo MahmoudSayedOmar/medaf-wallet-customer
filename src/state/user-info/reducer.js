@@ -12,6 +12,7 @@ export function userInfoReducer(
   switch (action.type) {
     case types.UPDATE_USER_INFO: {
       return {
+        ...state,
         ...action.payload,
       };
     }
@@ -27,7 +28,6 @@ export function userInfoReducer(
         ...state,
         loading: false,
         changePinCodeStatus: 1,
-        
       };
     }
     case types.CHANGE_PIN_CODE_FAILED: {

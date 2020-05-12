@@ -54,23 +54,30 @@ export function trySetPinCode(confirmationData) {
     const state = getState();
     const token = state.authorization.token;
     dispatch(onSetPinCode());
-    let response = await userManagerProxyService.setFirstPinCode(
-      {
-        activationCode: confirmationData.confirmationCode,
-        pinCode: confirmationData.newPinCode,
-        cardNumber: state.authorization.CardNo,
-      },
-      token
-    );
-    debugger;
-    if (response.status === 200) {
-      if (response.data.code == 1) {
-        dispatch(SetPinCodeSuccess());
+    if (newPinCode != reNewPinCode) {
+      dispatch(
+        SetPinCodeFail("Make sure that new pin code fields are the same")
+      );
+    } else {
+      let response = await userManagerProxyService.setFirstPinCode(
+        {
+          activationCode: confirmationData.confirmationCode,
+          pinCode: confirmationData.newPinCode,
+          cardNumber: state.authorization.CardNo,
+        },
+        token
+      );
+      debugger;
+      if (response.status === 200) {
+        if (response.data.code == 1) {
+          dispatch(SetPinCodeSuccess());
+        } else {
+          dispatch(SetPinCodeFail("Make sure of your confirmation code"));
+        }
       } else {
-        dispatch(SetPinCodeFail("Make sure of your confirmation code"));
+        dispatch(SetPinCodeFail("Something went wrong"));
       }
     }
-    dispatch(SetPinCodeFail("Something went wrong"));
   };
 }
 

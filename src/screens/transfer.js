@@ -49,6 +49,8 @@ class TransferContainer extends Component {
     return {
       isTransfer: state.transfer.isTransfer,
       transferStatus: state.transfer.transferStatus,
+      balance: state.userInfo.balance,
+      membershipId: state.authorization.CardNo,
     };
   }
 
@@ -56,28 +58,28 @@ class TransferContainer extends Component {
     return bindActionCreators({ transfer }, dispatch);
   }
 
-  clearState(){
+  clearState() {
     this.setState({
       receiverCodeNo: "",
-     senderCodeNo: "",
-     amount:"",
-     pin: "",})
+      senderCodeNo: "",
+      amount: "",
+      pin: "",
+    });
   }
 
   onTextChanged(e) {
     const re = new RegExp(/^\d*\.?\d*$/);
     debugger;
-    if (re.test(e)) { 
-      this.setState({amount:e });
+    if (re.test(e)) {
+      this.setState({ amount: e });
     }
-     
   }
 
-async makeTransfer() {
-    var res= await this.props.transfer(this.state);
-   if(res){
-    this.clearState();
-   } 
+  async makeTransfer() {
+    var res = await this.props.transfer(this.state);
+    if (res) {
+      this.clearState();
+    }
   }
   // componentWillReceiveProps(nextProps, prevState) {
   //   debugger;
@@ -95,7 +97,8 @@ async makeTransfer() {
   // }
 
   render() {
-    const isEnabled = this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
+    const isEnabled =
+      this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
 
     return (
       <View style={styles.container}>
@@ -109,28 +112,29 @@ async makeTransfer() {
         </View>
         <View style={styles.eachRow}>
           <Text style={styles.inputTitleText}>From</Text>
-          <Text style={{ width: "50%" }}>#89778 (50EGP)</Text>
+          <Text style={{ width: "50%" }}>
+            #{this.props.membershipId} ({this.props.balance}EGP)
+          </Text>
         </View>
         <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
-            <TextInput
-              value={this.state.receiverCodeNo}
-              onChangeText={receiverCodeNo => this.setState({ receiverCodeNo })}
-              placeholder={"Receiver Code No"}
-              placeholderTextColor="#202945"
-              keyboardType={'numeric'}
-              style={styles.input}
-            />
-          </View>
+          <Text style={styles.inputTitle}>ReceiverCodeNo</Text>
+          <TextInput
+            value={this.state.receiverCodeNo}
+            onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
+            placeholder={"Receiver Code No"}
+            placeholderTextColor="#202945"
+            keyboardType={"numeric"}
+            style={styles.input}
+          />
+        </View>
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
           <TextInput
             value={this.state.amount}
-            onChangeText = {(e)=> this.onTextChanged(e)}
-         
+            onChangeText={(e) => this.onTextChanged(e)}
             placeholder={"Enter Amount"}
             placeholderTextColor="#202945"
-            keyboardType={'numeric'}
+            keyboardType={"numeric"}
             style={styles.input}
           />
         </View>
@@ -146,7 +150,7 @@ async makeTransfer() {
           />
         </View>
         <Button
-         disabled={!isEnabled}
+          disabled={!isEnabled}
           style={styles.buttonStyle}
           onPress={this.makeTransfer.bind(this)}
         >

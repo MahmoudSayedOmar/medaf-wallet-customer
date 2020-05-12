@@ -66,7 +66,7 @@ function HistoryFilterComponent({
                 placeHolderText="To Date"
                 textStyle={{ color: "#202945" }}
                 defaultDate={dateTo}
-                maximumDate={dateTo}
+                minimumDate={dateFrom}
                 placeHolderTextStyle={{
                   fontSize: 15,
                   color: "#202945",

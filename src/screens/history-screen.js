@@ -8,6 +8,7 @@ import {
   TransactionsListingComponent,
   HistoryHeaderComponent,
 } from "../components";
+import { Spinner } from "native-base";
 
 import { tryRetriveTransactions } from "../state";
 
@@ -35,6 +36,7 @@ export class HistoryContainer extends Component {
       transactionsHistory: state.userInfo.transactionsHistory,
       finalBalance: state.userInfo.finalBalance,
       intialBalance: state.userInfo.intialBalance,
+      loadingTransactions: state.userInfo.loadingTransactions,
     };
   }
   componentWillMount() {
@@ -77,14 +79,22 @@ export class HistoryContainer extends Component {
           dateTo={this.state.dateTo}
           onPressFilter={() => {
             this.props.tryRetriveTransactions({
-              StartDate: this.state.dateFrom,
-              EndDate: this.state.dateTo,
-              Status: this.state.selected,
+              StartDate: new Date(
+                this.state.dateFrom.setDate(this.state.dateFrom.getDate() + 1)
+              ),
+              EndDate: new Date(
+                this.state.dateTo.setDate(this.state.dateTo.getDate() + 1)
+              ),
+              PointTransactionStatus: this.state.selected,
             });
             this.onShowHideFilters();
           }}
         />
-        <TransactionsListingComponent data={this.props.transactionsHistory} />
+        {this.props.loadingTransactions ? (
+          <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
+        ) : (
+          <TransactionsListingComponent data={this.props.transactionsHistory} />
+        )}
       </View>
     );
   }
