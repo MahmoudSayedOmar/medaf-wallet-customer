@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
 import { tryChangePinCode } from "../state";
+import Toast from "react-native-tiny-toast";
 var logo = require("../../assets/download.jpg");
 
 export class ChangePinCodeContainer extends Component {
@@ -24,6 +25,7 @@ export class ChangePinCodeContainer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.changePinCodeStatus == 1) {
       debugger;
+      Toast.showSuccess("Your pin has been changed successfully");
       this.props.navigation.navigate("Settings");
     }
   }

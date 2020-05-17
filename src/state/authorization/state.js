@@ -1,7 +1,7 @@
 export interface AuthorizationState {
   membershipId: String;
   userName: String;
-  password:String;
+  password: String;
   token: TokenDto;
   isLoggedIn: boolean;
   errorMessage: string;
@@ -11,6 +11,7 @@ export interface AuthorizationState {
   havePinCode: Boolean;
   firstLogIn: Boolean;
   haveSetFirstPassword: Boolean;
+  firstLoginErrorMessage: String;
 }
 
 export const AuthorizationInitialState: AuthorizationState = {
@@ -25,4 +26,5 @@ export const AuthorizationInitialState: AuthorizationState = {
   havePinCode: false,
   firstLogIn: true,
   haveSetFirstPassword: false,
+  firstLoginErrorMessage: "",
 };

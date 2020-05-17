@@ -26,7 +26,7 @@ class firstloginContainer extends Component {
     return {
       havePinCode: state.authorization.havePinCode,
       firstLogIn: state.authorization.firstLogIn,
-      loginError: state.authorization.errorMessage,
+      loginError: state.authorization.firstLoginErrorMessage,
       loading: state.authorization.loading,
     };
   }

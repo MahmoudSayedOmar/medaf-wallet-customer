@@ -6,21 +6,21 @@ import Toast from "react-native-tiny-toast";
 export type ON_CHECK_ACTION = { type: String, payload: any };
 export type ON_CHECK_SUCCESS_Action = {
   type: string,
-  payload: any
+  payload: any,
 };
 export type ON_CHECK_FAIL_Action = {
   type: string,
-  payload: any
+  payload: any,
 };
 ///////////////////////////////////////////////////////////////////////////
 export type ON_TRANSFER_ACTION = { type: String, payload: any };
 export type ON_TRANSFER__SUCCESS_Action = {
   type: string,
-  payload: any
+  payload: any,
 };
 export type ON_TRANSFER_FAIL_Action = {
   type: string,
-  payload: any
+  payload: any,
 };
 ////////////////////CheckMember/////////////////////////////
 export function checkMember(model) {
@@ -34,14 +34,11 @@ export function checkMember(model) {
     // result = await response.data;
 
     if (response.status === 200) {
-      debugger;
     }
   };
 }
 ///////////////////TransferFunction/////////////////////////
 export function transfer(transferModel) {
-  debugger;
-  debugger;
   return async (dispatch, getState) => {
     const state = getState();
     dispatch(onTransfer(transferModel));
@@ -50,7 +47,6 @@ export function transfer(transferModel) {
     transferDto["amount"] = transferModel["amount"];
     transferDto["senderCodeNo"] = state.authorization.CardNo;
     transferDto["pin"] = transferModel["pin"];
-    debugger;
 
     let response = await transferService.makeTransfer(
       transferDto,
@@ -58,22 +54,22 @@ export function transfer(transferModel) {
     );
     console.log("Response", response);
     result = await response.data;
-    debugger;
+
     dispatch(onTransferFailed(result["Message"]));
 
     const toast = Toast.show(result["Message"], {
       position: Toast.position.center,
     });
     setTimeout(() => {
-      Toast.hide(toast) 
-     }, 3000)
-     return true;
+      Toast.hide(toast);
+    }, 3000);
+    return true;
 
     // if (response.status === 200) {
-    //   debugger;
+    //
     //   dispatch(onTransferSuccess());
     // } else {
-    //   debugger;
+    //
     //   dispatch(onTransferFailed(result["Message"]));
     // }
   };

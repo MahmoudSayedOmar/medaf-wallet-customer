@@ -13,14 +13,11 @@ export type LOGIN_FAIL_Action = { type: string, payload: string };
 export function tryLogin(user: UserLoginModel) {
   return async (dispatch, getState) => {
     dispatch(onLogin(user));
-    debugger;
+
     let response = await authProxyService.login(user);
     result = await response.data;
 
-    debugger;
     if (response.status === 200) {
-      debugger;
-
       dispatch(
         onLoginSuccess({
           CardNo: result["MemberShipId"],
@@ -42,7 +39,6 @@ export function tryLogin(user: UserLoginModel) {
 }
 
 export function onLogin(user): ON_LOGIN_Action {
-  debugger;
   return { type: types.ON_LOGIN, payload: user };
 }
 
@@ -82,15 +78,11 @@ export function tryFirstLogin(data) {
         onFirstLoginFail("make sure New Password and Retyped ones is the same")
       );
     } else {
-      debugger;
       data.userName = getState().authorization.userName;
       let response = await authProxyService.setFirstPassword(data);
       result = await response.data;
 
-      debugger;
       if (response.status === 200) {
-        debugger;
-
         if (result.Code == "1") {
           dispatch(onFirstLoginSuccess({}));
         } else {

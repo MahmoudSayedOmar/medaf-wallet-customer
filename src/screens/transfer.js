@@ -79,20 +79,6 @@ class TransferContainer extends Component {
       this.clearState();
     }
   }
-  // componentWillReceiveProps(nextProps, prevState) {
-  //   debugger;
-  //   if (nextProps == prevState) {
-  //     Toast.show(prevState.transferStatus, {
-  //       position: Toast.position.center
-  //     });
-  //   } else {
-  //     if (nextProps.isTransfer) {
-  //       Toast.show(nextProps.transferStatus, {
-  //         position: Toast.position.center
-  //       });
-  //     }
-  //   }
-  // }
 
   render() {
     const isEnabled =

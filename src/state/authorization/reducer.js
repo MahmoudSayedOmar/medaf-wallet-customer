@@ -23,9 +23,9 @@ export function authorizationReducer(
         loading: true,
         userName: action.payload.userName,
         password: action.payload.password,
-        firstLogIn:false,
-        isLoggedIn:false,
-        havePinCode:false
+        firstLogIn: false,
+        isLoggedIn: false,
+        havePinCode: false,
       };
     }
 
@@ -46,7 +46,7 @@ export function authorizationReducer(
         isLoggedIn: false,
         errorMessage: action.payload,
         loading: false,
-        firstLogIn:false
+        firstLogIn: false,
       };
     }
 
@@ -63,7 +63,7 @@ export function authorizationReducer(
         ...state,
         firstLogIn: false,
         loading: false,
-        errorMessage: "",
+        firstLoginErrorMessage: "",
       };
     }
 
@@ -72,7 +72,7 @@ export function authorizationReducer(
         ...state,
         firstLogIn: true,
         loading: false,
-        errorMessage: action.payload,
+        firstLoginErrorMessage: action.payload,
       };
     }
 

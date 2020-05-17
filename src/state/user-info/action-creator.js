@@ -6,21 +6,20 @@ export type UPDATE_USER_INFO_ACTION = { type: string, payload: Object };
 export type UPDATE_USER_INFO_FALIAR_ACTION = { type: string, payload: Object };
 
 export function tryRefresh() {
-  debugger;
   return async (dispatch, getState) => {
     const state = getState();
-    debugger;
+
     // let data = {
     //   userName: state.authorization.userName,
     //   password: state.authorization.password
     // };
-    var cardNo=state.authorization.CardNo;
+    var cardNo = state.authorization.CardNo;
     const token = state.authorization.token;
 
-    let response = await authProxyService.refresh(cardNo,token);
-    console.log("respons",response);
+    let response = await authProxyService.refresh(cardNo, token);
+    console.log("respons", response);
     result = await response.data;
-      debugger;
+
     if (response.status === 200) {
       dispatch(
         updateUserInfo({
@@ -51,7 +50,8 @@ export function trySetPinCode(confirmationData) {
     const state = getState();
     const token = state.authorization.token;
     dispatch(onSetPinCode());
-    if (newPinCode != reNewPinCode) {
+    debugger;
+    if (confirmationData.newPinCode != confirmationData.reNewPinCode) {
       dispatch(
         SetPinCodeFail("Make sure that new pin code fields are the same")
       );
@@ -64,7 +64,7 @@ export function trySetPinCode(confirmationData) {
         },
         token
       );
-      debugger;
+
       if (response.status === 200) {
         if (response.data.code == 1) {
           dispatch(SetPinCodeSuccess());
@@ -98,23 +98,28 @@ export function tryChangePinCode(confirmationData) {
     const state = getState();
     const token = state.authorization.token;
     dispatch(onChangePinCode());
-    let response = await userManagerProxyService.changePinCode(
-      {
-        oldPinCode: confirmationData.oldPinCode,
-        newPinCode: confirmationData.newPinCode,
-        cardNumber: state.authorization.CardNo,
-      },
-      token
-    );
-    debugger;
-    if (response.status === 200) {
-      if (response.data.code == 1) {
-        dispatch(changePinCodeSuccess());
+
+    if (confirmationData.newPinCode != confirmationData.reNewPinCode) {
+      dispatch(changePinCodeFail());
+    } else {
+      let response = await userManagerProxyService.changePinCode(
+        {
+          oldPinCode: confirmationData.oldPinCode,
+          newPinCode: confirmationData.newPinCode,
+          cardNumber: state.authorization.CardNo,
+        },
+        token
+      );
+
+      if (response.status === 200) {
+        if (response.data.code == 1) {
+          dispatch(changePinCodeSuccess());
+        } else {
+          dispatch(changePinCodeFail());
+        }
       } else {
         dispatch(changePinCodeFail());
       }
-    } else {
-      dispatch(changePinCodeFail());
     }
   };
 }
@@ -136,8 +141,6 @@ export type ON_CONNECTION_FAIL_ACTION = { type: string };
 
 export function contBalanceUpdate(argOne) {
   return async (dispatch) => {
-    debugger;
-
     dispatch(updateBalance(argOne));
   };
 }
@@ -163,16 +166,14 @@ export type RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION = { type: string };
 
 export function tryRetriveTransactions(data) {
   return async (dispatch, getState) => {
-    debugger;
     const state = getState();
     dispatch(onRetriveTransactions());
     data.CardNo = state.authorization.CardNo;
-    debugger;
+
     let response = await userManagerProxyService.retriveUserTransactionsHistory(
       data,
       state.authorization.token
     );
-    debugger;
 
     if (response.status === 200) {
       dispatch(retriveTransactionsSuccess(response.data));
