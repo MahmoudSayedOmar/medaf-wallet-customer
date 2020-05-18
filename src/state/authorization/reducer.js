@@ -16,6 +16,7 @@ export function authorizationReducer(
   state: AuthorizationState = AuthorizationInitialState,
   action: Action
 ): AuthorizationState {
+  debugger;
   switch (action.type) {
     case types.ON_LOGIN: {
       return {

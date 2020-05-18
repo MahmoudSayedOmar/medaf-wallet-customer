@@ -15,8 +15,9 @@ export function tryLogin(user: UserLoginModel) {
     dispatch(onLogin(user));
 
     let response = await authProxyService.login(user);
+    
     result = await response.data;
-
+      debugger;
     if (response.status === 200) {
       dispatch(
         onLoginSuccess({

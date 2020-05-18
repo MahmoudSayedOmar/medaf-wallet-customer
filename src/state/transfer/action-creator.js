@@ -39,6 +39,7 @@ export function checkMember(model) {
 }
 ///////////////////TransferFunction/////////////////////////
 export function transfer(transferModel) {
+  debugger;
   return async (dispatch, getState) => {
     const state = getState();
     dispatch(onTransfer(transferModel));
@@ -47,7 +48,10 @@ export function transfer(transferModel) {
     transferDto["amount"] = transferModel["amount"];
     transferDto["senderCodeNo"] = state.authorization.CardNo;
     transferDto["pin"] = transferModel["pin"];
+    transferDto["mobileNumber"]=transferModel["mobile"];
 
+    debugger;
+    
     let response = await transferService.makeTransfer(
       transferDto,
       state.authorization.token

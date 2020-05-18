@@ -32,7 +32,7 @@ class TransferContainer extends Component {
   constructor() {
     super();
     this.state = {
-      radioValue: "mob",
+      type: "mob",
       receiverCodeNo: "",
       amount: "",
       senderCodeNo: "",
@@ -41,7 +41,8 @@ class TransferContainer extends Component {
   }
 
   onChooseInput(value) {
-    this.setState({ radioValue: value });
+    debugger;
+    this.setState({ type: value });
   }
   static mapStateToProps(state: State) {
     return {
@@ -58,6 +59,8 @@ class TransferContainer extends Component {
 
   clearState() {
     this.setState({
+      type: "mob",
+      mobile: "",
       receiverCodeNo: "",
       senderCodeNo: "",
       amount: "",
@@ -74,6 +77,7 @@ class TransferContainer extends Component {
   }
 
   async makeTransfer() {
+    debugger;
     var res = await this.props.transfer(this.state);
     if (res) {
       this.clearState();
@@ -85,6 +89,7 @@ class TransferContainer extends Component {
       this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
 
     return (
+      // trasnfer Component 
       <View style={styles.container}>
         <View style={styles.centerTitle}>
           <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
@@ -94,25 +99,61 @@ class TransferContainer extends Component {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-        <View style={styles.eachRowAccount}>
-          <Text style={styles.inputTitleText}>From Account</Text>
-          <Text style={{ width: "50%" }}> #{this.props.membershipId}</Text>
-        </View>
+
         <View style={styles.eachRowAccount}>
           <Text style={styles.inputTitleText}>Balance</Text>
           <Text style={{ width: "50%" }}> {this.props.balance}EGP</Text>
         </View>
+
         <View style={styles.eachRow}>
-          <Text style={styles.inputTitle}>To Account</Text>
-          <TextInput
-            value={this.state.receiverCodeNo}
-            onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
-            placeholder={"To Account"}
-            placeholderTextColor="#202945"
-            keyboardType={"numeric"}
-            style={styles.input}
-          />
+          <Text style={styles.inputTitleText}>Search By</Text>
+          <View style={{ width: "50%", marginTop: "3%" }}>
+            <RadioForm
+              formHorizontal={true}
+              radio_props={[
+                { label: "Mob", value: "mob" },
+                { label: "Id", value: "id" }
+              ]}
+              initial={0}
+              buttonColor={"#D0C21D"}
+              selectedButtonColor={"#D0C21D"}
+              radioStyle={{ paddingRight: 25 }}
+              onPress={value => {
+                this.onChooseInput(value);
+              }}
+            />
+          </View>
         </View>
+
+
+        {this.state.type === "mob" ? (
+          <View style={styles.eachRow}>
+            <Text style={styles.inputTitle}>Mobile</Text>
+            <TextInput
+              value={this.state.mobile}
+              onChangeText={mobile => this.setState({ mobile })}
+              placeholder={"Member Mob. number"}
+              placeholderTextColor="#202945"
+              keyboardType="numeric"
+              style={styles.input}
+            />
+          </View>
+        ) : (
+            <View style={styles.eachRow}>
+              <Text style={styles.inputTitle}>To Account</Text>
+              <TextInput
+                value={this.state.receiverCodeNo}
+                onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
+                placeholder={"To Account"}
+                placeholderTextColor="#202945"
+                keyboardType={"numeric"}
+                style={styles.input}
+              />
+            </View>
+          )}
+
+
+
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
           <TextInput
