@@ -7,13 +7,13 @@ import RadioForm, {
 import { Button } from "native-base";
 import {
   ImageBackground,
-  Alert,
   TextInput,
   View,
   Text,
   StyleSheet,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 import Toast from "react-native-tiny-toast";
 
@@ -75,7 +75,37 @@ class TransferContainer extends Component {
       this.setState({ amount: e });
     }
   }
+  onHandleConfirmation() {
+    if (
+      this.state.receiverCodeNo.length <= 0 ||
+      this.state.pin.length <= 0 ||
+      this.state.amount.length <= 0
+    ) {
+      let alertMessage;
+      if (this.state.receiverCodeNo.length <= 0) {
+        alertMessage = "You need to insert the reciever ";
+      } else if (this.state.amount.length <= 0) {
+        alertMessage = "You need insert the amount";
+      } else if (this.state.pin.length <= 0) {
+        alertMessage = "You need to insert Your Pin Number";
+      }
+      Alert.alert("Error", alertMessage, [
+        {
+          text: "ok",
+          style: "cancel",
+        },
+      ]);
+    } else {
+      Alert.alert("confirm", "do you really want to transfer this amount", [
+        { text: "YES", onPress: this.makeTransfer.bind(this) },
+        {
+          text: "NO",
 
+          style: "cancel",
+        },
+      ]);
+    }
+  }
   async makeTransfer() {
     debugger;
     var res = await this.props.transfer(this.state);
@@ -177,9 +207,10 @@ class TransferContainer extends Component {
           />
         </View>
         <Button
-          disabled={!isEnabled}
+          // disabled={!isEnabled}
           style={styles.buttonStyle}
-          onPress={this.makeTransfer.bind(this)}
+          // onPress={this.makeTransfer.bind(this)}
+          onPress={() => this.onHandleConfirmation()}
         >
           <Text style={{ color: "#202945" }}>Confirm</Text>
         </Button>
