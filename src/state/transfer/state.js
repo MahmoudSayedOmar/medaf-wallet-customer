@@ -5,6 +5,7 @@ export interface TranserState {
   memberPin: String;
   isTransfer: Boolean;
   transferStatus: String;
+  // customerBalance:Number;
 }
 
 export const TransferInitalState: TranserState = {
@@ -13,5 +14,6 @@ export const TransferInitalState: TranserState = {
   membershipMobileNo: "",
   memberPin: "",
   isTransfer: false,
-  transferStatus: ""
+  transferStatus: "",
+
 };

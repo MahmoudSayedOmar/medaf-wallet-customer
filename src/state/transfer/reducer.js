@@ -33,8 +33,8 @@ export function transferReducer(
     case types.TRANSFER_SUCCESS:
       return {
         ...state,
-        isTransfer: Boolean,
-        transferStatus: action.payload
+        isTransfer: true,
+      
       };
 
     case types.TRANSFER_Failed:

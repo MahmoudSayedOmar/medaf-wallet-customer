@@ -1,6 +1,9 @@
 import * as types from "./actions";
 import { transferService } from "../../services";
 
+import { updateUserInfo } from "../user-info/action-creator";
+
+
 import Toast from "react-native-tiny-toast";
 
 export type ON_CHECK_ACTION = { type: String, payload: any };
@@ -58,24 +61,20 @@ export function transfer(transferModel) {
     );
     console.log("Response", response);
     result = await response.data;
-
-    dispatch(onTransferFailed(result["Message"]));
-
     const toast = Toast.show(result["Message"], {
       position: Toast.position.center,
-    });
-    setTimeout(() => {
-      Toast.hide(toast);
-    }, 3000);
+      });
+      dispatch(onTransferSuccess())
+      setTimeout(() => {
+        Toast.hide(toast);
+        dispatch(
+          updateUserInfo({
+            cardNo: result["CardNo"],
+            balance: result["Balance"],
+          })
+        );
+      }, 3000);
     return true;
-
-    // if (response.status === 200) {
-    //
-    //   dispatch(onTransferSuccess());
-    // } else {
-    //
-    //   dispatch(onTransferFailed(result["Message"]));
-    // }
   };
 }
 
@@ -92,8 +91,8 @@ export function onCheckMemberFailed(): ON_CHECK_FAIL_Action {
 export function onTransfer(payload): ON_TRANSFER_ACTION {
   return { type: types.TRANSFER, payload };
 }
-export function onTransferSuccess(successMessage): ON_TRANSFER__SUCCESS_Action {
-  return { type: types.TRANSFER_SUCCESS, payload: successMessage };
+export function onTransferSuccess(): ON_TRANSFER__SUCCESS_Action {
+  return { type: types.TRANSFER_SUCCESS };
 }
 export function onTransferFailed(errorMessage): ON_TRANSFER_FAIL_Action {
   return { type: types.TRANSFER_Failed, payload: errorMessage };
