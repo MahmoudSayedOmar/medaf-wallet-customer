@@ -79,9 +79,12 @@ class TransferContainer extends Component {
   async makeTransfer() {
     debugger;
     var res = await this.props.transfer(this.state);
-    if (res) {
+    if (res.code=='1') {
+     
+      mapStateToProps({...State,balance:res.balance})
       this.clearState();
     }
+   
   }
 
   render() {
@@ -102,22 +105,23 @@ class TransferContainer extends Component {
 
         <View style={styles.eachRowAccount}>
           <Text style={styles.inputTitleText}>Balance</Text>
-          <Text style={{ width: "50%" }}> {this.props.balance}EGP</Text>
+          <Text style={{ width: "50%" }}> {this.props.balance} EGP</Text>
         </View>
 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitleText}>Search By</Text>
-          <View style={{ width: "50%", marginTop: "3%" }}>
+          <View style={{ width: "53%", marginTop: "3%",marginLeft:"-3%" }}>
             <RadioForm
               formHorizontal={true}
               radio_props={[
-                { label: "Mob", value: "mob" },
-                { label: "Id", value: "id" }
+                { label: "Mobile", value: "mob" },
+                { label: "AccountNo", value: "id" }
               ]}
               initial={0}
+              
               buttonColor={"#D0C21D"}
               selectedButtonColor={"#D0C21D"}
-              radioStyle={{ paddingRight: 25 }}
+              radioStyle={{ paddingRight: 20 }}
               onPress={value => {
                 this.onChooseInput(value);
               }}
@@ -159,7 +163,7 @@ class TransferContainer extends Component {
           <TextInput
             value={this.state.amount}
             onChangeText={(e) => this.onTextChanged(e)}
-            placeholder={"Enter Amount"}
+            placeholder={"Enter the Amount"}
             placeholderTextColor="#202945"
             keyboardType={"numeric"}
             style={styles.input}
@@ -170,7 +174,7 @@ class TransferContainer extends Component {
           <TextInput
             value={this.state.pin}
             onChangeText={(pin) => this.setState({ pin })}
-            placeholder={"Enter Pin"}
+            placeholder={"Enter your Pin"}
             placeholderTextColor="#202945"
             keyboardType="numeric"
             style={styles.input}

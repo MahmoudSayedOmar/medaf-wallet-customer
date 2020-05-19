@@ -58,16 +58,19 @@ export function transfer(transferModel) {
     );
     console.log("Response", response);
     result = await response.data;
-
+debugger;
+if(result.code=='1')
+    dispatch(onTransferSuccess(result["Message"]));
+   else
     dispatch(onTransferFailed(result["Message"]));
-
+    
     const toast = Toast.show(result["Message"], {
       position: Toast.position.center,
     });
     setTimeout(() => {
       Toast.hide(toast);
     }, 3000);
-    return true;
+    return {code:result.code,balance:result.Balance};
 
     // if (response.status === 200) {
     //
@@ -90,11 +93,14 @@ export function onCheckMemberFailed(): ON_CHECK_FAIL_Action {
 }
 ////////////////////////////////////////////////////////////////
 export function onTransfer(payload): ON_TRANSFER_ACTION {
+
   return { type: types.TRANSFER, payload };
 }
 export function onTransferSuccess(successMessage): ON_TRANSFER__SUCCESS_Action {
+
   return { type: types.TRANSFER_SUCCESS, payload: successMessage };
 }
 export function onTransferFailed(errorMessage): ON_TRANSFER_FAIL_Action {
+ 
   return { type: types.TRANSFER_Failed, payload: errorMessage };
 }
