@@ -40,6 +40,7 @@ class TransferContainer extends Component {
     super();
     this.state = {
       type: "mob",
+      mobile: "",
       receiverCodeNo: "",
       amount: "",
       senderCodeNo: "",
