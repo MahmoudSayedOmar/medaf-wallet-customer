@@ -119,7 +119,7 @@ class TransferContainer extends Component {
       this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
 
     return (
-      // trasnfer Component 
+      // trasnfer Component
       <View style={styles.container}>
         <View style={styles.centerTitle}>
           <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
@@ -129,7 +129,10 @@ class TransferContainer extends Component {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>From Account</Text>
+          <Text style={{ width: "50%" }}> #{this.props.membershipId}</Text>
+        </View>
         <View style={styles.eachRowAccount}>
           <Text style={styles.inputTitleText}>Balance</Text>
           <Text style={{ width: "50%" }}> {this.props.balance}EGP</Text>
@@ -142,26 +145,25 @@ class TransferContainer extends Component {
               formHorizontal={true}
               radio_props={[
                 { label: "Mob", value: "mob" },
-                { label: "Id", value: "id" }
+                { label: "Id", value: "id" },
               ]}
               initial={0}
               buttonColor={"#D0C21D"}
               selectedButtonColor={"#D0C21D"}
               radioStyle={{ paddingRight: 25 }}
-              onPress={value => {
+              onPress={(value) => {
                 this.onChooseInput(value);
               }}
             />
           </View>
         </View>
 
-
         {this.state.type === "mob" ? (
           <View style={styles.eachRow}>
             <Text style={styles.inputTitle}>Mobile</Text>
             <TextInput
               value={this.state.mobile}
-              onChangeText={mobile => this.setState({ mobile })}
+              onChangeText={(mobile) => this.setState({ mobile })}
               placeholder={"Member Mob. number"}
               placeholderTextColor="#202945"
               keyboardType="numeric"
@@ -169,20 +171,20 @@ class TransferContainer extends Component {
             />
           </View>
         ) : (
-            <View style={styles.eachRow}>
-              <Text style={styles.inputTitle}>To Account</Text>
-              <TextInput
-                value={this.state.receiverCodeNo}
-                onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
-                placeholder={"To Account"}
-                placeholderTextColor="#202945"
-                keyboardType={"numeric"}
-                style={styles.input}
-              />
-            </View>
-          )}
-
-
+          <View style={styles.eachRow}>
+            <Text style={styles.inputTitle}>To Account</Text>
+            <TextInput
+              value={this.state.receiverCodeNo}
+              onChangeText={(receiverCodeNo) =>
+                this.setState({ receiverCodeNo })
+              }
+              placeholder={"To Account"}
+              placeholderTextColor="#202945"
+              keyboardType={"numeric"}
+              style={styles.input}
+            />
+          </View>
+        )}
 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
