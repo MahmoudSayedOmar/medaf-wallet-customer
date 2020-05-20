@@ -50,7 +50,7 @@ export function transfer(transferModel) {
     transferDto["amount"] = transferModel["amount"];
     transferDto["senderCodeNo"] = state.authorization.CardNo;
     transferDto["pin"] = transferModel["pin"];
-    transferDto["mobileNumber"]=transferModel["mobile"];
+    transferDto["mobile"]=transferModel["mobile"];
 
     debugger;
     
