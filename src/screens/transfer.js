@@ -77,12 +77,12 @@ class TransferContainer extends Component {
   }
   onHandleConfirmation() {
     if (
-      this.state.receiverCodeNo.length <= 0 ||
+    (this.state.receiverCodeNo.length <= 0 && this.state.mobile.length<=0) ||
       this.state.pin.length <= 0 ||
       this.state.amount.length <= 0
     ) {
       let alertMessage;
-      if (this.state.receiverCodeNo.length <= 0) {
+      if (this.state.receiverCodeNo.length <= 0 && this.state.mobile.length<=0) {
         alertMessage = "You need to insert the reciever ";
       } else if (this.state.amount.length <= 0) {
         alertMessage = "You need insert the amount";

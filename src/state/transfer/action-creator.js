@@ -64,7 +64,9 @@ export function transfer(transferModel) {
     const toast = Toast.show(result["Message"], {
       position: Toast.position.center,
       });
-      dispatch(onTransferSuccess())
+    
+      if(result.code=='1')
+     { dispatch(onTransferSuccess())
       setTimeout(() => {
         Toast.hide(toast);
         dispatch(
@@ -74,6 +76,13 @@ export function transfer(transferModel) {
           })
         );
       }, 3000);
+    }
+    else{
+      dispatch(onTransferFailed())
+      setTimeout(() => {
+        Toast.hide(toast)
+       }, 3000);
+      }
     return true;
   };
 }
