@@ -51,7 +51,6 @@ export function transfer(transferModel) {
     transferDto["senderCodeNo"] = state.authorization.CardNo;
     transferDto["pin"] = transferModel["pin"];
     transferDto["mobileNumber"]=transferModel["mobile"];
-
     debugger;
     
     let response = await transferService.makeTransfer(
