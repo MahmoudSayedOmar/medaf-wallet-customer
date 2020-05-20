@@ -23,6 +23,12 @@ import { State } from "../state/state";
 import { transfer } from "../state/transfer/action-creator";
 
 import {
+  ToastAndroid,
+  Platform,
+  AlertIOS,
+} from 'react-native';
+
+import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
@@ -59,7 +65,7 @@ class TransferContainer extends Component {
 
   clearState() {
     this.setState({
-      type: "mob",
+      type: "",
       mobile: "",
       receiverCodeNo: "",
       senderCodeNo: "",
@@ -109,8 +115,23 @@ class TransferContainer extends Component {
   async makeTransfer() {
     debugger;
     var res = await this.props.transfer(this.state);
+    debugger;
     if (res) {
-      this.clearState();
+      // const toast = Toast.show(result["Message"], {
+      //   position: Toast.position.center,
+      // });
+      // setTimeout(function () {
+      //   Toast.hide(toast);
+      //   },9000);
+      // 
+      if (Platform.OS === 'android') {
+        debugger;
+        ToastAndroid.show(result["Message"], ToastAndroid.SHORT);
+        this.clearState();
+      } else {
+        AlertIOS.alert(result["Message"]);
+        this.clearState();
+      }
     }
   }
 

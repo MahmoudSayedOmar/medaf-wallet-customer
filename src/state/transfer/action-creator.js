@@ -4,7 +4,6 @@ import { transferService } from "../../services";
 import { updateUserInfo } from "../user-info/action-creator";
 
 
-import Toast from "react-native-tiny-toast";
 
 export type ON_CHECK_ACTION = { type: String, payload: any };
 export type ON_CHECK_SUCCESS_Action = {
@@ -61,21 +60,20 @@ export function transfer(transferModel) {
     );
     console.log("Response", response);
     result = await response.data;
-    const toast = Toast.show(result["Message"], {
-      position: Toast.position.center,
-      });
-      dispatch(onTransferSuccess())
-      setTimeout(() => {
-        Toast.hide(toast);
-        dispatch(
-          updateUserInfo({
-            cardNo: result["CardNo"],
-            balance: result["Balance"],
-          })
-        );
-      }, 3000);
-    return true;
-  };
+      debugger;
+    if(response.data.code===1){
+      dispatch(onTransferSuccess());
+      dispatch(
+       updateUserInfo({
+         cardNo: result["CardNo"],
+         balance: result["Balance"],
+        }));
+    }
+    else{
+      onTransferFailed(result["Message"])
+    }
+       return true;
+   };
 }
 
 export function onCheckMember(payload): ON_CHECK_ACTION {
