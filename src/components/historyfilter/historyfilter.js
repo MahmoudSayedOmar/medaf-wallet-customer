@@ -72,6 +72,7 @@ function HistoryFilterComponent({
                   color: "#202945",
                 }}
                 onDateChange={onToDateChange}
+                maximumDate={new Date()}
                 disabled={false}
               />
             </View>
