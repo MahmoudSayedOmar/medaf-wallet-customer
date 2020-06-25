@@ -31,7 +31,22 @@ export class HistoryContainer extends Component {
       },
     };
   }
+
+  componentDidMount(){
+    debugger;
+    console.log("componentDidMount")
+    this._unsubscribe=this.props.navigation.addListener('focus', () => {
+      debugger;
+     this.ReCallHistory();
+    });;
+  }
+  componentWillUnmount() {
+
+    this._unsubscribe();
+  }
+ 
   static mapStatetToProps(state: State) {
+    debugger;
     return {
       transactionsHistory: state.userInfo.transactionsHistory,
       finalBalance: state.userInfo.finalBalance,
@@ -39,11 +54,14 @@ export class HistoryContainer extends Component {
       loadingTransactions: state.userInfo.loadingTransactions,
     };
   }
-  componentWillMount() {
-    this.props.tryRetriveTransactions({
-      StartDate: this.state.dateFrom,
-      EndDate: this.state.dateTo,
-    });
+ 
+  ReCallHistory(){
+    this.props.tryRetriveTransactions(
+      {
+        StartDate: this.state.dateFrom,
+        EndDate: this.state.dateTo,
+      
+     });
   }
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ tryRetriveTransactions }, dispatch);

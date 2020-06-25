@@ -125,8 +125,14 @@ export default class ApplicationContainer extends React.Component {
             },
           }}
         />
-        <Tab.Screen name="Transfer" component={Transfer} />
-        <Tab.Screen name="History" component={History} />
+        <Tab.Screen name="Transfer" component={Transfer}
+         />
+        <Tab.Screen name="History" component={HistoryScreen} 
+        listeners={{
+            focus: e => {
+              // Prevent default action
+            },
+          }}/>
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     );
