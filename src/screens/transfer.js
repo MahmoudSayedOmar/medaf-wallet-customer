@@ -7,13 +7,13 @@ import RadioForm, {
 import { Button } from "native-base";
 import {
   ImageBackground,
-  Alert,
   TextInput,
   View,
   Text,
   StyleSheet,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 import Toast from "react-native-tiny-toast";
 
@@ -21,6 +21,13 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { State } from "../state/state";
 import { transfer } from "../state/transfer/action-creator";
+
+
+import {
+  ToastAndroid,
+  Platform,
+  AlertIOS,
+} from 'react-native';
 
 import {
   widthPercentageToDP as wp,
@@ -33,6 +40,7 @@ class TransferContainer extends Component {
     super();
     this.state = {
       type: "mob",
+      mobile: "",
       receiverCodeNo: "",
       amount: "",
       senderCodeNo: "",
@@ -59,7 +67,7 @@ class TransferContainer extends Component {
 
   clearState() {
     this.setState({
-      type: "mob",
+      type: "",
       mobile: "",
       receiverCodeNo: "",
       senderCodeNo: "",
@@ -75,14 +83,57 @@ class TransferContainer extends Component {
       this.setState({ amount: e });
     }
   }
+  onHandleConfirmation() {
+    if (
+    (this.state.receiverCodeNo.length <= 0 && this.state.mobile.length<=0) ||
+      this.state.pin.length <= 0 ||
+      this.state.amount.length <= 0
+    ) {
+      let alertMessage;
+      if (this.state.receiverCodeNo.length <= 0 && this.state.mobile.length<=0) {
+        alertMessage = "You need to insert the reciever ";
+      } else if (this.state.amount.length <= 0) {
+        alertMessage = "You need insert the amount";
+      } else if (this.state.pin.length <= 0) {
+        alertMessage = "You need to insert Your Pin Number";
+      }
+      Alert.alert("Error", alertMessage, [
+        {
+          text: "ok",
+          style: "cancel",
+        },
+      ]);
+    } else {
+      Alert.alert("confirm", "do you really want to transfer this amount", [
+        { text: "YES", onPress: this.makeTransfer.bind(this) },
+        {
+          text: "NO",
 
+          style: "cancel",
+        },
+      ]);
+    }
+  }
   async makeTransfer() {
     debugger;
     var res = await this.props.transfer(this.state);
-    if (res.code=='1') {
-     
-      mapStateToProps({...State,balance:res.balance})
-      this.clearState();
+    debugger;
+    if (res) {
+      // const toast = Toast.show(result["Message"], {
+      //   position: Toast.position.center,
+      // });
+      // setTimeout(function () {
+      //   Toast.hide(toast);
+      //   },9000);
+      // 
+      if (Platform.OS === 'android') {
+        debugger;
+        ToastAndroid.show(result["Message"], ToastAndroid.SHORT);
+        this.clearState();
+      } else {
+        AlertIOS.alert(result["Message"]);
+        this.clearState();
+      }
     }
    
   }
@@ -92,7 +143,7 @@ class TransferContainer extends Component {
       this.state.receiverCodeNo.length > 0 && this.state.pin.length > 0;
 
     return (
-      // trasnfer Component 
+      // trasnfer Component
       <View style={styles.container}>
         <View style={styles.centerTitle}>
           <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
@@ -102,7 +153,10 @@ class TransferContainer extends Component {
         <View style={styles.centerLogo}>
           <Image source={logo} style={{ width: 150 }} />
         </View>
-
+        <View style={styles.eachRowAccount}>
+          <Text style={styles.inputTitleText}>From Account</Text>
+          <Text style={{ width: "50%" }}> #{this.props.membershipId}</Text>
+        </View>
         <View style={styles.eachRowAccount}>
           <Text style={styles.inputTitleText}>Balance</Text>
           <Text style={{ width: "50%" }}> {this.props.balance} EGP</Text>
@@ -114,28 +168,27 @@ class TransferContainer extends Component {
             <RadioForm
               formHorizontal={true}
               radio_props={[
-                { label: "Mobile", value: "mob" },
-                { label: "AccountNo", value: "id" }
+                { label: "Mob", value: "mob" },
+                { label: "Id", value: "id" },
               ]}
               initial={0}
               
               buttonColor={"#D0C21D"}
               selectedButtonColor={"#D0C21D"}
-              radioStyle={{ paddingRight: 20 }}
-              onPress={value => {
+              radioStyle={{ paddingRight: 25 }}
+              onPress={(value) => {
                 this.onChooseInput(value);
               }}
             />
           </View>
         </View>
 
-
         {this.state.type === "mob" ? (
           <View style={styles.eachRow}>
             <Text style={styles.inputTitle}>Mobile</Text>
             <TextInput
               value={this.state.mobile}
-              onChangeText={mobile => this.setState({ mobile })}
+              onChangeText={(mobile) => this.setState({ mobile })}
               placeholder={"Member Mob. number"}
               placeholderTextColor="#202945"
               keyboardType="numeric"
@@ -143,20 +196,20 @@ class TransferContainer extends Component {
             />
           </View>
         ) : (
-            <View style={styles.eachRow}>
-              <Text style={styles.inputTitle}>To Account</Text>
-              <TextInput
-                value={this.state.receiverCodeNo}
-                onChangeText={(receiverCodeNo) => this.setState({ receiverCodeNo })}
-                placeholder={"To Account"}
-                placeholderTextColor="#202945"
-                keyboardType={"numeric"}
-                style={styles.input}
-              />
-            </View>
-          )}
-
-
+          <View style={styles.eachRow}>
+            <Text style={styles.inputTitle}>To Account</Text>
+            <TextInput
+              value={this.state.receiverCodeNo}
+              onChangeText={(receiverCodeNo) =>
+                this.setState({ receiverCodeNo })
+              }
+              placeholder={"To Account"}
+              placeholderTextColor="#202945"
+              keyboardType={"numeric"}
+              style={styles.input}
+            />
+          </View>
+        )}
 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
@@ -181,9 +234,10 @@ class TransferContainer extends Component {
           />
         </View>
         <Button
-          disabled={!isEnabled}
+          // disabled={!isEnabled}
           style={styles.buttonStyle}
-          onPress={this.makeTransfer.bind(this)}
+          // onPress={this.makeTransfer.bind(this)}
+          onPress={() => this.onHandleConfirmation()}
         >
           <Text style={{ color: "#202945" }}>Confirm</Text>
         </Button>
