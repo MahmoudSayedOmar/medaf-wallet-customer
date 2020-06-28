@@ -11,6 +11,7 @@ import { TransferScreen } from "./transfer";
 // import { History } from "./history";
 import { HistoryScreen } from "./history-screen";
 import { SettingsScreen } from "./settings-screen";
+import {SelectPaymentProviderScreen} from "./select-payment-provider";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -128,6 +129,7 @@ export default class ApplicationContainer extends React.Component {
         <Tab.Screen name="Transfer" component={Transfer} />
         <Tab.Screen name="History" component={History} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Screen name="payment" component={SelectPaymentProviderScreen}/>
       </Tab.Navigator>
     );
   }

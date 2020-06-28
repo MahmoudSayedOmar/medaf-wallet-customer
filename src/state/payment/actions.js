@@ -1,0 +1,1 @@
+export const SELECT_PAYMENT="[payment] select payment provider";

@@ -9,6 +9,7 @@ import { SelectMerchantScreen } from "./src/screens/selectMerchant-screen";
 import { ApplicationScreen } from "./src/screens/application-screen";
 import { PinCodeScreen } from "./src/screens/set-pin-code-screen";
 import { ChangePinCodeScreen } from "./src/screens/change-pin-code";
+import {PaymentScreen} from "./src/screens/payment-screen";
 
 import { Provider } from "react-redux";
 import { AppLoading } from "expo";
@@ -47,6 +48,7 @@ export default class App extends React.Component {
             <Stack.Screen name="FirstLogin" component={FirstLoginScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="PinConfirmation" component={PinCodeScreen} />
+            <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
             <Stack.Screen name="Application" component={ApplicationScreen} />
           </Stack.Navigator>
         </NavigationContainer>

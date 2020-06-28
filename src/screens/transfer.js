@@ -5,6 +5,9 @@ import RadioForm, {
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 import { Button } from "native-base";
+
+import { WebView } from 'react-native';
+
 import {
   ImageBackground,
   TextInput,
@@ -22,6 +25,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import { State } from "../state/state";
 import { transfer } from "../state/transfer/action-creator";
 
+var Lightbox = require('./lightbox');
 
 import {
   ToastAndroid,
@@ -45,9 +49,11 @@ class TransferContainer extends Component {
       amount: "",
       senderCodeNo: "",
       pin: "",
-      mobile:""
+      mobile: "",
     };
   }
+
+
 
   onChooseInput(value) {
     debugger;
@@ -65,6 +71,9 @@ class TransferContainer extends Component {
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ transfer }, dispatch);
   }
+
+
+
 
   clearState() {
     this.setState({
@@ -85,6 +94,7 @@ class TransferContainer extends Component {
     }
   }
   onHandleConfirmation() {
+    //your code heres
     if (
     (this.state.receiverCodeNo.length <= 0 && this.state.mobile.length<=0) ||
       this.state.pin.length <= 0 ||
@@ -144,7 +154,7 @@ class TransferContainer extends Component {
 
     return (
       // trasnfer Component
-      <View style={styles.container}>
+      <View>
         <View style={styles.centerTitle}>
           <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
             Transfer
@@ -195,20 +205,20 @@ class TransferContainer extends Component {
             />
           </View>
         ) : (
-          <View style={styles.eachRow}>
-            <Text style={styles.inputTitle}>To Account</Text>
-            <TextInput
-              value={this.state.receiverCodeNo}
-              onChangeText={(receiverCodeNo) =>
-                this.setState({ receiverCodeNo })
-              }
-              placeholder={"To Account"}
-              placeholderTextColor="#202945"
-              keyboardType={"numeric"}
-              style={styles.input}
-            />
-          </View>
-        )}
+            <View style={styles.eachRow}>
+              <Text style={styles.inputTitle}>To Account</Text>
+              <TextInput
+                value={this.state.receiverCodeNo}
+                onChangeText={(receiverCodeNo) =>
+                  this.setState({ receiverCodeNo })
+                }
+                placeholder={"To Account"}
+                placeholderTextColor="#202945"
+                keyboardType={"numeric"}
+                style={styles.input}
+              />
+            </View>
+          )}
 
         <View style={styles.eachRow}>
           <Text style={styles.inputTitle}>Amount</Text>
