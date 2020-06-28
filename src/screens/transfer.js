@@ -5,6 +5,9 @@ import RadioForm, {
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 import { Button } from "native-base";
+
+import { WebView } from 'react-native';
+
 import {
   ImageBackground,
   TextInput,
@@ -47,6 +50,8 @@ class TransferContainer extends Component {
     };
   }
 
+
+
   onChooseInput(value) {
     debugger;
     this.setState({ type: value });
@@ -63,6 +68,9 @@ class TransferContainer extends Component {
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ transfer }, dispatch);
   }
+
+
+
 
   clearState() {
     this.setState({
@@ -83,6 +91,7 @@ class TransferContainer extends Component {
     }
   }
   onHandleConfirmation() {
+    //your code heres
     if (
       (this.state.receiverCodeNo.length <= 0 &&
         this.state.mobile.length <= 0) ||

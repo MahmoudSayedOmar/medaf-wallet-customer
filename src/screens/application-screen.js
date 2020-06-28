@@ -11,6 +11,7 @@ import { TransferScreen } from "./transfer";
 // import { History } from "./history";
 import { HistoryScreen } from "./history-screen";
 import { SettingsScreen } from "./settings-screen";
+import { SelectPaymentProviderScreen } from "./select-payment-provider";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -99,6 +100,9 @@ export default class ApplicationContainer extends React.Component {
               case "Settings":
                 iconName = focused ? "ios-list-box" : "ios-list";
                 break;
+              case "Payment":
+                iconName = focused ? "ios-paper" : "ios-paper";
+                break;
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -126,14 +130,15 @@ export default class ApplicationContainer extends React.Component {
           }}
         />
         <Tab.Screen name="Transfer" component={Transfer}
-         />
-        <Tab.Screen name="History" component={HistoryScreen} 
-        listeners={{
+        />
+        <Tab.Screen name="History" component={HistoryScreen}
+          listeners={{
             focus: e => {
               // Prevent default action
             },
-          }}/>
+          }} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Screen name="Payment" component={SelectPaymentProviderScreen} />
       </Tab.Navigator>
     );
   }
