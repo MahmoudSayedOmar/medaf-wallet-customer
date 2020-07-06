@@ -8,12 +8,12 @@ import {
   Image,
   SafeAreaView,
   FlatList,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 import EachListingComponent from "./eachLisitngComponent";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import {
   Button,
@@ -24,7 +24,7 @@ import {
   Right,
   Body,
   Left,
-  Title
+  Title,
 } from "native-base";
 var logo = require("../../assets/download.jpg");
 const Item = Picker.Item;
@@ -37,7 +37,7 @@ export class History extends Component {
       selected: "undefined",
       filterShowHide: "hide",
       results: {
-        items: []
+        items: [],
       },
       data: [
         {
@@ -47,7 +47,7 @@ export class History extends Component {
           transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
           remainingAmount: "500 L.E",
-          empolyeeName: "smash main center"
+          empolyeeName: "smash main center",
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad5ee3abb28ba",
@@ -56,7 +56,7 @@ export class History extends Component {
           transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
           remainingAmount: "500 L.E",
-          empolyeeName: "smash main center"
+          empolyeeName: "smash main center",
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad5gg3abb28ba",
@@ -65,7 +65,7 @@ export class History extends Component {
           transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
           remainingAmount: "500 L.E",
-          billType: "bill Type"
+          billType: "bill Type",
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53adabb28ba",
@@ -74,23 +74,23 @@ export class History extends Component {
           transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
           remainingAmount: "500 L.E",
-          transferTo: "ahmed mohamed #9997"
+          transferTo: "ahmed mohamed #9997",
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abgeb28ba",
           title: "Cash In",
           transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E"
+          remainingAmount: "500 L.E",
         },
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abba28ba",
           title: "Cash In",
           transactionAmount: "500 L.E",
           dataDate: "25 Jan, 2020",
-          remainingAmount: "500 L.E"
-        }
-      ]
+          remainingAmount: "500 L.E",
+        },
+      ],
     };
   }
   setDate(newDate) {
@@ -98,7 +98,7 @@ export class History extends Component {
   }
   onValueChange(value: string) {
     this.setState({
-      selected: value
+      selected: value,
     });
   }
   onShowHideFilters() {
@@ -119,7 +119,7 @@ export class History extends Component {
           <View
             style={{
               display: this.state.filterShowHide === "hide" ? "none" : "block",
-              marginTop: 10
+              marginTop: 10,
             }}
           >
             <View style={{ flexDirection: "row" }}>
@@ -135,9 +135,9 @@ export class History extends Component {
                   textStyle={{ color: "#202945" }}
                   placeHolderTextStyle={{
                     fontSize: 15,
-                    color: "#202945"
+                    color: "#202945",
                   }}
-                  onDateChange={dateFrom => this.setState({ dateFrom })}
+                  onDateChange={(dateFrom) => this.setState({ dateFrom })}
                   disabled={false}
                 />
               </View>
@@ -153,9 +153,9 @@ export class History extends Component {
                   textStyle={{ color: "#202945" }}
                   placeHolderTextStyle={{
                     fontSize: 15,
-                    color: "#202945"
+                    color: "#202945",
                   }}
-                  onDateChange={dateTo => this.setState({ dateTo })}
+                  onDateChange={(dateTo) => this.setState({ dateTo })}
                   disabled={false}
                 />
               </View>
@@ -164,7 +164,7 @@ export class History extends Component {
             <View style={{ flexDirection: "row" }}>
               <View style={styles.selectField}>
                 <Picker
-                  renderHeader={backAction => (
+                  renderHeader={(backAction) => (
                     <Header style={{ backgroundColor: "#D0C21D" }}>
                       <Left>
                         <Button transparent onPress={backAction}>
@@ -194,7 +194,7 @@ export class History extends Component {
                     backgroundColor: "#ffffff",
                     marginLeft: 0,
                     paddingLeft: 10,
-                    color: "#202945"
+                    color: "#202945",
                   }}
                   itemTextStyle={{ color: "#D0C21D" }}
                   selectedValue={this.state.selected}
@@ -210,7 +210,7 @@ export class History extends Component {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               <Button style={styles.buttonStyle} onPress={() => {}}>
@@ -225,7 +225,7 @@ export class History extends Component {
               style={{
                 borderColor: "#D0C21D",
                 borderRightWidth: 1,
-                paddingRight: 10
+                paddingRight: 10,
               }}
             >
               <Text style={styles.paddingTextLeft}>
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: "2%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   centerTitle: {
     borderColor: "#D0C21D",
@@ -269,11 +269,11 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 7,
     paddingBottom: 12,
-    paddingTop: 25
+    paddingTop: 25,
   },
   centerLogo: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   selectField: {
     width: "100%",
@@ -281,21 +281,21 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#D0C21D",
     borderRadius: 5,
-    marginRight: 2
+    marginRight: 2,
   },
   datePickerViewLeft: {
     width: "50%",
     borderWidth: 2,
     borderColor: "#D0C21D",
     borderRadius: 5,
-    marginRight: 2
+    marginRight: 2,
   },
   datePickerViewRight: {
     width: "50%",
     borderWidth: 2,
     borderColor: "#D0C21D",
     borderRadius: 5,
-    marginLeft: 2
+    marginLeft: 2,
   },
 
   filter: {
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 8,
     marginHorizontal: 16,
-    borderRadius: 10
+    borderRadius: 10,
   },
 
   item: {
@@ -316,30 +316,30 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 8,
     marginHorizontal: 16,
-    borderRadius: 10
+    borderRadius: 10,
   },
   title: {
     fontSize: 20,
-    width: "80%"
+    width: "80%",
   },
   listBody: {
-    fontSize: 15
+    fontSize: 15,
   },
   listBalance: {
     textAlign: "right",
-    color: "#202945"
+    color: "#202945",
   },
   arrow: {
     width: "10%",
     fontSize: 30,
     paddingTop: 15,
     textAlign: "right",
-    color: "#202945"
+    color: "#202945",
   },
   datePicker: {
     borderWidth: 2,
     borderColor: "#D0C21D",
-    borderRadius: 5
+    borderRadius: 5,
   },
   buttonStyle: {
     flexDirection: "column",
@@ -358,16 +358,16 @@ const styles = StyleSheet.create({
 
     alignSelf: "center",
     padding: 10,
-    paddingTop: 5
+    paddingTop: 5,
   },
   paddingText: {
     paddingLeft: 10,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   paddingTextLeft: {
     paddingLeft: 10,
     paddingTop: 5,
-    paddingBottom: 5
-  }
+    paddingBottom: 5,
+  },
 });

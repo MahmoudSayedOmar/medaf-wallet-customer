@@ -32,19 +32,18 @@ export class HistoryContainer extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     debugger;
-    console.log("componentDidMount")
-    this._unsubscribe=this.props.navigation.addListener('focus', () => {
+    console.log("componentDidMount");
+    this._unsubscribe = this.props.navigation.addListener("focus", () => {
       debugger;
-     this.ReCallHistory();
-    });;
+      this.ReCallHistory();
+    });
   }
   componentWillUnmount() {
-
     this._unsubscribe();
   }
- 
+
   static mapStatetToProps(state: State) {
     debugger;
     return {
@@ -54,14 +53,12 @@ export class HistoryContainer extends Component {
       loadingTransactions: state.userInfo.loadingTransactions,
     };
   }
- 
-  ReCallHistory(){
-    this.props.tryRetriveTransactions(
-      {
-        StartDate: this.state.dateFrom,
-        EndDate: this.state.dateTo,
-      
-     });
+
+  ReCallHistory() {
+    this.props.tryRetriveTransactions({
+      StartDate: this.state.dateFrom,
+      EndDate: this.state.dateTo,
+    });
   }
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ tryRetriveTransactions }, dispatch);
@@ -111,7 +108,10 @@ export class HistoryContainer extends Component {
         {this.props.loadingTransactions ? (
           <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
         ) : (
-          <TransactionsListingComponent data={this.props.transactionsHistory} />
+          <TransactionsListingComponent
+            data={this.props.transactionsHistory}
+            navigation={this.props.navigation}
+          />
         )}
       </View>
     );

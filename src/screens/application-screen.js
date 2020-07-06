@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { HomeScreen } from "./home-screen";
 import { ChangePinCodeScreen } from "./change-pin-code";
 // import { Transfer } from "./transfer";
+import { TransactionDetailsScreen } from "./transactionDetails-screen";
 import { TransferScreen } from "./transfer";
 // import { History } from "./history";
 import { HistoryScreen } from "./history-screen";
@@ -21,6 +22,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 var logo = require("../../assets/download.jpg");
 
 const SettingsStack = createStackNavigator();
+const HistoryStack = createStackNavigator();
 
 function SettingsStackScreen() {
   return (
@@ -54,6 +56,41 @@ function SettingsStackScreen() {
         }}
       />
     </SettingsStack.Navigator>
+  );
+}
+
+function HistoryStackScreen() {
+  return (
+    // headerMode="none"
+    <HistoryStack.Navigator initialRouteName="History">
+      <HistoryStack.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          title: "History",
+          headerStyle: { borderWidth: 1, borderBottomColor: "#D0C21D" },
+          headerTintColor: "#D0C21D",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <HistoryStack.Screen
+        headerMode="none"
+        name="TransactionDetails"
+        component={TransactionDetailsScreen}
+        options={{
+          title: "Transaction Details",
+          headerStyle: { borderWidth: 1, borderBottomColor: "#D0C21D" },
+          headerTintColor: "#202945",
+          headerBackTitle: "back",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#D0C21D",
+          },
+        }}
+      />
+    </HistoryStack.Navigator>
   );
 }
 
@@ -122,21 +159,26 @@ export default class ApplicationContainer extends React.Component {
           },
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen}
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
           listeners={{
-            focus: e => {
+            focus: (e) => {
               // Prevent default action
             },
           }}
         />
-        <Tab.Screen name="Transfer" component={Transfer}
-        />
-        <Tab.Screen name="History" component={HistoryScreen}
+        <Tab.Screen name="Transfer" component={Transfer} />
+
+        <Tab.Screen
+          name="History"
+          component={HistoryStackScreen}
           listeners={{
-            focus: e => {
+            focus: (e) => {
               // Prevent default action
             },
-          }} />
+          }}
+        />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
         <Tab.Screen name="Payment" component={SelectPaymentProviderScreen} />
       </Tab.Navigator>

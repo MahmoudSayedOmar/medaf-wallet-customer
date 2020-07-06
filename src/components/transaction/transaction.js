@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./transaction-styles";
 
-export function TransactionComponent({ item }) {
+export function TransactionComponent({ item, navigation }) {
+  console.log(item, "item");
   let TransactionType = null;
   switch (item.Status) {
     case "4":
@@ -23,24 +24,32 @@ export function TransactionComponent({ item }) {
   }
   debugger;
   return (
-    <View style={styles.item}>
-      <View style={{ flexDirection: "row" }}>
-        <View
-          style={{
-            flexDirection: "column",
-            width: "90%",
-          }}
-        >
-          <Text style={styles.title}>{item.PointsTransactionsName}</Text>
-          <Text style={styles.listBody}>{item.Amount}</Text>
-          <Text style={styles.listBody}>{item.Creationdatetime}</Text>
-          {TransactionType}
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("TransactionDetails", {
+          transactionId: item.AmountAfter, // suppose to be the transaction id
+        });
+      }}
+    >
+      <View style={styles.item}>
+        <View style={{ flexDirection: "row" }}>
+          <View
+            style={{
+              flexDirection: "column",
+              width: "90%",
+            }}
+          >
+            <Text style={styles.title}>{item.PointsTransactionsName}</Text>
+            <Text style={styles.listBody}>{item.Amount}</Text>
+            <Text style={styles.listBody}>{item.Creationdatetime}</Text>
+            {TransactionType}
+          </View>
         </View>
-      </View>
 
-      <Text style={styles.listBalance}>
-        Remaining amount: {item.AmountAfter == null ? 0 : item.AmountAfter}
-      </Text>
-    </View>
+        <Text style={styles.listBalance}>
+          Remaining amount: {item.AmountAfter == null ? 0 : item.AmountAfter}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }

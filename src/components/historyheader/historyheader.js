@@ -20,11 +20,6 @@ function HistoryHeaderComponent({
 }) {
   return (
     <View>
-      <View style={styles.centerTitle}>
-        <Text style={{ fontWeight: "bold", color: "#D0C21D", fontSize: 16 }}>
-          History
-        </Text>
-      </View>
       <View style={styles.centerLogo}>
         <Image source={logo} style={{ width: 150 }} />
       </View>
