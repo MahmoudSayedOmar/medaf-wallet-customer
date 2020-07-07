@@ -229,11 +229,11 @@ export function GetTransactionDetails(data) {
       data,
       state.authorization.token
     );
-
-    if (response.status === 200) {
-      dispatch(retriveTransactionDetailsSuccess(response.data));
-    } else {
-      dispatch(retriveTransactionDetailsFail());
-    }
+    dispatch(retriveTransactionDetailsSuccess({Status:'4'}));
+    // if (response.status === 200) {
+    //   dispatch(retriveTransactionDetailsSuccess(response.data));
+    // } else {
+    //   dispatch(retriveTransactionDetailsFail());
+    // }
   };
 }

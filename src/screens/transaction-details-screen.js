@@ -3,7 +3,7 @@ import { View,Text, StyleSheet } from "react-native";
 
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-
+import {TransactionSalesDetailsComponent} from "../components/transactiondetails/transactionsalesdetails"
 
 import { GetTransactionDetails } from "../state";
 
@@ -36,13 +36,14 @@ import { GetTransactionDetails } from "../state";
 
 
   render() {
+    debugger;
     return (
+
       <View style={styles.container}>
         <View>
-    <Text>{this.props.transactionDetails.id}</Text>
-    <Text>{this.props.transactionDetails.cardNo}</Text>
-    <Text>{this.props.transactionDetails.Name}</Text>
-        </View>
+         
+                 <TransactionSalesDetailsComponent item={this.props.transactionDetails}  />
+       </View>
      
       </View>
     );
