@@ -4,7 +4,7 @@ import { View, Text, Form, Item, Input, Icon, Picker } from "native-base"
 
 
 export function PaymentProvider(props) {
-  console.log("Props",props);
+
   const [selectedValue, setSelectedProvider] = useState(undefined);
   const[amount,setAmount]=useState(0);
 

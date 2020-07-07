@@ -108,6 +108,27 @@ export function userInfoReducer(
         loadingTransactions: false,
       };
     }
+    case types.ON_RETRIVE_USER_TRANSACTION_DETAILS: {
+      debugger;
+      return {
+        ...state,
+        
+      };
+    }
+    case types.RETRIVE_USER_TRANSACTION_DETAILS_SUCCESS: {
+      debugger;
+      return {
+        ...state,
+        selectedTransaction:action.payload
+      };
+    }
+    case types.RETRIVE_USER_TRANSACTION_DETAILS_FAIL: {
+      debugger;
+      return {
+        ...state,
+   
+      };
+    }
     case types.UPDATE_USER_INFO_FALIAR_ACTION:
     default:
       return state;

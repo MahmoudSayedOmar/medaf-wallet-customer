@@ -10,7 +10,7 @@ import { ApplicationScreen } from "./src/screens/application-screen";
 import { PinCodeScreen } from "./src/screens/set-pin-code-screen";
 import { ChangePinCodeScreen } from "./src/screens/change-pin-code";
 import {PaymentScreen} from "./src/screens/payment-screen";
-
+import {TransactionDetailsScreen} from "./src/screens/transaction-details-screen";
 import { Provider } from "react-redux";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
@@ -50,7 +50,8 @@ export default class App extends React.Component {
             <Stack.Screen name="PinConfirmation" component={PinCodeScreen} />
             <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
             <Stack.Screen name="Application" component={ApplicationScreen} />
-          </Stack.Navigator>
+           <Stack.Screen name="TransactionDetails" component={TransactionDetailsScreen} />
+          </Stack.Navigator> 
         </NavigationContainer>
       </Provider>
     );

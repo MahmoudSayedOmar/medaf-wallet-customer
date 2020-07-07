@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text,TouchableOpacity } from "react-native";
 import { styles } from "./transaction-styles";
 
-export function TransactionComponent({ item }) {
+export function TransactionComponent({ item,navigation }) {
   let TransactionType = null;
   switch (item.Status) {
     case "4":
@@ -22,9 +22,13 @@ export function TransactionComponent({ item }) {
       break;
   }
   debugger;
+  
+ function goToDetailScreen(id) {
+ navigation.navigate('TransactionDetails',{id:id});
+  };
   return (
-    <View style={styles.item}>
-      <View style={{ flexDirection: "row" }}>
+    <View style={styles.item}  >
+      <View style={{ flexDirection: "row" }} >
         <View
           style={{
             flexDirection: "column",
@@ -41,6 +45,11 @@ export function TransactionComponent({ item }) {
       <Text style={styles.listBalance}>
         Remaining amount: {item.AmountAfter == null ? 0 : item.AmountAfter}
       </Text>
+      <TouchableOpacity onPress={() => goToDetailScreen(item.Id)}>
+        <Text>GO TO DETAIL</Text>
+      </TouchableOpacity>
+
+      
     </View>
   );
 }

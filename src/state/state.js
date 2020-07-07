@@ -11,7 +11,8 @@ export type State = {
   authorization: AuthorizationState,
   userInfo: UserInfoState,
   transfer: TranserState,
-  payment:PaymentState
+  payment:PaymentState,
+  
 };
 
 export const intialState = {

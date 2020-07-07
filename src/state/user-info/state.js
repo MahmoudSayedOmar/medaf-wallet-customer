@@ -4,6 +4,7 @@ export interface UserInfoState {
   loading: Boolean;
   transactionsHistory: Array;
   loadingTransactions: Boolean;
+  selectedTransaction:Object;
   setPinCodeStatus: Number;
   changePinCodeStatus: Number;
   connectionId: String;
@@ -23,6 +24,7 @@ export const UserInfoInitialState: UserInfoState = {
   connected: 0,
   transactionsHistory: [],
   loadingTransactions: false,
+  selectedTransaction:{},
   setPinCodeErrorMsg: "",
   intialBalance: 0,
   finalBalance: 0,

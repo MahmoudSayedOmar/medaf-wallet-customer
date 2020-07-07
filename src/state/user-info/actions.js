@@ -14,7 +14,12 @@ export const UPDATE_BALANCE = "[balance] update balance";
 
 export const ON_CONNECTION_SUCCESS = "[connection] success";
 export const ON_CONNECTION_FAIL = "[connection] fail";
-
+export const ON_RETRIVE_USER_TRANSACTION_DETAILS =
+  "[retrive trransaction details] on retrive";
+  export const RETRIVE_USER_TRANSACTION_DETAILS_SUCCESS =
+  "[retrive trransaction details] retrive success";
+  export const RETRIVE_USER_TRANSACTION_DETAILS_FAIL =
+  "[retrive trransaction details] retrive fail";
 export const ON_RETRIVE_USER_TRANSACTIONS_HISTORY =
   "[retrive trransactions history] on retrive";
 export const RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS =

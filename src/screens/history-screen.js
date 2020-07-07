@@ -82,6 +82,7 @@ export class HistoryContainer extends Component {
     }
   }
   render() {
+    console.log("this props",this.props)
     return (
       <View style={styles.container}>
         <HistoryHeaderComponent
@@ -111,7 +112,7 @@ export class HistoryContainer extends Component {
         {this.props.loadingTransactions ? (
           <Spinner style={{ alignSelf: "center" }} color="#D0C21D" />
         ) : (
-          <TransactionsListingComponent data={this.props.transactionsHistory} />
+          <TransactionsListingComponent data={this.props.transactionsHistory} navigation={this.props.navigation} />
         )}
       </View>
     );

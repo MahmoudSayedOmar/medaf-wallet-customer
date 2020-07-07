@@ -156,13 +156,18 @@ export function connectionFail(): ON_CONNECTION_FAIL_ACTION {
   return { type: types.ON_CONNECTION_FAIL };
 }
 /////////////////////////////////////////////////////////////////
-
+export type ON_RETRIVE_USER_TRANSACTION_DETAILS_ACTION = { type: string };
 export type ON_RETRIVE_USER_TRANSACTIONS_HISTORY_ACTION = { type: string };
 export type RETRIVE_USER_TRANSACTIONS_HISTORY_SUCCESS_ACTION = {
   type: string,
   payload: String,
 };
 export type RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION = { type: string };
+export type RETRIVE_USER_TRANSACTION_DETAILS_SUCCESS_ACTION = {
+  type: string,
+  payload: any,
+};
+export type RETRIVE_USER_TRANSACTION_DETAILS_FAIL_ACTION = { type: string };
 
 export function tryRetriveTransactions(data) {
   return async (dispatch, getState) => {
@@ -186,6 +191,9 @@ export function tryRetriveTransactions(data) {
 export function onRetriveTransactions(): ON_RETRIVE_USER_TRANSACTIONS_HISTORY_ACTION {
   return { type: types.ON_RETRIVE_USER_TRANSACTIONS_HISTORY };
 }
+export function onRetriveTransactionDetails(): ON_RETRIVE_USER_TRANSACTION_DETAILS_ACTION {
+  return { type: types.ON_RETRIVE_USER_TRANSACTION_DETAILS };
+}
 
 export function retriveTransactionsSuccess(
   data
@@ -197,4 +205,35 @@ export function retriveTransactionsSuccess(
 }
 export function retriveTransactionsFail(): RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL_ACTION {
   return { type: types.RETRIVE_USER_TRANSACTIONS_HISTORY_FAIL };
+}
+
+export function retriveTransactionDetailsSuccess(
+  data
+): RETRIVE_USER_TRANSACTION_DETAILS_SUCCESS_ACTION {
+  return {
+    type: types.RETRIVE_USER_TRANSACTION_DETAILS_SUCCESS,
+    payload: data,
+  };
+}
+export function retriveTransactionDetailsFail(): RETRIVE_USER_TRANSACTIONS_DETAILS_FAIL_ACTION {
+  return { type: types.RETRIVE_USER_TRANSACTION_DETAILS_FAIL };
+}
+
+export function GetTransactionDetails(data) {
+  return async (dispatch, getState) => {
+    const state = getState();
+    dispatch(onRetriveTransactionDetails());
+    data.CardNo = state.authorization.CardNo;
+
+    let response = await userManagerProxyService.retriveUserTransactionDetails(
+      data,
+      state.authorization.token
+    );
+
+    if (response.status === 200) {
+      dispatch(retriveTransactionDetailsSuccess(response.data));
+    } else {
+      dispatch(retriveTransactionDetailsFail());
+    }
+  };
 }
