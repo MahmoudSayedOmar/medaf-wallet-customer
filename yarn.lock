@@ -3740,10 +3740,10 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
-lodash@^4.0.0, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.0:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.0:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 log-symbols@^2.2.0:
   version "2.2.0"
@@ -4759,7 +4759,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@latest:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -4899,7 +4899,7 @@ react-native-gesture-handler@~1.5.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-iphone-x-helper@^1.0.3, react-native-iphone-x-helper@^1.2.1:
+react-native-iphone-x-helper@1.2.1, react-native-iphone-x-helper@^1.0.3, react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
   integrity sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ==
@@ -4923,6 +4923,14 @@ react-native-photo-view@shoutem/react-native-photo-view#0ffa1481f6b6cb8663cb291b
   dependencies:
     prop-types "^15.5.10"
 
+react-native-progress-steps@^1.3.3:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/react-native-progress-steps/-/react-native-progress-steps-1.3.4.tgz#4222601c4cee36fbafd1058db74bc1831843a5c7"
+  integrity sha512-LSkaCVjYC2lYXLuvUZBYjQKYNheth5EqyXT+Vo2F54OMgdYt+nPD/xt9peWzxCGUfeQDUaXwfRy+kpAb+ptSkA==
+  dependencies:
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+
 react-native-qrcode-generator@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-qrcode-generator/-/react-native-qrcode-generator-1.1.0.tgz#f42ea72463c6c463a728bb641dc59f012024ae2a"
@@ -4944,6 +4952,14 @@ react-native-responsive-screen@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-responsive-screen/-/react-native-responsive-screen-1.4.0.tgz#c7d90c173edba28c023c665975c0de85fd60eaba"
   integrity sha512-qhT4+ATQbqV1GYaCzit560HnBNoZD7WahiZKAZebJlgBl6D8uY+kYuGwBl3rIamP5CsMfwyUJnoI5Z79JU2yyA==
+
+react-native-root-siblings@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-3.2.3.tgz#df5a1cff3a3a1f433f57320e1cae719f1b15a3f2"
+  integrity sha512-wOCCtKJteaSIW3K++hzhkfdWRikTqjrG34DnhNDVSzKatuNQyFY1fPBD1YFT/3+kxOIUmNsJdiaPMao9QgoZMA==
+  dependencies:
+    prop-types "^15.6.2"
+    static-container "^1.0.0"
 
 react-native-safe-area-context@^0.7.3:
   version "0.7.3"
@@ -4972,6 +4988,11 @@ react-native-signalr@^1.0.6:
     jquery-deferred "^0.3.1"
     ms-signalr-client "^2.2.7"
 
+react-native-simple-dialogs@^1.2.1:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-dialogs/-/react-native-simple-dialogs-1.3.0.tgz#d6fd7b86fb24b92d6324acb10e9eeb50b42c0c4f"
+  integrity sha512-xe1dAcDXXypwecy5PUicfgPColkV5PRbITGK6TcYmt/s4D4cVmaiPzVkexDXoJHzQN6qLWQt0gXFjmOHmboWzQ==
+
 react-native-simple-radio-button@^2.7.4:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/react-native-simple-radio-button/-/react-native-simple-radio-button-2.7.4.tgz#86e2dbe8af9e6bf60eee088f60466f7a975e7758"
@@ -4989,6 +5010,15 @@ react-native-table-component@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-table-component/-/react-native-table-component-1.2.1.tgz#5f1e0f159b1dff9df0d5601c4a5ab99d1aa99a25"
   integrity sha512-sapwO0bONfQtpWg3GVMwP5D3lGEJlxPB3c7fb0soXBynvCa+SBktacVZ9OmYJnIbRJ3uW5pS4tzNc8GmE+UScw==
+
+react-native-tiny-toast@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-tiny-toast/-/react-native-tiny-toast-1.0.7.tgz#a9b438263fc989c76917ba49c9d1b1e07076e624"
+  integrity sha512-nxXGE5L1N/JJCbqrICIRy5KRPISqqum7KeB8z/FDi2VYrE+6V9dfY3Cx1ovo+XPNFQiJDrZt+itIzt9xpMAoUA==
+  dependencies:
+    prop-types latest
+    react-native-iphone-x-helper "1.2.1"
+    react-native-root-siblings "3.2.3"
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"
@@ -5020,7 +5050,7 @@ react-native-web@~0.11.7:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
 
-react-native-webview@^7.5.0:
+react-native-webview@^7.6.0:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.6.0.tgz#6bae76430200be5e5ead7d986af2fa341b650186"
   integrity sha512-IQWtIpCTYb4dTshAJO3hMM9Ms5T6KRpk6qWqgBTGMdmgeEvSxWz9l7Og1ALhb7T7NoAnPy8w/dQmD9LlbGGs5g==
@@ -5695,6 +5725,11 @@ stacktrace-parser@^0.1.3:
   integrity sha512-DRy03ljj0367Ud3OAJHD6eVS/+CvMK2u/djVYuU37fHYcYHoZ8tkFyhbRf7PNG1h3bWLsw+SNTSXrPFe07A7aQ==
   dependencies:
     type-fest "^0.7.1"
+
+static-container@^1.0.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/static-container/-/static-container-1.5.1.tgz#9d7a94e04dea864539a7b6a1304843ada740dc19"
+  integrity sha512-OFChfLKIvSzaMA3otS5CEabJTIzHFPhMxogIT+io4F207PXTvS6woFyjXIyXyqMIYAhryePGeFZYC6uLcG1lpA==
 
 static-extend@^0.1.1:
   version "0.1.2"
